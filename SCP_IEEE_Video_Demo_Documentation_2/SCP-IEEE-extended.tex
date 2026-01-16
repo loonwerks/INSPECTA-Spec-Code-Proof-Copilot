@@ -1,8 +1,12 @@
 \documentclass[conference]{IEEEtran}
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
-%\usepackage{algorithmic}
-%\usepackage{algorithm}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{todonotes}
 % -------------------- Algorithms (boxed style, IEEE-friendly) --------------------
 \usepackage[ruled,vlined]{algorithm2e}
 \DontPrintSemicolon
@@ -11,13 +15,6 @@
 \SetKw{KwTo}{to}
 \SetKw{KwOr}{or}
 %-----
-
-\usepackage{graphicx}
-\usepackage{textcomp}
-\usepackage{xcolor}
-\usepackage{hyperref}
-\usepackage{listings}
-\usepackage{todonotes}
 
 % Setup for listings style
 \lstset{
@@ -45,8 +42,11 @@
 \maketitle
 
 \begin{abstract}
-This document illustrates the key moments from the SCP Codex demo.
-The adoption of formal methods in industrial Model-Based Systems Engineering (MBSE) is often hindered by high complexity and scalability barriers. This paper introduces the \textit{SCP Codex Copilot}, a deep neuro-symbolic platform designed to automate the translation of natural language requirements into trustworthy, formally verified SysML v2 contracts and system code. Unlike standard Large Language Model (LLM) fine-tuning, our approach utilizes "Meta-Rules" to extract and reuse transferable formalization patterns within a self-healing, multi-agent workflow integrated with the INSPECTA verification toolchain. We evaluate the platform using the "Isolette System" benchmark. While a direct formalization baseline failed to produce valid specifications despite high computational cost, the Meta-Rules approach achieved 100\% code-level verification success. The results demonstrate orders-of-magnitude improvements in token efficiency, execution time, and correctness, offering a viable path for scalable, trustworthy automated engineering.
+A significant challenge in Model-Based Systems Engineering (MBSE) for digital avionics is maintaining allocation and traceability between system models and corresponding implementations, while ensuring that assurance properties established at the model level remain valid in code. This challenge is heightened by the sophistication of modern avionics systems, exposure to cyber threats, and strict domain certification requirements. Without strong model-to-implementation traceability, flaws are often discovered late in integration or after fielding.
+%
+Attempts to integrate Generative AI (GenAI) into these pipelines often exacerbate these problems due to the high complexity of the avionics domain, limitations in open-source training data, and the tendency of Large Language Models (LLMs) to hallucinate—particularly when translating English requirements into formal models or code, or during model-to-code transformations.
+%
+To address these barriers, this paper introduces the \textit{SCP Codex Copilot}, a deep neuro-symbolic open platform designed to automate the translation of natural language requirements into trustworthy, formally verified SysML v2 contracts and system code. Unlike standard LLM fine-tuning, our approach utilizes "Meta-Rules" to extract and reuse transferable formalization patterns within a self-healing, multi-agent workflow integrated with the INSPECTA verification toolchain. We evaluate the platform using the "Isolette System" benchmark. While a direct formalization baseline failed to produce valid specifications despite high computational cost, the Meta-Rules approach achieved 100\% code-level verification success. The results demonstrate orders-of-magnitude improvements in token efficiency, execution time, and correctness, offering a viable path for scalable, trustworthy automated MBSE engineering.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -54,12 +54,27 @@ SCP Codex, Neuro-symbolic AI, Formal Methods, SysML v2, MBSE, Self-Healing.
 \end{IEEEkeywords}
 
 \section{Introduction}
-The adoption of formal methods in industrial workflows faces significant barriers. The SCP Codex Copilot Open Platform addresses these by leveraging Generative AI (GenAI) to accelerate Model-Based Systems Engineering (MBSE) while ensuring correctness through formal verification. This report details the SCP-Codex Copilot, a deep neuro-symbolic approach that utilizes "Meta-Rules" to extract and reuse transferable formalization knowledge, rather than relying solely on base-model fine-tuning~\cite{slides}.
+The adoption of formal methods in industrial workflows faces significant barriers regarding scalability and expertise. A primary challenge in MBSE for critical systems is ensuring that high-level assurance properties map correctly to low-level implementation. This difficulty is amplified in domains like avionics and space, where systems are highly sophisticated and subject to rigorous certification~\cite{hardin2025dasc}.
 
-%\todo{Insert a full itroduction, related work, SysMLv2 and Gumbo background subsections.}
-\begin{lstlisting}[caption={todo},label={lst:rules}]
-# TODO: Insert a full itroction, related work, SysMLv2 and Gumbo background subsections.
+While Generative AI (GenAI) offers huge potential to accelerate development, its direct application is fraught with risks. LLMs frequently suffer from hallucinations and lack deep knowledge of specialized formalisms like GUMBO contracts. Additionally, the scarcity of open-source training data for these niche languages, combined with restrictions on fine-tuning commercial models, limits the utility of mainstream LLM standard approaches, such as fine-tuning the latest GPT -5 Max models.
+
+To bridge this gap, the SCP Codex Copilot Open Platform leverages the \textbf{INSPECTA} toolchain (Industrial-Scale Proof Engineering for Critical Trustworthy Applications)~\cite{hardin2025dasc}. INSPECTA makes formal methods accessible to non-experts by integrating SysML v2~\cite{} modeling with contract specification~\cite{hatcliff2024isolette}, verification, and code generation. It enables a trustworthy MBSE lifecycle supporting model and system-level assume/guarantee reasoning and refinement to memory-safe languages like Rust/Slang with verification support (e.g., Verus~\cite{}, Slang~\cite{}, Z3~\cite{}, and cvc5~\cite{}) using HAMR/logika~\cite{} tool-chain~\cite{}.
+
+This paper details the SCP-Codex Copilot, a deep neuro-symbolic approach that utilizes Meta-Rules to extract transferable formalization knowledge. By automating the generation and repair of formal Gumbo contracts and skeletal code, SCP Copilot enables human users to integrate formal requirements and application logic reliably, with minimal formal methods background, while minimizing impact on existing development processes and integrating proof into CI/CD pipelines.
+
+The main contributions of this paper are:
+\begin{enumerate}
+    \item The SCP Codex Copilot, a multi-agent neuro-symbolic open platform for trustworthy English-to-contract and model-to-implementation generation for SysML v2 models.
+    \item A novel Meta-Rules methodology for extracting and reusing transferable formalization patterns from golden examples, documentation context, and human experts.
+    \item Empirical evaluation on a realistic life-critical medical device system model, the Isolette incumbent benchmark, demonstrating 100\% verification success compared to a baseline failure.
+\end{enumerate}
+
+The remainder of this paper is organized as follows. Section II describes the System Architecture and the Meta-Rules integration. Section III presents the key moments from the demonstration, highlighting the baseline failure and the subsequent success. Section IV details the evaluation metrics and performance comparison. Finally, Section V concludes the paper.
+
+\begin{lstlisting}[caption={background and related work },label={lst:rules}]
+# TODO: to add background on sysmlv2/Gumbo contracts, related work sec, and update bib for ref
 \end{lstlisting}
+
 \section{System Architecture}
 The SCP Codex Copilot introduces a multi-agent "Copilot Loop" that integrates Large Language Models (LLMs) with the INSPECTA toolchain.
 
@@ -76,7 +91,7 @@ The architecture operates as a coordinated multi-agent loop. As shown in Fig. \r
 \subsection{Meta-Rules Integration}
 To overcome the limitations of pre-trained models, the platform uses "Meta-Rules"—transferable formalization rules learned through a supervised process. 
 
-Instead of relying on messy fine-tuning of a huge model, the SCP Copilot uses a smart "teacher" agent to create these clear, reusable rules. As detailed in Algorithm~\ref{alg:meta-rules}, this supervised self-adaptation loop watches the main AI, spots patterns where it struggles (e.g., "hold previous value"), writes a generic mini-template (the meta-rule), and tests it before adding it to the rulebook.
+Instead of relying on messy fine-tuning of a huge model, the SCP platform uses a smart "teacher" agent to create these clear, reusable rules. As detailed in Algorithm~\ref{alg:meta-rules}, this supervised self-adaptation loop watches the main AI, spots patterns where it struggles (e.g., "hold previous value"), writes a generic mini-template (the meta-rule), and tests it before adding it to the rulebook.
 
 Listing \ref{list:metaRules} illustrates a specific resulting rule for the "State" section. This rule directs the agent to introduce persistent variables when requirements imply memory, such as hysteresis or timeouts.
 
@@ -241,7 +256,11 @@ A critical aspect of the framework is the \textbf{Generalization-Specialization 
 \section{Evaluation and Metrics}
 The quantitative impact of the Meta-Rules is visualized in Fig. \ref{fig:resultsChart}. 
 
-\begin{figure}[t]
+\begin{lstlisting}[caption={Meta-Rules },label={lst:rules}]
+# TODO: to add metrics definitions subsection.
+\end{lstlisting}
+
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{figures/results-chart.png}
 \caption{Performance comparison: Before (Orange) vs. After Meta-Rules (Blue). The charts demonstrate a massive reduction in input/output tokens and execution time, while Task Throughput increases by orders of magnitude.}
@@ -256,6 +275,10 @@ As illustrated in Fig. \ref{fig:resultsChart}, the orange bars represent the fai
     \item \textbf{Execution Time:} The total time was cut from 33 minutes to $\approx$25 minutes, transforming a failing workflow into a fully verified one.
     \item \textbf{Correctness:} The approach achieved a $>58\times$ improvement in correctness, moving from near-zero to 100\% verification success~\cite{slides}.
 \end{itemize}
+
+\begin{lstlisting}[caption={Meta-Rules },label={lst:rules}]
+# TODO: Limitations and future work section.
+\end{lstlisting}
 
 \section{Conclusion}
 The SCP Codex Open Platform demonstrates that using Meta-Rules to extract and reuse formalization knowledge significantly outperforms direct model querying. This neuro-symbolic approach enables the reliable generation of trustworthy, formally verified system code with orders-of-magnitude improvements in efficiency and cost.
