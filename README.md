@@ -9,8 +9,8 @@ Spec, Code, and Proofs copilot for SysML v2. This multi-agent neuro-symbolic cop
 **Click the image above to play the video demo.**
 
 This demo shows **English-to-System and Code-Level Verification for provided Scala/Slang application logic**, where **SCP Copilot**:
-- Parses English document requirements and Meta-Rules  
-- Applies Verification Plans and supervised self-adaptation (Meta-Rule Developer Mode)  
+- Parses English document requirements, Meta-Rules, and sysml v2 spec (but with *NO* GUMBO contracts)  
+- Applies Verification Plans and supervised self-healing loop:  
 - Generates Gumbo contracts  
 - Inserts the generated contracts into SysML v2 files  
 - Runs HAMR code generation  
