@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.8.18)  15 JAN 2026 23:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.8.18)  27 JAN 2026 13:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -756,7 +756,17 @@ File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count310
 \l__pdf_internal_box=\box70
 )
-No file SCP-IEEE-extended.aux.
+(./SCP-IEEE-extended.aux
+
+LaTeX Warning: Label `lst:rules' multiply defined.
+
+
+LaTeX Warning: Label `lst:rules' multiply defined.
+
+
+LaTeX Warning: Label `lst:rules' multiply defined.
+
+)
 \openout1 = `SCP-IEEE-extended.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
@@ -775,6 +785,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
 LaTeX Font Info:    ... okay on input line 32.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 32.
 LaTeX Font Info:    ... okay on input line 32.
+
 -- Lines per column: 56 (exact).
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -815,6 +826,8 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 32.
 LaTeX Info: Redefining \pageref on input line 32.
 LaTeX Info: Redefining \nameref on input line 32.
+
+(./SCP-IEEE-extended.out) (./SCP-IEEE-extended.out)
 \@outlinefile=\write4
 \openout4 = `SCP-IEEE-extended.out'.
 
@@ -834,223 +847,226 @@ File: omsptm.fd
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 43.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 51.
 
-
-LaTeX Warning: Citation `hardin2025dasc' on page 1 undefined on input line 57.
-
-
-LaTeX Warning: Citation `hardin2025dasc' on page 1 undefined on input line 61.
-
-
-LaTeX Warning: Citation `hatcliff2024isolette' on page 1 undefined on input lin
-e 61.
-
-
-Underfull \hbox (badness 2753) in paragraph at lines 67--68
-\OT1/ptm/m/n/10 model-to-implementation gen-er-a-tion for SysML v2
- []
-
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 74.
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 7
-4.
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
-File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
-
-
-]
-
-LaTeX Warning: Reference `fig:workflow' on page 2 undefined on input line 82.
-
-
-LaTeX Warning: Citation `slides' on page 2 undefined on input line 82.
-
-<figures/copilot-loop.png, id=48, 853.68938pt x 336.50719pt>
-File: figures/copilot-loop.png Graphic file (type png)
-<use figures/copilot-loop.png>
-Package pdftex.def Info: figures/copilot-loop.png  used on input line 86.
-(pdftex.def)             Requested size: 252.0pt x 99.33037pt.
-
-LaTeX Warning: Reference `alg:meta-rules' on page 2 undefined on input line 94.
-
-
-
-LaTeX Warning: Reference `list:metaRules' on page 2 undefined on input line 96.
-
-
-
-LaTeX Warning: Reference `fig:ruleLearning' on page 2 undefined on input line 1
-17.
-
-
-LaTeX Warning: Reference `alg:meta-rules' on page 2 undefined on input line 119
-.
-
-
-LaTeX Warning: Reference `list:failureLog' on page 2 undefined on input line 12
-5.
-
-
-LaTeX Warning: Reference `list:metaRules' on page 2 undefined on input line 143
-.
-
-
-LaTeX Warning: Reference `list:successLog' on page 2 undefined on input line 14
-3.
-
-
-LaTeX Warning: Reference `list:successLog' on page 2 undefined on input line 16
-1.
-
-
-LaTeX Warning: Citation `slides' on page 2 undefined on input line 161.
-
-
-LaTeX Warning: Reference `alg:meta-rules' on page 2 undefined on input line 164
-.
-
-
-LaTeX Warning: Reference `alg:meta-rules' on page 2 undefined on input line 167
-.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 167--168
- \OT1/ptm/m/it/10 1) Al-go-rithm De-scrip-tion: Neuro-Symbolic Meta-Rule
- []
-
-[2 <./figures/copilot-loop.png>]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 170
-.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 170
-.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 51.
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
+LaTeX Warning: Citation `openai-restriction' on page 1 undefined on input line 
+62.
+
+
+LaTeX Warning: Citation `introSysMLv2' on page 1 undefined on input line 65.
+
+
+LaTeX Warning: Citation `hatcliff2023gumbo' on page 1 undefined on input line 6
+5.
+
+
+LaTeX Warning: Citation `belt2022aeic' on page 1 undefined on input line 65.
+
+
+LaTeX Warning: Citation `hatcliff2021hamr' on page 1 undefined on input line 65
+.
+
+
+LaTeX Warning: Citation `sireumlogika' on page 1 undefined on input line 65.
+
+
+LaTeX Warning: Citation `moura2008z3' on page 1 undefined on input line 65.
+
+
+LaTeX Warning: Citation `barbosa2022cvc5' on page 1 undefined on input line 65.
+
+
+
+LaTeX Warning: Citation `vonoswald2023transformers' on page 1 undefined on inpu
+t line 68.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+
+]
+
+LaTeX Warning: Citation `polu2020generative' on page 2 undefined on input line 
+73.
+
+
+LaTeX Warning: Citation `han2021generative' on page 2 undefined on input line 7
+3.
+
+
+LaTeX Warning: Citation `first2023baldur' on page 2 undefined on input line 73.
+
+
+
+LaTeX Warning: Citation `yang2023leandojo' on page 2 undefined on input line 73
+.
+
+
+LaTeX Warning: Citation `garg2016learning' on page 2 undefined on input line 73
+.
+
+
+LaTeX Warning: Citation `si2018learning' on page 2 undefined on input line 73.
+
+
+LaTeX Warning: Citation `sun2023clover' on page 2 undefined on input line 73.
+
+
+LaTeX Warning: Citation `tahat2023coq' on page 2 undefined on input line 75.
+
+
+LaTeX Warning: Citation `gsm2024' on page 2 undefined on input line 75.
+
+
+LaTeX Warning: Citation `amazon2024smt' on page 2 undefined on input line 75.
+
+
+LaTeX Warning: Citation `agreedog' on page 2 undefined on input line 75.
+
+
+Underfull \hbox (badness 1454) in paragraph at lines 82--83
+[]\OT1/ptm/b/n/10 Empirical Eval-u-a-tion: \OT1/ptm/m/n/10 An eval-u-a-tion on 
+the Iso-
+ []
+
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 87.
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 8
+7.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+<figures/copilot-loop.png, id=113, 853.68938pt x 336.50719pt>
+File: figures/copilot-loop.png Graphic file (type png)
+<use figures/copilot-loop.png>
+Package pdftex.def Info: figures/copilot-loop.png  used on input line 99.
+(pdftex.def)             Requested size: 252.0pt x 99.33037pt.
+ [2 <./figures/copilot-loop.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 180--181
+ \OT1/ptm/m/it/10 1) Al-go-rithm De-scrip-tion: Neuro-Symbolic Meta-Rule
+ []
+
+[3]
+
 LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
-(Font)              using `OT1/ptm/m/sc' instead on input line 217.
+(Font)              using `OT1/ptm/m/sc' instead on input line 230.
 
 
 LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
-(Font)              using `OT1/ptm/m/sc' instead on input line 217.
+(Font)              using `OT1/ptm/m/sc' instead on input line 230.
 
 
 LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
-(Font)              using `OT1/ptm/m/sc' instead on input line 217.
+(Font)              using `OT1/ptm/m/sc' instead on input line 230.
 
 
 LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
-(Font)              using `OT1/ptm/m/sc' instead on input line 233.
+(Font)              using `OT1/ptm/m/sc' instead on input line 246.
 
-<figures/rule-learning.png, id=78, 813.0375pt x 313.17pt>
+<figures/rule-learning.png, id=174, 813.0375pt x 313.17pt>
 File: figures/rule-learning.png Graphic file (type png)
 <use figures/rule-learning.png>
-Package pdftex.def Info: figures/rule-learning.png  used on input line 242.
+Package pdftex.def Info: figures/rule-learning.png  used on input line 255.
 (pdftex.def)             Requested size: 252.0pt x 97.06258pt.
-[3 <./figures/rule-learning.png>]
-
-LaTeX Warning: Reference `fig:resultsChart' on page 4 undefined on input line 2
-57.
-
-<figures/results-chart.png, id=113, 855.94781pt x 570.63188pt>
+<figures/results-chart.png, id=176, 855.94781pt x 570.63188pt>
 File: figures/results-chart.png Graphic file (type png)
 <use figures/results-chart.png>
-Package pdftex.def Info: figures/results-chart.png  used on input line 265.
+Package pdftex.def Info: figures/results-chart.png  used on input line 278.
 (pdftex.def)             Requested size: 252.0pt x 167.99536pt.
-
-LaTeX Warning: Reference `fig:resultsChart' on page 4 undefined on input line 2
-71.
-
-
-LaTeX Warning: Citation `slides' on page 4 undefined on input line 276.
-
-No file SCP-IEEE-extended.bbl.
-** WARNING: Ignoring useless \section in Appendix (line 305).
+[4 <./figures/rule-learning.png>] (./SCP-IEEE-extended.bbl)
+** WARNING: Ignoring useless \section in Appendix (line 318).
 Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
-ine 307.
+ine 320.
 
-Overfull \hbox (10.96964pt too wide) in paragraph at lines 307--307
+Overfull \hbox (10.96964pt too wide) in paragraph at lines 320--320
 [][][]\OT1/ptm/m/n/10 Insert 
  []
 
 
-Overfull \hbox (3.75978pt too wide) in paragraph at lines 307--307
+Overfull \hbox (3.75978pt too wide) in paragraph at lines 320--320
 \OT1/ptm/m/n/10 link 
  []
 
 
-Overfull \hbox (8.74979pt too wide) in paragraph at lines 307--307
+Overfull \hbox (8.74979pt too wide) in paragraph at lines 320--320
 \OT1/ptm/m/n/10 com- 
  []
 
 
-Overfull \hbox (7.63966pt too wide) in paragraph at lines 307--307
+Overfull \hbox (7.63966pt too wide) in paragraph at lines 320--320
 \OT1/ptm/m/n/10 plete 
  []
 
 
-Overfull \hbox (12.07962pt too wide) in paragraph at lines 307--307
+Overfull \hbox (12.07962pt too wide) in paragraph at lines 320--320
 \OT1/ptm/m/n/10 Meta- 
  []
 
 
-Overfull \hbox (10.97964pt too wide) in paragraph at lines 307--307
+Overfull \hbox (10.97964pt too wide) in paragraph at lines 320--320
 \OT1/ptm/m/n/10 Rules 
  []
 
 
-Overfull \hbox (0.97977pt too wide) in paragraph at lines 307--307
+Overfull \hbox (0.97977pt too wide) in paragraph at lines 320--320
 \OT1/ptm/m/n/10 file 
  []
 
 
-Overfull \hbox (7.90984pt too wide) in paragraph at lines 307--307
+Overfull \hbox (7.90984pt too wide) in paragraph at lines 320--320
 \OT1/ptm/m/n/10 here.[]  
  []
 
 
-Overfull \hbox (10.96964pt too wide) in paragraph at lines 307--307
+Overfull \hbox (10.96964pt too wide) in paragraph at lines 320--320
 [][][]\OT1/ptm/m/n/10 Insert 
  []
 
 
-Overfull \hbox (3.75978pt too wide) in paragraph at lines 307--307
+Overfull \hbox (3.75978pt too wide) in paragraph at lines 320--320
 \OT1/ptm/m/n/10 link 
  []
 
 
-Overfull \hbox (8.74979pt too wide) in paragraph at lines 307--307
+Overfull \hbox (8.74979pt too wide) in paragraph at lines 320--320
 \OT1/ptm/m/n/10 com- 
  []
 
 
-Overfull \hbox (7.63966pt too wide) in paragraph at lines 307--307
+Overfull \hbox (7.63966pt too wide) in paragraph at lines 320--320
 \OT1/ptm/m/n/10 plete 
  []
 
 
-Overfull \hbox (12.07962pt too wide) in paragraph at lines 307--307
+Overfull \hbox (12.07962pt too wide) in paragraph at lines 320--320
 \OT1/ptm/m/n/10 Meta- 
  []
 
 
-Overfull \hbox (10.97964pt too wide) in paragraph at lines 307--307
+Overfull \hbox (10.97964pt too wide) in paragraph at lines 320--320
 \OT1/ptm/m/n/10 Rules 
  []
 
 
-Overfull \hbox (0.97977pt too wide) in paragraph at lines 307--307
+Overfull \hbox (0.97977pt too wide) in paragraph at lines 320--320
 \OT1/ptm/m/n/10 file 
  []
 
 
-Overfull \hbox (7.90984pt too wide) in paragraph at lines 307--307
+Overfull \hbox (7.90984pt too wide) in paragraph at lines 320--320
 \OT1/ptm/m/n/10 here.[]  
  []
 
@@ -1065,14 +1081,14 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[4 <./figures/results-chart.png>] [5
+[5 <./figures/results-chart.png>] [6
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 313.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 313.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 326.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 326.
  (./SCP-IEEE-extended.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 313.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 313.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 326.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 326.
 
 
 Package rerunfilecheck Warning: File `SCP-IEEE-extended.out' has changed.
@@ -1080,38 +1096,40 @@ Package rerunfilecheck Warning: File `SCP-IEEE-extended.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `SCP-IEEE-extended.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  27BE5AC6C83D3A4C5B6A77FCCA4BC4B8;1048.
+(rerunfilecheck)             Before: 224079F58962F436595D4B97D386E7D2;1095
+(rerunfilecheck)             After:  EB509CC1C4BD3D117676F687ACF654DA;1339.
 
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 313.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 326.
  ) 
 Here is how much of TeX's memory you used:
- 20881 strings out of 481239
- 384108 string characters out of 5920377
- 918648 words of memory out of 5000000
- 35674 multiletter control sequences out of 15000+600000
- 567929 words of font info for 88 fonts, out of 8000000 for 9000
+ 20960 strings out of 481239
+ 385272 string characters out of 5920377
+ 864817 words of memory out of 5000000
+ 35729 multiletter control sequences out of 15000+600000
+ 572167 words of font info for 101 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,19n,83p,953b,1189s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 68i,19n,83p,1077b,1189s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/cour
-ier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/urw/times/utmri8a.pfb>
-Output written on SCP-IEEE-extended.pdf (5 pages, 595085 bytes).
+fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+urw/times/utmri8a.pfb>
+Output written on SCP-IEEE-extended.pdf (6 pages, 618890 bytes).
 PDF statistics:
- 191 PDF objects out of 1000 (max. 8388607)
- 150 compressed objects within 2 object streams
- 76 named destinations out of 1000 (max. 500000)
- 124 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 280 PDF objects out of 1000 (max. 8388607)
+ 235 compressed objects within 3 object streams
+ 84 named destinations out of 1000 (max. 500000)
+ 252 words of extra memory for PDF output out of 10000 (max. 10000000)
 
