@@ -10,8 +10,6 @@ Spec, Code, and Proofs copilot for SysML v2. This multi-agent neuro-symbolic cop
 This demo shows **English-to-System and Code-Level Verification for provided Scala/Slang application logic**, where **SCP Copilot**:
 
 - Is triggered by a **low entry-point prompt** (a single instruction that initiates the self-healing formal spec–code–proof loop):
-> **Example of an entry point prompt:**:
-> * Follow the plan Gumbo_FSE_agent_Plan.txt to formalize contracts in Regulate.sysml, then follow the sireum_verification_plan.txt.
 - Parses English document requirements, Meta-Rules, and sysml v2 spec (but with *NO* GUMBO contracts)  
 - Applies Verification Plans and supervised self-healing loop:  
 - Generates Gumbo contracts  
