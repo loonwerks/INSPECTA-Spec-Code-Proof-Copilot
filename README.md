@@ -1,12 +1,17 @@
 # INSPECTA-Spec-Code-Proof-Copilot
 Spec, Code, and Proofs copilot for SysML v2. This multi-agent neuro-symbolic copilot leverages the INSPECTA symbolic toolchain, coupled with highly automated human-in-the-loop mechanisms, to generate trustworthy infrastructure and  system code directly from SysML v2 models.
 
+> **Low entry point:** a simple prompt that triggers the self-healing
+> *English → spec → code → formal proof* loop
+
+// Follow Gumbo_FSE_agent_Plan.txt to formalize contracts in Regulate.sysml, then execute the Sireum verification plan to complete system- and code-level verification.
+
 
 ### 🎬 Video Demo
 
 [![Watch the video](https://img.youtube.com/vi/BGtiUfd8LCQ/maxresdefault.jpg)](https://www.youtube.com/watch?v=BGtiUfd8LCQ)
 
-**Click the image above to play the video demo.**
+**Click the image above to play the SCP Copilot video demo.**
 
 This demo shows **English-to-System and Code-Level Verification for provided Scala/Slang application logic**, where **SCP Copilot**:
 - Parses English document requirements, Meta-Rules, and sysml v2 spec (but with *NO* GUMBO contracts)  
