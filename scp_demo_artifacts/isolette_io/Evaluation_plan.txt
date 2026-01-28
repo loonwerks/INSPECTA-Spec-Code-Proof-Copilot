@@ -1,0 +1,49 @@
+EVALUATION PLAN
+===============
+
+Purpose
+-------
+Evaluate one or more plan checkpoints by recomputing cosine distances between the
+current SysML GUMBO contracts and the corresponding golden examples while ensuring
+that the contracts still satisfy the Sireum verification workflow.  The plan relies
+on the helper script `tools/evaluate_plans.py`.
+
+Prerequisites
+-------------
+1. The working tree reflects the contracts produced by the plan you want to evaluate.
+2. Golden reference models are available under `golden_examples/` (or pass
+   `--golden-dir` to the script).
+3. `OPENAI_API_KEY` is exported (e.g., `source .env`) so embeddings can be computed.
+4. Sireum CLI is available (the same commands used in `sireum_verification_plan.txt`).
+
+Per-Plan Evaluation Steps
+-------------------------
+1. (Optional) Restore the plan checkpoint you wish to evaluate (e.g., check out the
+   appropriate SysML files or apply the contract overrides).
+2. Run the evaluation helper:
+
+       python tools/evaluate_plans.py --plans <PlanName>
+
+   * Use multiple names to record several checkpoints in a single pass.
+   * To reuse a different golden directory or repo root, pass
+     `--golden-dir`/`--repo-root`.  By default the script expects to run from
+     `isolette/sysml` and uses `golden_examples/` in that directory.
+3. The script performs:
+   * `sireum hamr sysml logika --sourcepath isolette/sysml`
+   * `isolette/hamr/slang/bin/run-logika.cmd`
+   * Cosine-distance measurements for every SysML file containing a GUMBO contract.
+4. For each plan name it writes `evaluation_<PlanName>.json` containing:
+   * `plan`: the provided label.
+   * `distances`: per-`.sysml` per-contract cosine distances versus the golden file.
+   * `generation_time_sec`: wall-clock time spent running verification and
+     measurements for that plan.
+
+Tips & Error Avoidance
+----------------------
+- Always confirm the golden directory path before running; missing files will
+  abort the script.
+- Source `.env` in the current directory so the OpenAI client receives the API key.
+- If you only need metrics and have already run verification manually, pass
+  `--skip-verification` to the helper (use judiciously).
+- The script reads every `.sysml` under `isolette/sysml`; ensure the golden
+  directory mirrors that structure.

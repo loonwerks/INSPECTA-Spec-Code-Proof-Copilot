@@ -1,0 +1,38 @@
+- Run the following verification steps in order. 
+
+Step 1- Regenerate artifacts from the SysML model ( default to JVM unless instructed by user to use Microkit).
+  For JVM:
+     isolette/sysml/bin/run-hamr.cmd JVM
+
+  For Microkit:
+     isolette/sysml/bin/run-hamr.cmd Microkit
+
+Expected Behavior:
+
+- HAMR updates generated contract regions in Slang components
+- HAMR preserves developer-written application logic
+- Slang artifacts are written to:
+    
+    isolette/hamr/slang
+
+Step 2- Verify code level contracts use:
+    
+    isolette/hamr/slang/bin/run-logika.cmd
+
+Step 3- Check model level intergration constraints use:
+   sireum hamr sysml logika --sourcepath isolette/sysml
+
+  
+- VERY IMPORTANT: After applying a step, if it fails or produces any error messages, explain the errors, suggest a repair plan, and wait for my approval before continuing.
+ 
+- Also, if approved by user, if it Fails → For this test plan, keep the application logic in slang and the SysML v2 specification unchanged. Modify only the GUMBO contracts (following Gumbo_FSE_agent_plan.txt), then return to Step 1 of this plan above, (i.e. rerun sireum_verification_plan.txt
+
+- If it succeeds and there are more steps, move to the next step. If the final step succeeds, report the verification status from Logika and ask me what to do next.
+
+-----------------------------------------------------------------------
+Notes & Guardrails
+-----------------------------------------------------------------------
+- Do NOT edit HAMR-generated contract blocks
+- Place all application logic in developer regions
+- Regeneration relies on delimiters to safely update contracts
+

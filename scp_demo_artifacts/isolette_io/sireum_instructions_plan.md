@@ -1,0 +1,203 @@
+Installation
+
+Install Docker Desktop
+
+Clone this repo and cd into it
+
+git clone https://github.com/loonwerks/INSPECTA-models.git
+cd INSPECTA-models
+
+Clone the SysMLv2 AADL Libraries into the Isolette's sysml directory
+
+git clone https://github.com/santoslab/sysml-aadl-libraries.git isolette/sysml/sysml-aadl-libraries
+
+OPTIONAL
+
+If you want to rerun codegen then you will need to install Sireum and OSATE. You can do this inside or outside of the container that you'll pull in the next section (the latter is probably preferable as you could then use Sireum outside of the container).
+
+Copy/paste the following to install Sireum
+
+git clone https://github.com/sireum/kekinian.git
+
+This installs/builds Sireum from source rather than via a binary distribution (which is probably the prefered method for PROVERS).
+
+Now set SIREUM_HOME to point to where you cloned kekinian and add $SIREUM_HOME/bin to your path. E.g. for bash
+
+echo "export SIREUM_HOME=$(pwd)/kekinian" >> $HOME/.bashrc
+echo "export PATH=\$SIREUM_HOME/bin:\$PATH" >> $HOME/.bashrc
+source $HOME/.bashrc
+
+To update Sireum in the future do the following
+
+cd $SIREUM_HOME
+git pull --rec
+bin/build.cmd
+
+Run the following to install IVE and CodeIVE which provide IDE support for Slang and SysMLv2 respectively.
+
+sireum setup ive
+sireum setup vscode
+
+Run the following to install OSATE and the Sireum plugins which provides IDE and codegen support for AADL. This will install OSATE into your current directory (or wherever as indicated via the -o option). For Windows/Linux
+
+sireum hamr phantom -u -v -o $(pwd)/osate
+
+or for Mac copy/paste
+
+sireum hamr phantom -u -v -o $(pwd)/osate.app
+
+Now set OSATE_HOME to point to where you installed Osate
+
+echo "export OSATE_HOME=$(pwd)/osate" >> $HOME/.bashrc
+source $HOME/.bashrc
+
+Codegen
+JVM
+
+OPTIONAL Rerun codegen targeting the JVM
+
+    From the AADL model
+
+    Launch the Slash script isolette/aadl/bin/run-hamr.cmd from the command line.
+
+    isolette/aadl/bin/run-hamr.cmd JVM
+
+From the SysMLv2 model
+
+Launch the Slash script isolette/sysml/bin/run-hamr.cmd from the command line.
+
+isolette/sysml/bin/run-hamr.cmd JVM
+
+Build and run the application
+
+sireum proyek run isolette/hamr/slang isolette.Demo
+
+Verify code level contracts
+
+isolette/hamr/slang/bin/run-logika.cmd
+
+Check model level intergration constraints
+
+sireum hamr sysml logika --sourcepath isolette/sysml
+
+Microkit
+
+OPTIONAL Rerun codegen targeting Microkit
+
+    From the AADL model
+
+    Launch the Slash script isolette/aadl/bin/run-hamr.cmd from the command line.
+
+    isolette/aadl/bin/run-hamr.cmd Microkit
+
+Run the following to do an appraisal on the results (appraising will fail if any changes are made to the AADL files or the microkit.system file)
+
+docker run -it --rm -v $(pwd):/home/microkit/provers/INSPECTA-models jasonbelt/microkit_domain_scheduling \
+  bash -ci "bash \$HOME/bin/install-sireum.sh && \$HOME/provers/INSPECTA-models/isolette/attestation/run-attestation.cmd aadl"
+
+From the SysMLv2 model
+
+Launch the Slash script isolette/sysml/bin/run-hamr.cmd from the command line.
+
+isolette/sysml/bin/run-hamr.cmd Microkit
+
+Run the following to do an appraisal on the results (appraising will fail if any changes are made to the SysML files or the microkit.system file)
+
+docker run -it --rm -v $(pwd):/home/microkit/provers/INSPECTA-models jasonbelt/microkit_domain_scheduling \
+  bash -ci "\$HOME/provers/INSPECTA-models/isolette/attestation/run-attestation.cmd sysml"
+
+Build and simulate the seL4 Microkit image
+
+Run the following from this repository's root directory. The docker image jasonbelt/microkit_domain_scheduling contains customized versions of Microkit and seL4 that support domain scheduling. They were built off the following pull requests
+
+    microkit #175
+    seL4 #1308
+
+docker run -it --rm -v $(pwd):/home/microkit/provers/INSPECTA-models jasonbelt/microkit_domain_scheduling \
+    bash -ci "cd \$HOME/provers/INSPECTA-models/isolette/hamr/microkit && make qemu"
+
+Type CTRL-a x to exit the QEMU simulation
+
+You should see output similar to the following
+
+Bootstrapping kernel
+Warning: Could not infer GIC interrupt target ID, assuming 0.
+available phys memory regions: 1
+  [60000000..c0000000]
+reserved virt address space regions: 3
+  [8060000000..8060348000]
+  [8060348000..80603ae000]
+  [80603ae000..80603b6000]
+Booting all finished, dropped to user space
+MON|INFO: Microkit Bootstrap
+MON|INFO: bootinfo untyped list matches expected list
+MON|INFO: Number of bootstrap invocations: 0x0000000a
+MON|INFO: Number of system invocations:    0x000002ac
+MON|INFO: completed bootstrap invocations
+thermostat_mt_ma: thermostat_mt_ma_ma_initialize invoked
+MON|INFO: completed system invocations
+thermostat_rt_mr: thermostat_rt_mri_mri_initialize invoked
+thermostat_rt_mr: thermostat_rt_mrm_mrm_initialize invoked
+thermostat_rt_mh: thermostat_rt_mhs_mhs_initialize invoked
+thermostat_rt_dr: thermostat_rt_drf_drf_initialize invoked
+heat_source_cpi_: heat_source_cpi_heat_controller_initialize invoked
+operator_interfa: operator_interface_oip_oit_initialize invoked
+temperature_sens: temperature_sensor_cpi_thermostat_initialize invoked
+thermostat_mt_mm: thermostat_mt_mmm_mmm_initialize invoked
+thermostat_mt_mm: thermostat_mt_mmi_mmi_initialize invoked
+thermostat_mt_dm: thermostat_mt_dmf_dmf_timeTriggered invoked
+operator_interfa: Regulator Status: Init
+operator_interfa: Monitor Status: Init
+operator_interfa: Display Temperature 0.000000
+operator_interfa: Alamr: off
+####### FRAME 0 #######
+thermostat_mt_dm: thermostat_mt_dmf_dmf_timeTriggered invoked
+operator_interfa: Regulator Status: On
+operator_interfa: Monitor Status: On
+operator_interfa: Display Temperature 97.000000
+operator_interfa: Alamr: off
+####### FRAME 1 #######
+thermostat_mt_dm: thermostat_mt_dmf_dmf_timeTriggered invoked
+heat_source_cpi_: Received command: On
+operator_interfa: Regulator Status: On
+operator_interfa: Monitor Status: On
+operator_interfa: Display Temperature 96.000000
+operator_interfa: Alamr: on
+####### FRAME 2 #######
+thermostat_mt_dm: thermostat_mt_dmf_dmf_timeTriggered invoked
+operator_interfa: Regulator Status: On
+operator_interfa: Monitor Status: On
+operator_interfa: Display Temperature 97.000000
+operator_interfa: Alamr: on
+####### FRAME 3 #######
+thermostat_mt_dm: thermostat_mt_dmf_dmf_timeTriggered invoked
+operator_interfa: Regulator Status: On
+operator_interfa: Monitor Status: On
+operator_interfa: Display Temperature 98.000000
+operator_interfa: Alamr: off
+####### FRAME 4 #######
+thermostat_mt_dm: thermostat_mt_dmf_dmf_timeTriggered invoked
+operator_interfa: Regulator Status: On
+operator_interfa: Monitor Status: On
+operator_interfa: Display Temperature 99.000000
+operator_interfa: Alamr: off
+####### FRAME 5 #######
+thermostat_mt_dm: thermostat_mt_dmf_dmf_timeTriggered invoked
+heat_source_cpi_: Received command: Off
+operator_interfa: Regulator Status: On
+operator_interfa: Monitor Status: On
+operator_interfa: Display Temperature 100.000000
+operator_interfa: Alamr: off
+####### FRAME 6 #######
+thermostat_mt_dm: thermostat_mt_dmf_dmf_timeTriggered invoked
+operator_interfa: Regulator Status: On
+operator_interfa: Monitor Status: On
+operator_interfa: Display Temperature 101.000000
+operator_interfa: Alamr: off
+####### FRAME 7 #######
+thermostat_mt_dm: thermostat_mt_dmf_dmf_timeTriggered invoked
+operator_interfa: Regulator Status: On
+operator_interfa: Monitor Status: On
+operator_interfa: Display Temperature 102.000000
+operator_interfa: Alamr: on
+
