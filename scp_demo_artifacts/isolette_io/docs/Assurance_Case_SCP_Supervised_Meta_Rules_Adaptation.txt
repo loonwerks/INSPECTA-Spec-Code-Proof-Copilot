@@ -11,9 +11,9 @@ verifiable mechanism for evolving formal translation logic without
 relying on black-box model fine-tuning.
 
 The assurance case is intended to be:
-- Reviewable by sponsors and external stakeholders, and
+- Reviewable by customer/user and external stakeholders, and
 - Executable in intent by an automated Codex-style agent following the
-  associated SCP_Cosine_Self_Adaptation_Plan.txt.
+  associated SCP_Cosine_Meta_Rules_Adaptation_Plan.txt.
 
 ======================================================================
 TOP-LEVEL GOAL (G0)
@@ -147,7 +147,7 @@ CONTEXT AND ASSUMPTIONS (C)
 ======================================================================
 
 C1: Fine-tuning of foundation models is infeasible due to data scarcity,
-    cost, or proprietary constraints.
+    cost, or proprietary constraints ( e.g., restricted by LLM vendors).
 
 C2: Meta-Rules provide a stable abstraction layer for capturing expert
     knowledge and learned translation behavior.
@@ -166,9 +166,16 @@ J1: Supervised Meta-Rule Adaptation provides stronger assurance than
     black-box fine-tuning by preserving transparency, auditability, and
     deterministic rollback.
 
-J2: Crystallizing successful in-context learning behaviors into
-    persistent Meta-Rules enables cumulative learning without modifying
-    model weights.
+J2: Crystallizing successful in-context learning behaviors into 
+    persistent Meta-Rules enables cumulative learning in mainstream 
+    LLMs without explicit weight modification, effectively circumventing
+    the cost and operational constraints of base model fine-tuning, while
+    still achieving significant improvements in translation accuracy,
+    verification success rates, and execution efficiency.
+
+    This enables high-assurance adaptation in environments where
+    fine-tuning is infeasible, prohibited, or non-certifiable, without
+    sacrificing performance.    
 
 ======================================================================
 CONCLUSION
@@ -176,9 +183,10 @@ CONCLUSION
 
 Given satisfaction of G1, G2, and G3, G0 is supported: the SCP Copilot
 Supervised Meta-Rules Adaptation framework provides a verifiable,
-governed alternative to fine-tuning that enables self-healing formal
-translation from English requirements to GUMBO contracts and HAMR code,
-while maintaining correctness guarantees and human control.
+governed alternative to fine-tuning, GPT 5.1 max and GPT 5.2 max models, 
+that enables self-healing formal translation from English requirements 
+to GUMBO contracts and HAMR code, while maintaining correctness 
+guarantees and human control.
 
 ======================================================================
 END OF ASSURANCE CASE
