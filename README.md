@@ -26,7 +26,7 @@ This demo shows **English-to-System and Code-Level Verification for provided Sca
      > check this dir →  [Isolette SysML files](scp_demo_artifacts/isolette_io) e.g., `isolette_io/Monitor.sysml` and `isolette_io/Regulate.sysml`
 -  **Input SysML v2 files:**
      > check this dir → [sysml-aadl-libraries submodule](scp_demo_artifacts/isolette_io/sysml-aadl-libraries) 
-     > and this dir → [Isolette SysML files](scp_demo_artifacts/isolette_io) sysml files, same as output but remove GUMBO contracts
+     > and this dir → [Isolette SysML files](scp_demo_artifacts/isolette_io), same as output but remove GUMBO contracts
 -  **Meta-Rules file English to Gumbo Formal Specifications (User Mode):** 
      > check this file → [Gumbo_FSE_agent_Plan.txt](scp_demo_artifacts/isolette_io/Gumbo_FSE_agent_Plan.txt)
 -  **Verification plan:**
