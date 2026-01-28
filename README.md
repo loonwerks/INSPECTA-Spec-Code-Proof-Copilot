@@ -31,12 +31,18 @@ This demo shows **English-to-System and Code-Level Verification for provided Sca
      > check this file → [Gumbo_FSE_agent_Plan.txt](scp_demo_artifacts/isolette_io/Gumbo_FSE_agent_Plan.txt)
 -  **Verification plan:**
      > check this file → [sireum_verification_plan.txt](scp_demo_artifacts/isolette_io/sireum_verification_plan.txt)
--  **Supervised self-adaptation plan (Meta-Rule Developer Mode):**
-     > check this file → [Supervised Meta-Rules Adaptation Assurance Case](scp_demo_artifacts/isolette_io/SCP_Supervised_Meta_Rules_Adaptation_Assurance_Case.txt) 
-     > and this file → [Cosine Meta-Rules Adaptation Plan](scp_demo_artifacts/isolette_io/SCP_Cosine_Meta_Rules_Adaptation_Plan.txt)
 
+-  **Supervised self-adaptation plan (Meta-Rule Developer Mode):**
+     > and this file → [Cosine Meta-Rules Adaptation Plan](scp_demo_artifacts/isolette_io/SCP_Cosine_Meta_Rules_Adaptation_Plan.txt)   
+        > > **Intended audience:** This document is intended to be consumed by automated agents in Developer Mode.
 
 ### Supervised Meta-Rules Adaptation Plan Design Rationale, Risk , and Comparative Analysis
+
+-  **Supervised self-adaptation plan (Meta-Rule Developer Mode):**
+     > check this file → [Supervised Meta-Rules Adaptation Assurance Case](scp_demo_artifacts/isolette_io/SCP_Supervised_Meta_Rules_Adaptation_Assurance_Case.txt) 
+        > > **Intended audience:** This document is designed for human developers, users, and customers to evaluate the Cosine Meta-Rules Adaptation Plan below.
+        
+     > i.e., this file → [Cosine Meta-Rules Adaptation Plan](scp_demo_artifacts/isolette_io/SCP_Cosine_Meta_Rules_Adaptation_Plan.txt)   
 
 -  **Meta-Rules vs. Foundation Model Fine-Tuning (Comparison):**  
      > Check this file → [Meta_Rules_vs_Foundational_Model_Fine_Tuning_Comparison.txt](scp_demo_artifacts/isolette_io/docs/Meta_Rules_vs_Foundational_Model_Fine_Tuning_Comparison.txt)
