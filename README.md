@@ -36,4 +36,11 @@ This demo shows **English-to-System and Code-Level Verification for provided Sca
      > and this file → [Cosine Meta-Rules Adaptation Plan](scp_demo_artifacts/isolette_io/SCP_Cosine_Meta_Rules_Adaptation_Plan.txt)
 
 
+### Supervised Meta-Rules Adaptation Plan Design Rationale, Risk , and Comparative Analysis
+
+-  **Meta-Rules vs. Foundation Model Fine-Tuning (Comparison):**  
+     > Check this file → [Meta_Rules_vs_Foundational_Model_Fine_Tuning_Comparison.txt](scp_demo_artifacts/isolette_io/docs/Meta_Rules_vs_Foundational_Model_Fine_Tuning_Comparison.txt)
+
+-  **Risk Mitigation and Governance (Meta-Rule Adaptation):**  
+     > Check this file → [SCP_Meta_Rules_Risk_Mitigation_Mapping.txt](scp_demo_artifacts/isolette_io/docs/SCP_Meta_Rules_Risk_Mitigation_Mapping.txt)  
 
