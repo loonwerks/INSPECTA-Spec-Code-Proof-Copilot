@@ -25,7 +25,9 @@ This demo shows **English-to-System and Code-Level Verification for provided Sca
 -  **Input SysML v2 files:** check this → `isolette_io/sysml-aadl-libraries @ d732430/*.sysml` and (`isolette_io/*.sysml` same as output but remove GUMBO contracts)
 -  **Meta-Rules file English to Gumbo Formal Specifications (User Mode):** check these → `isolette_io/Gumbo_FSE_agent_Plan.txt`
 -  **Verification plan:** check these → `sireum_verification_plan.txt`
--  **Supervised self-adaptation plan (Meta-Rule Developer Mode):** check these → `isolette_io/SCP_Supervised_Meta_Rules_Adaptation_Assurance_Case.txt` and `SCP_Cosine_Meta_Rules_Adaptation_Plan.txt`
+-  **Supervised self-adaptation plan (Meta-Rule Developer Mode):**
+     check these → → [Supervised Meta-Rules Adaptation Assurance Case](scp_demo_artifacts/isolette_io/SCP_Supervised_Meta_Rules_Adaptation_Assurance_Case.txt) 
+     `isolette_io/SCP_Supervised_Meta_Rules_Adaptation_Assurance_Case.txt` and `SCP_Cosine_Meta_Rules_Adaptation_Plan.txt`
 
 
 
