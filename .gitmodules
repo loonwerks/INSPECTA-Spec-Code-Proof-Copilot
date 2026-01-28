@@ -1,0 +1,3 @@
+[submodule "scp_demo_artifacts/isolette_io/sysml-aadl-libraries"]
+	path = scp_demo_artifacts/isolette_io/sysml-aadl-libraries
+	url = https://github.com/santoslab/sysml-aadl-libraries.git
