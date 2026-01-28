@@ -45,7 +45,7 @@ Adaptation mechanisms could operate as black boxes, making it difficult
 to inspect, certify, or explain learned behavior.
 
 Potential Impact:
-- Reduced sponsor confidence
+- Reduced customer/user confidence
 - Certification barriers
 - Inability to justify design decisions
 
