@@ -19,13 +19,13 @@ This demo shows **English-to-System and Code-Level Verification for provided Sca
 - Detects errors, repairs formulas, and iterates automatically  
 - Continues until code-level verification successfully completes  
 
-**Related artifacts used in the demo:**
--  **English requirements file:** check this → `Steve_Miller_FAA_docAR-08-32.pdf`
--  **Input SysML v2 files:** check this → `isolette/sysml`
--  **SysML v2 files with generated GUMBO contracts (output):** check this → `isolette/sysml`
--  **Meta-Rules file English to Gumbo Formal Specifications (User Mode):** check these → `Gumbo_FSE_agent_Plan.txt`
--  **Verification plans:** check these → `sireum_verification_plan.txt` and `sireum_instructions_plan.md`
--  **Supervised self-adaptation plan (Meta-Rule Developer Mode):** check these → `SCP_Cosine_Self_Adaptation_Plan.txt`
+**Related artifacts isolette_io files used in the demo:**
+-  **English requirements file (input):** check this → `isolette_io/Steve_Miller_FAA_docAR-08-32.pdf`
+-  **SysML v2 files with generated GUMBO contracts (output):** check this → `isolette_io/*.sysml`
+-  **Input SysML v2 files:** check this → `isolette_io/sysml-aadl-libraries @ d732430/*.sysml` and (`isolette_io/*.sysml` same as output but remove GUMBO contracts)
+-  **Meta-Rules file English to Gumbo Formal Specifications (User Mode):** check these → `isolette_io/Gumbo_FSE_agent_Plan.txt`
+-  **Verification plan:** check these → `sireum_verification_plan.txt`
+-  **Supervised self-adaptation plan (Meta-Rule Developer Mode):** check these → `isolette_io/SCP_Supervised_Meta_Rules_Adaptation_Assurance_Case.txt` and `SCP_Cosine_Meta_Rules_Adaptation_Plan.txt`
 
 
 
