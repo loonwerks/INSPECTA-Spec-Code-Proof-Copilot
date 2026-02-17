@@ -1,0 +1,180 @@
+This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: MetaRules_SysMLv2_IEEE_Paper_Draft_v5.aux
+The style file: IEEEtran.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: IEEEabrv.bib
+Database file #2: biblio.bib
+Database file #3: biblio_v5.bib
+Repeated entry---line 1 of file biblio_v5.bib
+ : @misc{sysmlv2
+ :              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 386 of file biblio_v5.bib
+ : @inproceedings{compositional-analysis-agree
+ :                                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 402 of file biblio_v5.bib
+ : @inproceedings{hamr
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 416 of file biblio_v5.bib
+ : @inproceedings{slang
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 549 of file biblio_v5.bib
+ : @book{feiler-aadl
+ :                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 708 of file biblio_v5.bib
+ : @misc{polu2020generative
+ :                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 716 of file biblio_v5.bib
+ : @inproceedings{first2023baldur
+ :                               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 724 of file biblio_v5.bib
+ : @misc{CoqDog
+ :             ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 732 of file biblio_v5.bib
+ : @misc{aristotle_arXiv2510
+ :                          ,
+I'm skipping whatever remains of this entry
+Database file #4: biblio_v3.bib
+Repeated entry---line 1 of file biblio_v3.bib
+ : @inproceedings{hardin2025dasc
+ :                              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 9 of file biblio_v3.bib
+ : @inproceedings{hatcliff2024isolette
+ :                                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 24 of file biblio_v3.bib
+ : @inproceedings{slides
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 119 of file biblio_v3.bib
+ : @article{polu2020generative
+ :                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 151 of file biblio_v3.bib
+ : @article{first2023baldur
+ :                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 167 of file biblio_v3.bib
+ : @inproceedings{CoqDog
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 176 of file biblio_v3.bib
+ : @inproceedings{CoqDogHCSS24
+ :                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 230 of file biblio_v3.bib
+ : @article{mirzadeh2025gsmsymbolic
+ :                                 ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 238 of file biblio_v3.bib
+ : @misc{amazon2024mathematical
+ :                             ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 272 of file biblio_v3.bib
+ : @misc{imandra_sysml
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 342 of file biblio_v3.bib
+ : @misc{sun2025veristruct
+ :                        ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 354 of file biblio_v3.bib
+ : @misc{polu2020generative
+ :                         ,author={Polu, Stanislas and Sutskever, Ilya},title={Generative Language Modeling for Automated Theorem Proving},year={2020},howpublished={arXiv:2009.03393},url={https://arxiv.org/abs/2009.03393}}
+I'm skipping whatever remains of this entry
+Repeated entry---line 356 of file biblio_v3.bib
+ : @inproceedings{first2023baldur
+ :                               ,author={First, Emily and Rabe, Markus N. and Ringer, Talia and Brun, Yuriy},title={Baldur: Whole-Proof Generation and Repair with Large Language Models},year={2023},booktitle={ESEC/FSE},url={https://2023.esec-fse.org/details/fse-2023-research-papers/2/Baldur-Whole-Proof-Generation-and-Repair-with-Large-Language-Models}}
+I'm skipping whatever remains of this entry
+Repeated entry---line 358 of file biblio_v3.bib
+ : @misc{CoqDog
+ :             ,author={Tahat, Amer and Hardin, David and Petz, Adam and Alexander, Patrick},title={Proof Repair Utilizing Large Language Models: A Case Study on the Copland Remote Attestation Proofbase (CoqDog Copilot)},year={2024},howpublished={AISoLA},url={https://loonwerks.com/publications/tahat2024aisola.html}}
+I'm skipping whatever remains of this entry
+Repeated entry---line 360 of file biblio_v3.bib
+ : @misc{aristotle_arXiv2510
+ :                          ,author={Achim, Tudor and Best, Alex and Bietti, Alberto and others},title={Aristotle: IMO-level Automated Theorem Proving},year={2025},howpublished={arXiv:2510.01346},url={https://arxiv.org/abs/2510.01346}}
+I'm skipping whatever remains of this entry
+Repeated entry---line 364 of file biblio_v3.bib
+ : @misc{sysmlv2_omg
+ :                  ,author={{Object Management Group}},title={OMG System Modeling Language (SysML) v2 Specification},year={2025},url={https://www.omg.org/spec/SYSML}}
+I'm skipping whatever remains of this entry
+Repeated entry---line 366 of file biblio_v3.bib
+ : @misc{imandra_sysml
+ :                    ,author={{Imandra}},title={Imandra SysML: Formal verification for SysML v2 models},year={2024},url={https://www.imandra.ai/sysml}}
+I'm skipping whatever remains of this entry
+Repeated entry---line 370 of file biblio_v3.bib
+ : @misc{aws_bedrock_ar
+ :                     ,author={{Amazon Web Services}},title={Automated Reasoning checks in Amazon Bedrock Guardrails},year={2025},url={https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-automated-reasoning-checks.html}}
+I'm skipping whatever remains of this entry
+Repeated entry---line 373 of file biblio_v3.bib
+ : @inproceedings{agreedog_tahat2025
+ :                                  ,author={Tahat, Amer and Amundson, Isaac and Hardin, David and Cofer, Darren},title={AGREE-Dog Copilot: A Neuro-Symbolic Approach to Enhanced Model-Based Systems Engineering},year={2025},doi={10.1007/978-3-032-07132-3_8},url={https://doi.org/10.1007/978-3-032-07132-3_8}}
+I'm skipping whatever remains of this entry
+Repeated entry---line 375 of file biblio_v3.bib
+ : @misc{gumbo_galois
+ :                   ,author={{Galois}},title={GUMBO: Grand Unified Modeling of Behavioral Operators},year={2024},url={https://www.galois.com/project/gumbo}}
+I'm skipping whatever remains of this entry
+Repeated entry---line 377 of file biblio_v3.bib
+ : @inproceedings{sel4_klein2009
+ :                              ,author={Klein, Gerwin and Elphinstone, Kevin and Heiser, Gernot and others},title={seL4: Formal Verification of an OS Kernel},year={2009},booktitle={SOSP},doi={10.1145/1629575.1629596},url={https://doi.org/10.1145/1629575.1629596}}
+I'm skipping whatever remains of this entry
+-- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+
+Done.
+You've used 36 entries,
+            4087 wiz_defined-function locations,
+            1564 strings with 26678 characters,
+and the built_in function-call counts, 22457 in all, are:
+= -- 1665
+> -- 683
+< -- 75
++ -- 348
+- -- 155
+* -- 1055
+:= -- 3490
+add.period$ -- 72
+call.type$ -- 36
+change.case$ -- 46
+chr.to.int$ -- 189
+cite$ -- 36
+duplicate$ -- 1681
+empty$ -- 2003
+format.name$ -- 174
+if$ -- 5162
+int.to.chr$ -- 0
+int.to.str$ -- 36
+missing$ -- 384
+newline$ -- 167
+num.names$ -- 38
+pop$ -- 1037
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 1710
+stack$ -- 0
+substring$ -- 507
+swap$ -- 1169
+text.length$ -- 12
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 36
+warning$ -- 0
+while$ -- 66
+width$ -- 38
+write$ -- 379
+(There were 30 error messages)

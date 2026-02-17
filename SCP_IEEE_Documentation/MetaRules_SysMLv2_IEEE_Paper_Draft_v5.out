@@ -1,0 +1,33 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{GUMBO Contracts in SysML v2 and HAMR/Logika codegen and verification}{}% 2
+\BOOKMARK [1][-]{section.3}{Neuro-Symbolic Contract Generation with Meta-Rules}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{SCP Copilot Overview}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{SCP Copilot Neuro-Symbolic Workflow}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Meta-Rules: Persistent, Auditable Formalization Abstractions}{section.3}% 6
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Two Modes of Use: User Mode vs. Developer Mode}{subsection.3.3}% 7
+\BOOKMARK [3][-]{subsubsection.3.3.2}{Example Meta-Rule}{subsection.3.3}% 8
+\BOOKMARK [2][-]{subsection.3.4}{Supervised Meta-Rule Adaptation and Acceptance Criteria}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.5}{Practical Considerations}{section.3}% 10
+\BOOKMARK [2][-]{subsection.3.6}{Algorithm: Meta-Rule Learning, Application, and Verification-Guided Repair}{section.3}% 11
+\BOOKMARK [2][-]{subsection.3.7}{Discussion: Human-in-the-Loop Refinement}{section.3}% 12
+\BOOKMARK [1][-]{section.4}{Comparison to Fine-Tuning and Transient Prompting}{}% 13
+\BOOKMARK [2][-]{subsection.4.1}{Parameter Fine-Tuning}{section.4}% 14
+\BOOKMARK [2][-]{subsection.4.2}{Transient Prompting and In-Context Learning}{section.4}% 15
+\BOOKMARK [2][-]{subsection.4.3}{Supervised Meta-Rules Adaptation}{section.4}% 16
+\BOOKMARK [1][-]{section.5}{A Running Example: The Isolette System}{}% 17
+\BOOKMARK [2][-]{subsection.5.1}{Experimental Inputs and Outputs}{section.5}% 18
+\BOOKMARK [2][-]{subsection.5.2}{Conditions: Baseline vs. Meta-Rule\205Guided SCP}{section.5}% 19
+\BOOKMARK [2][-]{subsection.5.3}{Moment 1: Baseline Failure \(Token Explosion and Tool Mismatch\)}{section.5}% 20
+\BOOKMARK [2][-]{subsection.5.4}{Moment 2: Success via Meta-Rules \(Generate\205Verify\205Repair Under Gates\)}{section.5}% 21
+\BOOKMARK [2][-]{subsection.5.5}{Cross-Model Robustness \(GPT-5.1 -> GPT-5.2\)}{section.5}% 22
+\BOOKMARK [1][-]{section.6}{Evaluation and Metrics}{}% 23
+\BOOKMARK [2][-]{subsection.6.1}{Experimental Settings}{section.6}% 24
+\BOOKMARK [2][-]{subsection.6.2}{Metrics Definitions}{section.6}% 25
+\BOOKMARK [2][-]{subsection.6.3}{Performance Comparison}{section.6}% 26
+\BOOKMARK [1][-]{section.7}{Related Work}{}% 27
+\BOOKMARK [1][-]{section.8}{Limitations and Future Work}{}% 28
+\BOOKMARK [2][-]{subsection.8.1}{Expanding Evaluation to Heterogeneous Systems}{section.8}% 29
+\BOOKMARK [2][-]{subsection.8.2}{Integrating Closed-Loop Repair Heuristics for Rust Application Code}{section.8}% 30
+\BOOKMARK [2][-]{subsection.8.3}{Scalability and Physically-Aware Specification}{section.8}% 31
+\BOOKMARK [1][-]{section.9}{Conclusion}{}% 32
+\BOOKMARK [1][-]{section*.1}{References}{}% 33
