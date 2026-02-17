@@ -1,0 +1,22 @@
+# Sireum executable
+sireum
+
+# Helper binaries and scripts
+bin/
+
+# SCP tooling (parsers, generators, utilities)
+tools/
+
+# latex drafts and docs
+SCP_IEEE_Video_Demo_Documentation_2/
+
+figures/
+
+assurance-case/
+
+# golden examples
+golden_examples/
+
+# Python cache
+__pycache__/
+SCP_IEEE_Video_Demo_Documentation_2/
