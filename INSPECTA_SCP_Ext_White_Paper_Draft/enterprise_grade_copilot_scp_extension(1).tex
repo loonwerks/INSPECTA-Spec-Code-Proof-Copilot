@@ -59,16 +59,16 @@
 \begin{document}
 
 %\begin{center}
-{\LARGE\bfseries\color{AccentBlue} Enterprise-Grade Copilot SCP Extension for INSPECTA\par}
+{\LARGE\bfseries\color{AccentBlue} Enterprise-Grade Copilot Spec-Code-Proof (SCP) \\ Extension for INSPECTA\par}
 \vspace{0.35em}
-{\large David Hardin, Amer Tahat, Isaac Aumndson and Darren Cofer\par}
+{\large David Hardin, Amer Tahat, Isaac Amundson, and Darren Cofer\par}
 {\normalsize April 2026\par}
 %\end{center}
 
 
 \section*{Abstract}
 
-This white paper examines whether the current SCP effort can be extended from task-level neuro-symbolic assistance to an enterprise-grade copilot for INSPECTA. We organize the discussion around a threat model that links adversarial content, skill and dependency compromise, policy enforcement, tool execution, and audit paths. The model is used to separate opportunities that are feasible under current funding from commitments that require additional budget, licensing authority, and infrastructure. Four coupled areas are highlighted. First, the orchestrator, skill registry, and feedback loop can be extended from the current Isolette-scale demos toward a firewall-scale demonstration by comparing baseline runs with and without skill files using total, cached, and reasoning tokens, wall-clock time, and verified task completion. Second, any enterprise commitment depends on concrete platform questions about fine-tuning, trajectory fine-tuning, skill-loading mechanisms, agentic workflow access, and token-budget governance. Third, broader deployment expands the attack surface and requires dedicated red-team work on prompt injection, privilege misuse, supply-chain compromise, and denial-of-wallet behavior [13]. Fourth, knowledge transfer across institutions raises additional requirements for isolated hosting, controlled model distribution, and defensible data governance. Under current funding, the first area is actionable; the others should be treated as extension candidates rather than assumed deliverables.
+This white paper examines whether the current Spec-Code-Proof (SCP) effort can be extended from task-level neuro-symbolic assistance to an enterprise-grade copilot for INSPECTA. We organize the discussion around a threat model that links adversarial content, skill and dependency compromise, policy enforcement, tool execution, and audit paths. The model is used to separate opportunities that are feasible under current funding from commitments that require additional budget, licensing authority, and infrastructure. Four coupled areas are highlighted. First, the orchestrator, skill registry, and feedback loop can be extended from the current small-scale demos toward an industrial-scale demonstration by comparing baseline runs with and without skill files using total, cached, and reasoning tokens, wall-clock time, and verified task completion. Second, any enterprise commitment depends on concrete platform questions about fine-tuning, trajectory fine-tuning, skill-loading mechanisms, agentic workflow access, and token-budget governance. Third, broader deployment expands the attack surface and requires dedicated red-team work on prompt injection, privilege misuse, supply-chain compromise, and denial-of-wallet behavior [13]. Fourth, knowledge transfer across institutions raises additional requirements for isolated hosting, controlled model distribution, and defensible data governance. Under current funding, the first area is actionable; the others should be treated as extension candidates rather than assumed deliverables.
 
 
 \begin{summarybox}
@@ -84,9 +84,9 @@ This white paper examines whether the current SCP effort can be extended from ta
 
 \section{Introduction}
 
-The question most relevant to the DARPA discussion is not whether GenAI can simply do the same work faster. The more useful question is what mix of AI assistance, formal tooling, and human review produces the highest verified throughput per unit cost under explicit assumptions. Figure 1 captures that framing as a threat model for the proposed SCP extension. It places the agent orchestrator at the center of a system that must process untrusted inputs, load skill files and dependencies, invoke tools, enforce policy, and preserve auditable behavior. This perspective is useful because it links technical opportunity to budget reality: some parts of the design can be extended now, while others require additional resources and institutional commitments.
+The question most relevant to the current DARPA discussion is not whether Generative AI can simply ``crank out code'' faster. The more useful question is what mix of AI assistance, formal tooling, and human review produces the highest verified throughput per unit cost under explicit assumptions. Figure 1 captures that framing as a threat model for the proposed SCP extension. It places the agent orchestrator at the center of a system that must process untrusted inputs, load skill files and dependencies, invoke tools, enforce policy, and preserve auditable behavior. This perspective is useful because it links technical opportunity to budget reality: some parts of the design can be extended now, while others require additional resources and institutional commitments.
 
-The paper therefore organizes the current opportunity around four coupled areas. The first is the orchestrator, skill registry, and feedback loop, which can be extended from the current Isolette-scale work toward a firewall-scale demonstration. The second is enterprise commitment, which depends on platform access, license terms, and tuning authority. The third is red teaming of the copilot itself, because the attack surface grows substantially once the system reads external documents and acts through tools. The fourth is data transferability across organizations, which raises deployment and governance questions that are larger than the present seedling scope.
+The paper therefore organizes the current opportunity around four coupled areas. The first is the orchestrator, skill registry, and feedback loop, which can be extended from the current proof-of-concept work toward an industrial-scale demonstration. The second is enterprise commitment, which depends on platform access, license terms, and tuning authority. The third is red teaming of the copilot itself, because the attack surface grows substantially once the system reads external documents and acts through tools. The fourth is data transferability across organizations, which raises deployment and governance questions that are larger than the present seedling scope.
 
 \section{Area 1: Orchestrator, skill registry, and feedback loop}
 
@@ -112,7 +112,7 @@ Human interventions & Measures how often experts must repair, restate, or redire
 \label{tab:metrics}
 \end{table}
 
-Under current funding, this area is the most actionable. It supports a progression from the existing Isolette-scale demonstrations toward a firewall-scale demonstration, while preserving the central evaluation question: how much verified work can be completed within a fixed token and time budget when the copilot is augmented with reusable skills and formal feedback?
+Under current funding, this area is the most actionable. It supports a progression from the existing small-scale demonstrations toward a large-scale demonstration, while preserving the central evaluation question: how much verified work can be completed within a fixed token and time budget when the copilot is augmented with reusable skills and formal feedback?
 
 \section{Area 2: Enterprise commitment and platform authority}
 
@@ -120,7 +120,7 @@ A stronger commitment to an enterprise-grade copilot requires answers to platfor
 
 \begin{table}[H]
 \centering
-\begin{tabularx}{\textwidth}{>{\bfseries}p{0.34\textwidth}Y}
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.42\textwidth}Y}
 \toprule
 Decision question & Why it matters for the design \\
 \midrule
@@ -151,11 +151,11 @@ This idea is consistent with emerging Federal interest in secure, shared AI infr
 
 \section{Implications for the DARPA discussion}
 
-For the DARPA discussion, the most credible near-term message is therefore disciplined optimism. Current funding can support the orchestrator and skill-registry path, including baseline-versus-enhanced measurements and a stronger document-to-system demonstration. It may also support limited threat modeling and selected security experiments. By contrast, a true enterprise-grade copilot requires additional commitments: licensing clarity, red-team capacity, deployment logistics, and a governance model for transferability. Those items should be framed as extension candidates rather than as obligations of the current budget.
+For the current DARPA discussion, the most credible near-term message is therefore disciplined optimism. Current funding can support the orchestrator and skill-registry path, including baseline-versus-enhanced measurements and a stronger document-to-system demonstration. It may also support limited threat modeling and selected security experiments. By contrast, a true enterprise-grade copilot requires additional commitments: licensing clarity, red-team capacity, deployment logistics, and a governance model for transferability. Those items should be framed as extension candidates rather than as obligations of the current budget.
 
 \section{Conclusion}
 
-The proposed SCP extension should be understood as a staged, evaluation-driven program. Near-term work can demonstrate that neuro-symbolic orchestration improves verified throughput by combining skill files, formal tools, and feedback loops around the existing INSPECTA toolchain and further optimized using the supervised self-adaptation Meta-Rules learning algorithm. Longer-term enterprise deployment remains promising, but only if the program explicitly funds the additional work needed for platform commitment, red teaming, and cross-institution transferability.
+The proposed SCP extension should be understood as a staged, evaluation-driven program. Near-term work can demonstrate that neuro-symbolic orchestration improves verified throughput by combining skill files, formal tools, and feedback loops around the existing INSPECTA toolchain and further optimized using the supervised self-adaptation Meta-Rules learning algorithm. Longer-term enterprise deployment remains a feasible goal, but only if the program explicitly funds the additional work needed for platform commitment, red teaming, and cross-institution transferability.
 
 \begin{thebibliography}{13}
 
