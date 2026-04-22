@@ -1,6 +1,10 @@
 This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: MetaRules_SysMLv2_IEEE_Paper_Draft_v5.aux
+White space in argument---line 66 of file MetaRules_SysMLv2_IEEE_Paper_Draft_v5.aux
+ : \citation{steve
+ :                 Mill}
+I'm skipping whatever remains of this command
 The style file: IEEEtran.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
@@ -10,39 +14,39 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: IEEEabrv.bib
 Database file #2: biblio.bib
 Database file #3: biblio_v5.bib
-Repeated entry---line 1 of file biblio_v5.bib
+Repeated entry---line 16 of file biblio_v5.bib
  : @misc{sysmlv2
  :              ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 386 of file biblio_v5.bib
+Repeated entry---line 401 of file biblio_v5.bib
  : @inproceedings{compositional-analysis-agree
  :                                            ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 402 of file biblio_v5.bib
+Repeated entry---line 417 of file biblio_v5.bib
  : @inproceedings{hamr
  :                    ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 416 of file biblio_v5.bib
+Repeated entry---line 431 of file biblio_v5.bib
  : @inproceedings{slang
  :                     ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 549 of file biblio_v5.bib
+Repeated entry---line 564 of file biblio_v5.bib
  : @book{feiler-aadl
  :                  ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 708 of file biblio_v5.bib
+Repeated entry---line 723 of file biblio_v5.bib
  : @misc{polu2020generative
  :                         ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 716 of file biblio_v5.bib
+Repeated entry---line 731 of file biblio_v5.bib
  : @inproceedings{first2023baldur
  :                               ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 724 of file biblio_v5.bib
+Repeated entry---line 739 of file biblio_v5.bib
  : @misc{CoqDog
  :             ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 732 of file biblio_v5.bib
+Repeated entry---line 747 of file biblio_v5.bib
  : @misc{aristotle_arXiv2510
  :                          ,
 I'm skipping whatever remains of this entry
@@ -131,50 +135,199 @@ Repeated entry---line 377 of file biblio_v3.bib
  : @inproceedings{sel4_klein2009
  :                              ,author={Klein, Gerwin and Elphinstone, Kevin and Heiser, Gernot and others},title={seL4: Formal Verification of an OS Kernel},year={2009},booktitle={SOSP},doi={10.1145/1629575.1629596},url={https://doi.org/10.1145/1629575.1629596}}
 I'm skipping whatever remains of this entry
+Database file #5: references_revised_v6.bib
+Repeated entry---line 1 of file references_revised_v6.bib
+ : @misc{sysmlv2
+ :              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 32 of file references_revised_v6.bib
+ : @misc{amazon2024mathematical
+ :                             ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 41 of file references_revised_v6.bib
+ : @inproceedings{mirzadeh2025gsmsymbolic
+ :                                       ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 49 of file references_revised_v6.bib
+ : @inproceedings{CoqDog
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 59 of file references_revised_v6.bib
+ : @inproceedings{CoqDogHCSS24
+ :                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 69 of file references_revised_v6.bib
+ : @article{polu2020generative
+ :                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 83 of file references_revised_v6.bib
+ : @article{first2023baldur
+ :                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 386 of file references_revised_v6.bib
+ : @inproceedings{compositional-analysis-agree
+ :                                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 402 of file references_revised_v6.bib
+ : @inproceedings{hamr
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 415 of file references_revised_v6.bib
+ : @inproceedings{slang
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 548 of file references_revised_v6.bib
+ : @book{feiler-aadl
+ :                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 707 of file references_revised_v6.bib
+ : @misc{aristotle_arXiv2510
+ :                          ,author={Achim, Tudor and Best, Alex and Bietti, Alberto and others},title={Aristotle: IMO-level Automated Theorem Proving},year={2025},howpublished={arXiv:2510.01346},url={https://arxiv.org/abs/2510.01346}}
+I'm skipping whatever remains of this entry
+Repeated entry---line 718 of file references_revised_v6.bib
+ : @inproceedings{DBLP:conf/popl/SwamyHKRDFBFSKZ16
+ :                                                ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 743 of file references_revised_v6.bib
+ : @misc{sysmlv2_omg
+ :                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 750 of file references_revised_v6.bib
+ : @misc{imandra_sysml
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 772 of file references_revised_v6.bib
+ : @misc{aws_bedrock_ar
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 786 of file references_revised_v6.bib
+ : @inproceedings{agreedog_tahat2025
+ :                                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 795 of file references_revised_v6.bib
+ : @misc{gumbo_galois
+ :                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 802 of file references_revised_v6.bib
+ : @inproceedings{sel4_klein2009
+ :                              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 823 of file references_revised_v6.bib
+ : @misc{axiom_territory
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 832 of file references_revised_v6.bib
+ : @misc{neema2025evaluationengineeringartificialgeneral
+ :                                                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 842 of file references_revised_v6.bib
+ : @misc{Hatcliff:seL4Summit2025
+ :                              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 851 of file references_revised_v6.bib
+ : @misc{gpt5-system-card
+ :                       ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 859 of file references_revised_v6.bib
+ : @misc{bubeck2025earlyscienceaccelerationexperiments
+ :                                                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 869 of file references_revised_v6.bib
+ : @misc{openai-gpt5-2-codex
+ :                          ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 877 of file references_revised_v6.bib
+ : @inproceedings{hardin2025dasc
+ :                              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 885 of file references_revised_v6.bib
+ : @inproceedings{hatcliff2024isolette
+ :                                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 901 of file references_revised_v6.bib
+ : @inproceedings{slides
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1055 of file references_revised_v6.bib
+ : @misc{sysmlv2_model_formalism_wg
+ :                                 ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1136 of file references_revised_v6.bib
+ : @misc{sun2025veristruct
+ :                        ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1148 of file references_revised_v6.bib
+ : @inproceedings{vonoswald2023transformers
+ :                                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 7762 of file references_revised_v6.bib
+ : @inproceedings{Z3
+ :                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 8072 of file references_revised_v6.bib
+ : @inproceedings{Barrett2011CVC4
+ :                               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 9094 of file references_revised_v6.bib
+ : @manual{HAMRsite
+ :                 ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 9102 of file references_revised_v6.bib
+ : @article{gumbo
+ :               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 9420 of file references_revised_v6.bib
+ : @manual{sel4-microkit
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 9428 of file references_revised_v6.bib
+ : @article{e28030332
+ :                   ,
+I'm skipping whatever remains of this entry
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 36 entries,
+You've used 37 entries,
             4087 wiz_defined-function locations,
-            1564 strings with 26678 characters,
-and the built_in function-call counts, 22457 in all, are:
-= -- 1665
-> -- 683
-< -- 75
-+ -- 348
-- -- 155
-* -- 1055
-:= -- 3490
-add.period$ -- 72
-call.type$ -- 36
-change.case$ -- 46
+            1571 strings with 26830 characters,
+and the built_in function-call counts, 22981 in all, are:
+= -- 1715
+> -- 692
+< -- 77
++ -- 352
+- -- 157
+* -- 1084
+:= -- 3594
+add.period$ -- 74
+call.type$ -- 37
+change.case$ -- 47
 chr.to.int$ -- 189
-cite$ -- 36
-duplicate$ -- 1681
-empty$ -- 2003
-format.name$ -- 174
-if$ -- 5162
+cite$ -- 37
+duplicate$ -- 1723
+empty$ -- 2042
+format.name$ -- 177
+if$ -- 5276
 int.to.chr$ -- 0
-int.to.str$ -- 36
-missing$ -- 384
-newline$ -- 167
-num.names$ -- 38
-pop$ -- 1037
+int.to.str$ -- 37
+missing$ -- 392
+newline$ -- 172
+num.names$ -- 39
+pop$ -- 1051
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1710
+skip$ -- 1753
 stack$ -- 0
-substring$ -- 507
-swap$ -- 1169
-text.length$ -- 12
+substring$ -- 508
+swap$ -- 1199
+text.length$ -- 14
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 36
+type$ -- 37
 warning$ -- 0
-while$ -- 66
-width$ -- 38
-write$ -- 379
-(There were 30 error messages)
+while$ -- 67
+width$ -- 39
+write$ -- 392
+(There were 68 error messages)

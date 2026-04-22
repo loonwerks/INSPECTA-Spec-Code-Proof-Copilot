@@ -46,6 +46,13 @@ S.~Bubeck, C.~Coester, R.~Eldan, T.~Gowers, Y.~T. Lee, A.~Lupsasca, M.~Sawhney,
   \url{https://openai.com/index/gpt-5-system-card/}, 2025, accessed:
   2026-02-12.
 
+\bibitem{e28030332}
+\BIBentryALTinterwordspacing
+A.~Achille and S.~Soatto, ``Ai agents as universal task solvers,''
+  \emph{Entropy}, vol.~28, no.~3, 2026. [Online]. Available:
+  \url{https://www.mdpi.com/1099-4300/28/3/332}
+\BIBentrySTDinterwordspacing
+
 \bibitem{sysmlv2_model_formalism_wg}
 {Object Management Group (OMG)}, ``Sysml v2 model formalism working group,''
   \url{https://www.omgwiki.org/OMGSysML/doku.php?id=sysml-roadmap:sysml_v2_model_formalism_working_group},

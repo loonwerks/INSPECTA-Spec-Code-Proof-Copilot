@@ -1,14 +1,24 @@
 \documentclass[conference]{IEEEtran}
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{xcolor}
 \usepackage{hyperref}
-\usepackage{listings}
 %\usepackage[hidelinks]{hyperref}
+\usepackage{listings}
 \usepackage{dblfloatfix} % Fix for float placement on pages
+%%%
+%---------
+% Appendix figure (TikZ) --------------------
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{calc,arrows.meta,decorations.pathreplacing,shapes.geometric}
 
+%\usepackage{tikz}
+%\usetikzlibrary{arrows.meta,calc,angles,quotes}
 % -------------------- Algorithms (boxed style, IEEE-friendly) --------------------
 \usepackage[ruled,vlined]{algorithm2e}
 \DontPrintSemicolon
@@ -49,11 +59,11 @@
 \begin{abstract}
 The development of high-confidence avionics systems demands rigorous allocation and end-to-end traceability from requirements to implementation, yet current Model-Based Systems Engineering (MBSE) environments provide little support for automated, mathematically verified allocation and traceability. While Generative AI (GenAI) offers a potential automation boon, its deployment in safety-critical workflows is severely constrained by hallucinations, prohibitive token costs, scarcity of open-source domain data, and restrictions on fine-tuning state-of-the-art proprietary models such as GPT-5.
 
-To address these barriers, we introduce a neuro-symbolic \textbf{Spec--Code--Proof (SCP)} copilot that integrates Codex-class agents into the DARPA PROVERS INSPECTA pipeline. The pipeline translates natural-language requirements into \textbf{SysML v2} models with \textbf{GUMBO} contracts, generates \textbf{HAMR} code, and discharges \textbf{Logika} proofs, ensuring properties are mathematically preserved in the implementation. To enable this without fine-tuning, we introduce a \textit{Meta-Rule} methodology that functions as a verifiable surrogate for weight adaptation. By crystallizing ephemeral in-context learning into persistent, expert-curated abstraction patterns, Meta-Rules drive a self-healing generate--verify--repair loop until verification constraints are formally satisfied.
+To address these barriers, we introduce a neuro-symbolic \textbf{Spec--Code--Proof (SCP)} copilot that integrates Codex-class agents into the DARPA PROVERS INSPECTA pipeline. The pipeline translates natural-language requirements into \textbf{SysML v2} models with \textbf{GUMBO} contracts, generates \textbf{HAMR} code, and discharges \textbf{Logika} proofs, ensuring properties are mathematically preserved in the implementation. To enable this without fine-tuning, we introduce a \textit{Meta-Rule} learning methodology that functions as a verifiable surrogate for weight adaptation. By crystallizing ephemeral in-context learning into persistent, expert-curated abstraction patterns, Meta-Rules drive a self-healing generate--verify--repair loop until verification constraints are formally satisfied within a given budget.
 
-We frame our work as a specialized paradigm called Formal Specification-Driven Development (FSDD). FSDD elevates formal specifications—contracts, verification conditions, and machine-checkable proofs—to first-class artifacts that drive generation, verification, and repair. Consequently, FSDD establishes formal proofs, rather than tests, as the primary acceptance gate.
+We frame our work as a specialized paradigm called Formal Specification-Driven Development (FSDD). FSDD elevates formal specifications—contracts, verification conditions, and machine-checkable proofs—to first-class artifacts that drive generation, verification, and repair. Consequently, FSDD establishes formal proofs, rather than tests, as the primary acceptance gate within a given budget.
 
-We evaluate our methodology on safety-critical systems using an example sourced from an FAA requirements guidebook ($>$37 pages) relevant to avionics and cyber-physical domains. Our copilot achieved 100\% code-level verification and a 58$\times$ development task throughput increase compared to a baseline that, lacking Meta-Rules, failed to produce verifiable artifacts. This demonstrates a practical path to certification-grade automation under strict data and model governance constraints, reconciling the efficiency of Generative AI with the strict rigor required for certifiable critical system software.
+We evaluate our methodology on safety-critical systems using an example sourced from an FAA requirements guidebook ($>$37 pages) relevant to avionics and cyber-physical domains. Our copilot achieved 100\% code-level verification and a 58$\times$ increase in development task throughput compared to a baseline that, lacking Meta-Rules, failed to produce verifiable artifacts. This demonstrates a practical path to certification-grade automation under strict data and model governance constraints, reconciling the efficiency of Generative AI with the strict rigor required for certifiable critical system software.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -62,20 +72,23 @@ SWE agents, Neuro-symbolic AI, Formal Methods, SysML v2, MBSE, Supervised Self-H
 
 %====================================================================
 \section{Introduction}
-%%%%
-High-assurance avionics software development faces a persistent tension: system complexity continues to increase, while certification demands strong evidence that the implementation faithfully realizes requirements and architectural intent. In practice, maintaining end-to-end traceability from natural-language requirements to architectural models and down to code remains costly and fragile. In many Model-Based Systems Engineering (MBSE) workflows, requirements allocation and refinement involve manual, tool-fragmented steps that weaken (or sever) the link between the model-level assurance case and the implementation. The resulting drift is often detected late---during integration, verification/validation, or penetration testing --- driving rework, schedule risk, and certification friction~\cite{hardin2025dasc}.
+
+High-assurance avionics software development faces a persistent tension: system complexity continues to increase, while certification demands strong evidence that implementation faithfully realizes requirements and architectural intent. In practice, maintaining end-to-end traceability from natural-language requirements to architectural models and down to code remains costly and fragile. In many Model-Based Systems Engineering (MBSE) workflows, requirements allocation and refinement still involve manual, tool-fragmented steps that weaken (or sever) the link between the model-level assurance case and the software implementation. The resulting drift is often detected late---during integration or verification---driving rework, schedule risk, and certification friction~\cite{hardin2025dasc}.
 
 Large Language Models (LLMs) appear well-suited to assist with this transition by translating requirements into structured specifications, contracts, and implementation scaffolding~\cite{openai-gpt5-2-codex}. However, directly deploying LLMs in safety-critical workflows faces structural barriers. Beyond hallucinations and token-heavy prompting, aerospace environments face the \emph{fine-tuning bottleneck}: domain-representative data is often scarce or proprietary, and fine-tuning frontier proprietary models (e.g., GPT-5-class systems~\cite{bubeck2025earlyscienceaccelerationexperiments}) is typically restricted by vendor policy or cost~\cite{gpt5-system-card,openai-gpt5-2-codex}.
 
+In this setting, the key challenge therefore is not merely to generate plausible formal text, but rather the objective is to reach a \emph{verified} artifact within bounded time, token, and human-review budgets. Recent theory on AI agents in verifiable settings provides a useful lens for this problem: past experience matters to the extent that it captures reusable algorithmic structure that reduces the time needed to solve new tasks~\cite{e28030332}. Viewed through this lens, the important quantity is not raw fluency alone, but \emph{cost per verified task}. That framing is particularly natural in MBSE pipelines where a checker is available and all candidate artifacts are filtered through hard acceptance gates.
+
 %As a result, engineers are often left with unadapted general-purpose models or 
 %As a result, engineers—particularly those without deep formal methods expertise—often resort to brittle, ad-hoc prompt engineering (or so-called `vibe coding'), which rarely produces the auditable evidence expected in certification-oriented development. 
-The AI toolsmith is thus met with three principal challenges in order to support high-assurance certification-oriented MBSE development: (i) reducing token-heavy, brittle prompting; (ii) filtering or rejecting hallucinated behaviors utilizing machine-checkable acceptance gates; and (iii) enabling non-formalists to work in natural language  while still producing reusable, auditable evidence that persists across runs.
+As a result, these restrictions leave three capabilities—highly desirable in high-assurance certification-oriented development pipelines—unmet:
+(i) reducing token-heavy, brittle prompting; (ii) filtering or rejecting hallucinated behaviors with machine-checkable acceptance gates; and (iii) enabling non-formalists to work from English while still producing reusable, auditable evidence that persists across runs.
 
-To address these challenges, we introduce a neuro-symbolic \textbf{Spec--Code--Proof (SCP)} \emph{copilot}---a generate--verify--repair pipeline that translates natural-language requirements into traceable formal artifacts and verified implementations. The SCP copilot (i) shifts effort from repeated token-heavy prompting into reusable intermediate artifacts; (ii) employs formal verification as the primary acceptance gate to catch hallucinated or underspecified behavior; and (iii) provides a low barrier-to-entry natural language interface while accumulating governed, version-controlled specialization knowledge. Our approach integrates Codex-class software engineering agents into the DARPA PROVERS \textbf{INSPECTA} (Industrial-Scale Proof Engineering for Critical Trustworthy Applications) toolchain~\cite{hardin2025dasc}. INSPECTA provides the formal backbone: \textbf{SysML v2}~\cite{sysmlv2_model_formalism_wg, sysmlv2_omg} captures architecture, \textbf{GUMBO}~\cite{gumbo, gumbo_galois} expresses assume/guarantee contracts for SysML v2 models, \textbf{HAMR}~\cite{hamr,HAMRsite} generates executable memory-safe code from architecture models, and \textbf{Logika}~\cite{HAMRsite} discharges proof obligations using SMT solvers (e.g., Z3~\cite{Z3} and CVC5~\cite{Barrett2011CVC4}). %The intended outcome is not merely synthesized code, but an auditable requirements-to-implementation workflow in which properties established at the model level are mechanically preserved in the generated code.
+To address these barriers, we introduce a neuro-symbolic \textbf{Spec--Code--Proof (SCP)} \emph{copilot}---a generate--verify--repair pipeline that turns natural-language requirements into traceable formal artifacts and verified implementations. SCP targets the three gaps above by (i) shifting effort from repeated token-heavy prompting into reusable intermediate artifacts; (ii) using formal verification as the primary acceptance gate to catch hallucinated or underspecified behavior; and (iii) providing a low-entry English interface while accumulating governed, version-controlled specialization knowledge. Our approach integrates Codex-class software engineering agents into the DARPA PROVERS \textbf{INSPECTA} (Industrial-Scale Proof Engineering for Critical Trustworthy Applications) toolchain~\cite{hardin2025dasc}. INSPECTA provides the formal backbone: \textbf{SysML v2}~\cite{sysmlv2_model_formalism_wg, sysmlv2_omg} captures architecture, \textbf{GUMBO}~\cite{gumbo, gumbo_galois} expresses behavioral assume/guarantee contracts, \textbf{HAMR}~\cite{hamr,HAMRsite} generates executable memory-safe code, and \textbf{Logika}~\cite{HAMRsite} discharges proof obligations using SMT solvers (e.g., Z3~\cite{Z3} and CVC5~\cite{Barrett2011CVC4}). %The intended outcome is not merely synthesized code, but an auditable requirements-to-implementation workflow in which properties established at the model level are mechanically preserved in the generated code.
 %--
-A major goal of INSPECTA is to create an auditable workflow where the toolchain mechanically preserves properties established at the model level in the generated code. However, while this infrastructure ensures correctness \emph{after} specification, the initial creation of formal models and contracts remains a manual, expertise-heavy exercise. Ideally, an agentic copilot could assist engineers in synthesizing these rigorous specifications from natural language, but realizing this capability faces a critical barrier: effectively \emph{specializing} an LLM to such a complex, verification-centric toolchain under base-model fine-tuning restrictions.
+The intended outcome is an auditable workflow where the toolchain mechanically preserves properties established at the model level in the generated code. However, while this infrastructure ensures correctness \emph{after} specification, the initial creation of formal models and contracts remains a manual, expertise-heavy bottleneck. Ideally, an agentic copilot would assist engineers in synthesizing these rigorous specifications from natural language, yet realizing this capability faces a critical barrier: effectively \emph{specializing} an LLM to such a complex, verification-centric toolchain under base-model fine-tuning restrictions.
 
-Recent mechanistic interpretability results suggest that In-Context Learning (ICL) can act like an ``implicit fine-tuning'' process during inference~\cite{vonoswald2023transformers}, but the effect is transient: once the context window is cleared, the learned behavior is lost. In high-assurance settings, this ephemerality is a significant obstacle: it forces repeated token-heavy prompting and makes it difficult to govern, audit, or reuse what the model has ``learned'' across runs.
+Recent mechanistic interpretability results suggest that In-Context Learning (ICL) can act like an ``implicit fine-tuning'' process during inference~\cite{vonoswald2023transformers}, but the effect is transient: once the context window is cleared, the learned behavior is lost. In high-assurance settings, this ephemerality is a practical obstacle: it forces repeated token-heavy prompting and makes it difficult to govern, audit, or reuse what the model ``learned'' across runs.
 
 To stabilize this transient learning into a permanent asset, we introduce \textit{Meta-Rules}: persistent, human-readable formalization abstractions that \emph{crystallize} successful ICL interactions (derived from golden examples, tool feedback, and expert edits) into a reusable rule library. Meta-Rules serve as a verifiable surrogate for black-box weight adaptation: instead of modifying parameters, the system externalizes adaptation into version-controlled artifacts that are (i) inspectable by humans, (ii) exercised by the toolchain, and (iii) constrained by formal verification.
 %
@@ -83,40 +96,64 @@ In developer mode, the system iteratively proposes and refines Meta-Rules using 
 
 In addition to consistently producing practically formally verifiable output at low cost (Section~\ref{sec:evaluation})---effectively lowering the entry barrier for users---this method systematically accumulates a dataset of verified repair trajectories, alleviating current data scarcity and paving the way for future fine-tuning as model accessibility improves.
 
-By anchoring the development workflow in these governed, externalized artifacts rather than opaque model behaviors, our approach aligns with the industry's emerging \textit{Specification-Driven Development (SDD)} practices. Frameworks such as GitHub Spec Kit and AWS Kiro~\cite{amazon2024mathematical} aim to curb ``vibe coding'' by structuring AI-assisted development around natural-language specifications and acceptance criteria rather than unconstrained prompt-driven generation. We extend this paradigm to \textit{Formal Specification-Driven Development (FSDD)} by making \emph{formal verification} the primary acceptance gate. In our workflow, specifications are refined into SysML v2 models and GUMBO contracts, then discharged through HAMR/Logika verification. This yields machine-checkable evidence alongside generated code, enabling a low barrier-to-entry workflow that remains aligned with certification demands for traceability, repeatability, as well as auditable assurance artifacts.
+By anchoring the development workflow in these governed, externalized artifacts rather than opaque model behaviors, our approach aligns with the industry's emerging \textit{Specification-Driven Development (SDD)} practices. Frameworks such as GitHub's Spec Kit and AWS Kiro~\cite{amazon2024mathematical} aim to curb ``vibe coding'' by structuring AI-assisted development around natural-language specifications and acceptance criteria rather than unconstrained prompt-driven generation. We extend this paradigm to \textit{Formal Specification-Driven Development (FSDD)} by making \emph{formal verification} the primary acceptance gate. In our workflow, specifications are refined into SysML v2 models and GUMBO contracts, then discharged through HAMR/Logika verification. This yields machine-checkable evidence alongside generated code, enabling a low-entry workflow that remains aligned with certification demands for traceability, repeatability, and auditable assurance artifacts.
 
 In summary, the main contributions of this paper are:
 %--
-%The intended outcome is an auditable workflow where the toolchain mechanically preserves properties established at the model level in the generated code. However, while this infrastructure ensures correctness \emph{after} specification, the initial creation of formal models and contracts remains a manual, expertise-heavy bottleneck. Ideally, an agentic copilot would assist engineers in synthesizing these rigorous specifications from natural language, yet realizing this capability faces a critical barrier: effectively \emph{specializing} an LLM to such a complex, verification-centric toolchain under base-model fine-tuning restrictions.
-
-%Recent mechanistic interpretability results suggest that In-Context Learning (ICL) can act like an ``implicit fine-tuning'' process during inference~\cite{vonoswald2023transformers}, but the effect is transient: once the context window is cleared, the learned behavior is lost. In high-assurance settings, this ephemerality is a practical obstacle: it forces repeated token-heavy prompting and makes it difficult to govern, audit, or reuse what the model ``learned'' across runs.
-
-%A critical challenge in realizing this pipeline is effectively \emph{specializing} the copilot to such a rigorous toolchain under base-model fine-tuning restrictions. Recent mechanistic interpretability results suggest that In-Context Learning (ICL) can act like an ``implicit fine-tuning'' process during inference~\cite{vonoswald2023transformers}, but the effect is transient: once the context window is cleared, the learned behavior is lost. In high-assurance settings, this ephemerality is a practical obstacle: it forces repeated token-heavy prompting and makes it difficult to govern, audit, or reuse what the model ``learned'' across runs.
-
-%We address this by introducing \textit{Meta-Rules}: persistent, human-readable formalization abstractions that \emph{crystallize} successful ICL interactions (derived from golden examples, tool feedback, and expert edits) into a reusable rule library. Meta-Rules serve as a verifiable surrogate for black-box weight adaptation: instead of modifying parameters, the system externalizes adaptation into version-controlled artifacts that are (i) inspectable by humans, (ii) exercised by the toolchain, and (iii) constrained by formal verification. In developer mode, the system iteratively proposes and refines Meta-Rules using semantic similarity metrics and HAMR/Logika feedback; only candidates that satisfy quantitative improvement criteria, pass verification, and receive human approval are retained. In user mode, the copilot uses this curated library to drive a generate--verify--repair loop until model integration and code-level verification succeed.
-
-%This artifact-centric approach aligns with the industry's emerging \textit{Specification-Driven Development (SDD)} practices. Frameworks such as GitHub's Spec Kit and AWS Kiro~\cite{amazon2024mathematical} aim to curb ``vibe coding'' by structuring AI-assisted development around natural-language specifications and acceptance criteria rather than unconstrained prompt-driven generation. We extend this paradigm to \textit{Formal Specification-Driven Development (FSDD)} by making \emph{formal verification} the primary acceptance gate. In our workflow, specifications are refined into SysML v2 models and GUMBO contracts, then discharged through HAMR/Logika verification. This yields machine-checkable evidence alongside generated code, enabling a low barrier-to-entry workflow that remains aligned with certification demands for traceability, repeatability, and auditable assurance artifacts.
-
-%In summary, the main contributions of this paper are:
 \begin{enumerate}
-    \item \textbf{Trustworthy Natural Language-to-Implementation Pipeline:} A multi-agent generate--verify--repair loop workflow integrated with INSPECTA (SysML v2 + GUMBO + HAMR/Logika) that generates verified contracts and code from natural language requirements.
-    \item \textbf{Supervised Meta-Rules Adaptation:} A verifiable surrogate for fine-tuning that crystallizes ephemeral ICL behaviors into persistent Meta-Rules, enabling a governed generate--verify--repair loop driven by formal verification feedback and human approval.
-    \item \textbf{Empirical Evaluation:} An evaluation on a benchmark example sourced from an FAA requirements guidebook~\cite{hatcliff2024isolette}, demonstrating a substantial development task throughput increase and full verification success compared to a failing baseline.
+    \item \textbf{Trustworthy English-to-Implementation Pipeline:} A multi-agent SCP generate--verify--repair loop workflow integrated with INSPECTA (SysML v2 + GUMBO + HAMR/Logika) that generates verified contracts and code from requirements.
+    \item \textbf{Supervised Meta-Rules Self-Adaptation Algorithm:} A verifiable surrogate for fine-tuning that crystallizes ephemeral ICL behaviors into persistent Meta-Rules, enabling a governed generate--verify--repair loop driven by formal verification feedback and human approval.
+    \item \textbf{Benchmark Evaluation:} An evaluation of the Isolette benchmark~\cite{hatcliff2024isolette} (a proxy for the avionics subsystems), demonstrating a substantial increase in verified performance per minute and complete verification success compared to a failing baseline.
 \end{enumerate}
 
-The remainder of this paper is organized as follows. Section~\ref{sec:gumbo} summarizes SysML v2 GUMBO contracts and the HAMR/Logika verification workflow. Section~\ref{sec:approach} presents the SCP neuro-symbolic architecture and the Meta-Rules methodology. Section~\ref{sec:comparison} compares Meta-Rules to fine-tuning and transient prompting, and discusses trade-offs. Section~\ref{sec:example} presents the system development example. Section~\ref{sec:evaluation} details the experimental evaluation and metrics. Section~\ref{sec:related-work} discusses related work. Section~\ref{sec:limitations} discusses current limitations with future research directions, and Section~\ref{sec:conclusion} concludes.
+The remainder of this paper is structured as follows. After establishing the SysML v2 GUMBO and HAMR/Logika background in Section~\ref{sec:gumbo}, Sections~\ref{sec:approach} and~\ref{sec:meta-learning} introduce our core methodology: the SCP architecture, the Meta-Rules framework, and the supervised self-adaptation algorithm. Section~\ref{sec:comparison} compares Meta-Rules to fine-tuning and transient prompting, and discusses trade-offs. Section~\ref{sec:example} presents the Isolette running example. Section~\ref{sec:evaluation} details the experimental evaluation and metrics. Section~\ref{sec:related-work} discusses related work. Section~\ref{sec:limitations} discusses current limitations with future research directions, and Section~\ref{sec:conclusion} concludes. 
 
 To foster community collaboration and accelerate future research, all toolchain source code, along with our curated dataset of successful repair trajectories, is released as open source.\footnote{\url{https://github.com/loonwerks/INSPECTA-Spec-Code-Proof-Copilot}}
 
+%As a result, engineers are often left with unadapted general-purpose models or brittle, ad-hoc prompt engineering, neither of which naturally produces the auditable evidence expected in certification-oriented development. This dilemma severely limits the utility of frontier models. 
+
+%To address these barriers, we introduce a neuro-symbolic \textbf{Spec--Code--Proof (SCP)} pipeline that bridges natural-language requirements to verified implementation artifacts. Our approach integrates Codex-class software engineering agents into the DARPA PROVERS \textbf{INSPECTA} (Industrial-Scale Proof Engineering for Critical Trustworthy Applications) toolchain~\cite{hardin2025dasc}. INSPECTA provides the formal backbone: \textbf{SysML v2}~\cite{sysmlv2_model_formalism_wg, sysmlv2_omg} captures architecture, \textbf{GUMBO}~\cite{gumbo, gumbo_galois} expresses behavioral assume/guarantee contracts, \textbf{HAMR}~\cite{hamr,HAMRsite} generates executable memory-safe code, and \textbf{Logika}~\cite{HAMRsite} discharges proof obligations using SMT solvers (e.g., Z3~\cite{Z3} and CVC5~\cite{Barrett2011CVC4}). The intended outcome is not merely synthesized code, but an auditable requirements-to-implementation workflow in which properties established at the model level are mechanically preserved in the generated code.
+
+%\subsection{Motivation: Adaptation Under Fine-Tuning Restrictions via Meta-Rules}
+%A central technical challenge is how to adapt an LLM to this verification-centric toolchain under base-model fine-tuning restrictions. Recent mechanistic interpretability results suggest that In-Context Learning (ICL) can act like an ``implicit fine-tuning'' process during inference~\cite{vonoswald2023transformers}, but the effect is transient: once the context window is cleared, the learned behavior is lost. In high-assurance settings, this ephemerality is a practical obstacle: it forces repeated token-heavy prompting and makes it difficult to govern, audit, or reuse what the model ``learned'' across runs.
+
+%We address this by introducing \textit{Meta-Rules}: persistent, human-readable formalization abstractions that \emph{crystallize} successful ICL interactions (derived from golden examples, tool feedback, and expert edits) into a reusable rule library. Meta-Rules serve as a verifiable surrogate for black-box weight adaptation: instead of modifying parameters, the system externalizes adaptation into version-controlled artifacts that are (i) inspectable by humans, (ii) exercised by the toolchain, and (iii) constrained by formal verification. In developer mode, the system iteratively proposes and refines Meta-Rules using semantic similarity metrics and HAMR/Logika feedback; only candidates that satisfy quantitative improvement criteria, pass verification, and receive human approval are retained. In user mode, the copilot can be triggered with a low entry-point prompt that applies the curated Meta-Rule library to drive a generate--verify--repair loop until model integration and code-level verification succeed.
+
+
+%\subsection{Formal Specification-Driven Development (FSDD)}
+%We align our work with the industry's emerging \textit{Specification-Driven Development (SDD)} practices. Frameworks such as GitHub Spec Kit~\cite{} and AWS Kiro~\cite{amazon2024mathematical} exemplify this trend by structuring AI-assisted coding around natural-language specifications, plans, and acceptance criteria, rather than unconstrained prompt-driven generation. These workflows aim to curb ``vibe coding'' by tracking the artifacts that guide implementation.
+
+%We extend this paradigm to \textit{Formal Specification-Driven Development (FSDD)}. Our work complements emerging SDD workflows by making \emph{formal verification} the primary acceptance gate: specifications are refined into SysML v2 models and GUMBO contracts, then discharged through HAMR/Logika verification. This provides machine-checkable evidence alongside generated code, enabling a low-entry workflow that remains aligned with certification demands for traceability, repeatability, and auditable evidence.
+
+%\subsection{Contributions and Organization}
+%The main contributions of this paper are:
+%\begin{enumerate}
+   % \item \textbf{Trustworthy English-to-Implementation Pipeline:} A multi-agent SCP generate--verify--repair loop workflow integrated with INSPECTA (SysML v2 + GUMBO + HAMR/Logika) that generates verified contracts and code from requirements.
+    %\item \textbf{Supervised Meta-Rules Adaptation:} A verifiable surrogate for fine-tuning that crystallizes ephemeral ICL behaviors into persistent Meta-Rules, enabling a governed generate--verify--repair loop driven by formal verification feedback and human approval.
+    %\item \textbf{Empirical Evaluation:} An evaluation on the Isolette benchmark~\cite{hatcliff2024isolette} (a proxy for avionics subsystems), demonstrating a substantial throughput increase and full verification success compared to a failing baseline.
+%\end{enumerate}
+
+%The remainder of this paper is organized as follows. Section~\ref{sec:gumbo} summarizes SysML v2 GUMBO contracts and the HAMR/Logika verification workflow. Section~\ref{sec:approach} presents the SCP neuro-symbolic architecture and the Meta-Rules methodology. Section~\ref{sec:comparison} compares Meta-Rules to fine-tuning and transient prompting, and discusses trade-offs. Section~\ref{sec:example} presents the Isolette running example. Section~\ref{sec:evaluation} details the experimental evaluation and metrics. Section~\ref{sec:related-work} discusses related work. Section~\ref{sec:limitations} discusses current limitations with future research directions, and Section~\ref{sec:conclusion} concludes.
+
 
 %====================================================================
-\section{GUMBO Contracts in SysML v2 and HAMR/Logika codegen and verification}
+\section{Background}
+\label{sec:background}
+
+\subsection{INSPECTA High-Assurance System Development and Verification}
 \label{sec:gumbo}
-\todo{Reserved for a brief SysML v2 GUMBO tutorial.}
 
-GUMBO contracts express assumptions and guarantees for SysML v2 components, supporting compositional reasoning at the model level and refinement to implementation-level specifications. A typical GUMBO block includes optional state variables, initialization guarantees, assumptions constraining inputs, global guarantees, and \texttt{compute\_cases} clauses aligning conditional requirements with case-specific guarantees.
+The development of safety-critical systems, such as avionics, requires rigorous evidence that implementations faithfully realize their requirements. The DARPA PROVERS INSPECTA toolchain provides this verifiable setting by automatically integrating architectural design, code generation, and formal verification capabilities. Specifically, 
+\begin{itemize}
+\item SysML v2 and GUMBO: Architecture models are captured in SysML v2, which natively supports a textual representation amenable to LLM processing. These models are augmented with GUMBO (Guarantees and Assumptions with Model-Based Operations) contracts. GUMBO allows engineers to attach formal specifications—including state variables, interface assumptions, and operational compute cases—directly to architectural components.
 
-Listing~\ref{lst:gumbo-skel} provides an illustrative skeleton.
+\item HAMR and Logika: The HAMR framework analyzes these models to generate memory-safe executable skeleton code in languages like Slang/Scala (default and target of this paper), C, or Rust; mapping GUMBO assumptions and guarantees to formal verifiable requires and ensures blocks, respectively. Subsequently, in the case of Scala/Slang, the Logika formal verification framework uses SMT solvers (e.g., Z3, CVC5) to discharge proof obligations, ensuring the generated application code (manually or by LLM assistance) satisfies its GUMBO contracts across the entire state space.
+
+\item Finally, Rust and Verus: For Rust targets, HAMR generates Verus verification annotations. Verus allows developers to specify and prove properties using Rust’s ownership model, mapping GUMBO assumptions and guarantees to Verus requires and ensures blocks, respectively. In this paper, our SCP copilot supports the default behavior. 
+\end{itemize}
+A typical GUMBO block includes optional state variables, initialization guarantees, assumptions constraining inputs, global guarantees, and \texttt{compute\_cases} clauses that align conditional requirements with case-specific guarantees (Listing~\ref{lst:gumbo-skel}).
+
+Listing~\ref{lst:gumbo-skel} provides an illustrative example.
 
 \begin{lstlisting}[caption={Illustrative skeleton of a SysML v2 component with a GUMBO contract.},label={lst:gumbo-skel}]
 language "GUMBO" /*{
@@ -138,11 +175,12 @@ language "GUMBO" /*{
 } */
 \end{lstlisting}
 
+
 %====================================================================
-\section{Neuro-Symbolic Contract Generation with Meta-Rules}
+\section{Neuro-Symbolic Contract Generation with Meta-Rules an Overview}
 \label{sec:approach}
 
-\subsection{SCP Copilot Overview}
+%\subsection{SCP Copilot Overview}
 The SCP Codex Copilot introduces a multi-agent ``Copilot Loop'' that integrates Large Language Models (LLMs) with the INSPECTA toolchain.
 
 \subsection{SCP Copilot Neuro-Symbolic Workflow}
@@ -156,16 +194,31 @@ The architecture operates as a coordinated multi-agent loop. As shown in Fig.~\r
 \end{figure}
 
 \subsection{Meta-Rules: Persistent, Auditable Formalization Abstractions}
-Meta-Rules are persistent, human-readable abstractions that constrain how the copilot translates natural-language requirements and architectural context into GUMBO contracts. Each Meta-Rule captures a reusable mapping from recurring requirement patterns (e.g., hysteresis, ``no change'' semantics, timeouts, latched modes) to concrete, tool-compatible GUMBO constructs (e.g., state variables, initialization guarantees, and structured \texttt{compute\_cases}). In contrast to transient prompt-only conditioning, Meta-Rules are stored locally as version-controlled artifacts (a ``rule book'') that can be reviewed, curated, and audited by domain experts.
+Meta-Rules are persistent, human-readable abstractions that constrain how the copilot translates natural-language requirements and architectural context into GUMBO contracts. Each Meta-Rule captures a reusable mapping from recurring requirement patterns (e.g., hysteresis, ``no change'' semantics, timeouts, latched modes) to concrete, tool-compatible GUMBO constructs (e.g., state variables, initialization guarantees, and structured \texttt{compute\_cases}). In contrast to transient prompt-only conditioning, Meta-Rules are stored locally as version-controlled artifacts (a ``rule book'') that can be reviewed, curated, and audited by domain experts. 
 
-Operationally, Meta-Rules function as a verifiable surrogate for weight adaptation: the copilot’s behavior is shaped by persistent symbolic assets rather than by modifying model parameters. This provides (i) inspectability for human stakeholders, (ii) repeatability across runs, and (iii) compatibility with certification-oriented governance practices.
+\textbf{Remark 1.} An intuitive proof-engineering analogy is helpful. When a proof engineer observes the same sequence of proof moves recurring across solved examples, the natural response is to package that pattern into a reusable lemma. Future proofs then become shorter because the engineer invokes the lemma rather than rediscovering the derivation from scratch.
+Solved requirement-to-contract episodes play the role of worked proof cases; a candidate Meta-Rule is the reusable lemma-like hypothesis extracted from them; semantic screening estimates where that hypothesis is likely to apply (a forecast model to its practical reusability to produce practical verifaible specification); and the external verifier stack, together with human review, determines whether the hypothesis is worth retaining for a given a budeget. The analogy captures the engineering intuition of our method: reusable formalization skill is learned from solved instances, represented symbolically, and validated by an external checker within a given budget.
 
-\subsubsection{Two Modes of Use: User Mode vs.\ Developer Mode}
-We distinguish two operational modes:
+% which we illustrate in the next subsection.
+%Operationally, Meta-Rules function as a verifiable surrogate for weight adaptation: the copilot’s behavior is shaped by persistent symbolic assets rather than by modifying model parameters. This provides (i) inspectability for human stakeholders, (ii) repeatability across runs, and (iii) compatibility with certification-oriented governance practices.
 
+\subsection{Operational Modes of Use: User Mode vs.\ Developer Mode}
+Operationally, we distinguish two operational modes:
 \textbf{User Mode (application).} End users trigger the copilot with a low entry-point prompt that applies an existing, curated Meta-Rule library to translate requirements into candidate GUMBO contracts. The workflow then executes HAMR/Logika verification; failures trigger bounded, tool-guided repair until integration-level and code-level verification succeed.
 
-\textbf{Developer Mode (adaptation).} Developers iteratively refine the Meta-Rule library itself. Adaptation is supervised and gated: candidate Meta-Rule modifications are treated as hypotheses and retained only if they improve measurable criteria, pass verification, and receive explicit human approval. This yields cumulative improvement without fine-tuning.
+\textbf{Developer Mode (supervised self-adaptation learning).} Developers iteratively refine the Meta-Rule library itself. Adaptation is supervised and gated: candidate Meta-Rule modifications are treated as hypotheses and retained only if they improve measurable criteria, pass verification, and receive explicit human approval. This yields cumulative improvement without explicit base-model fine-tuning.
+
+\subsubsection{Geometric Intuition: Practically Verified Semantic Cone}
+\label{sec:vsc-intuition}
+
+Figure~\ref{fig:vsc} provides an intuition for why Meta-Rules act as a verifiable surrogate for fine-tuning in SCP. After injecting a curated Meta-Rule candidate $\mathcal{R}$, verification-aligned performance forms a local maximum over the base model manifold $\mathcal{M}$, centered around a golden example direction $\mathbf{g}$. The Meta-Rule \emph{range of effect} is modeled as an angular neighborhood ($\pm\varepsilon_{\max}$): increasing $\varepsilon$ expands the class of requirements and GUMBO contract patterns that can be produced from a small number of exemplars, while remaining within the accepted (budget-verifiable) region. This behavior is reflected in our evaluation (Sections~\ref{sec:example} and~\ref{sec:evaluation}), where one golden GUMBO block can be leveraged—via Meta-Rule refinement and verification-guided repair—to synthesize multiple additional verified GUMBO blocks (e.g., one-to-six). An extended discussion of the geometry and budgeted acceptance interpretation is provided in Appendix~\ref{app:vsc}.
+
+\begin{figure}[t]
+\centering
+\input{figures/vsc_tikz}
+\caption{Verified Semantic Cone with a bell-shaped verification-aligned performance landscape $\mathcal{P}(\mathbf{v})$ for supervised Meta-Rule refinement. The golden example direction $\mathbf{g}$ (blue) is perpendicular to the base model manifold $\mathcal{M}$. Under a Meta-Rule candidate $\mathcal{R}$, generated candidates (rays) intersect $\mathcal{P}$ at outcome points $\mathbf{v}_i$. Clockwise increases in $\varepsilon$ promote generalization ($\varepsilon\uparrow$), while counterclockwise decreases promote specialization ($\varepsilon\downarrow$). The range of effect ($\pm\varepsilon_{\max}$) and boundary points $\mathbf{v}_{\text{limit}}$ separate the accepted region (green, verified $V(\mathcal{R})$ within budget) from the rejected region (red, unverified within the budget limit). Increasing $\varepsilon$ expands the neighborhood in which $\mathcal{R}$ yields semantically correct, practically verifiable formalizations, enabling a small number of golden examples (e.g., one GUMBO block) to generalize to a larger class of verified contracts through semantic (not merely syntactic) refinement.}
+\label{fig:vsc}
+\end{figure}
 
 \subsubsection{Example Meta-Rule}
 Listing~\ref{list:metaRules} shows an excerpt from the rule book used in our evaluation. The rule instructs the agent to introduce explicit state when the requirements imply memory (e.g., hysteresis bands, ``hold previous'' semantics, time-dependent predicates). Such rules were motivated by baseline failures in which the agent attempted incompatible idioms (e.g., AADL pre-state operators) and could not consistently realize SysML v2 GUMBO state syntax.
@@ -177,16 +230,15 @@ Listing~\ref{list:metaRules} shows an excerpt from the rule book used in our eva
  * - Hysteresis "shall not be changed" / "hold previous" 
  * (e.g., Heat within desired band; Alarm no-change band).
  * - Timeouts (duration in mode > 1.0 s) if not directly 
- * available from the platform as a primitive.
- */
-
+ * available from the platform as a primitive. */
 // Pattern examples provided to the Agent:
 state
   lastHeat: Isolette_Data_Model::On_Off;
   initElapsed: Base_Types::S64; // time units
 \end{lstlisting}
 
-\subsection{Supervised Meta-Rule Adaptation and Acceptance Criteria}
+\section{Supervised Meta-Rule Self-Adaptation (Learning) and Acceptance Criteria}
+\label{sec:meta-learning}
 Meta-Rule adaptation is driven by three complementary gates:
 
 \textbf{(1) Semantic improvement.} When golden reference formalizations are available (e.g., from validated contract blocks), we compute embedding-based cosine distance between the candidate contract text and the golden reference. Candidate Meta-Rule changes must demonstrate monotonic improvement against this semantic metric over a validation subset.
@@ -198,26 +250,21 @@ Meta-Rule adaptation is driven by three complementary gates:
 \subsection{Practical Considerations}
 Meta-Rules are stored as local, version-controlled artifacts (a rule book) and are supplied to the agent at execution time together with the verification plan. This design keeps adaptation auditable and allows changes to be reviewed, reproduced, and rolled back. We defer discussion of limitations and trade-offs to Section~\ref{sec:limitations}.
 
-\subsection{Algorithm: Meta-Rule Learning, Application, and Verification-Guided Repair}
-Algorithm~\ref{alg:meta-rules} formalizes the SCP workflow as a dual-phase neuro-symbolic process.
+%\subsection{Algorithm Description}
+\subsection{The algorithm:}
+Algorithm~\ref{alg:meta-rules} introduces the algorithm as a dual-phase neuro-symbolic process. Let $R$ denote the target set of natural-language requirements, and let $\textsc{Sample}(R)\subset R$ denote the sampled training subset used in developer mode during Phase~I---in our setting, its size was 1/6 of $R$. Let $G=\{(r_g,g_g)\}$ denote the set of golden examples, where $r_g$ is a golden requirement and $g_g$ is its verified formalized GUMBO contract. Let $M$ denote the retained Meta-Rule library, $C$ the set of verified contracts, and $F$ the set of flagged failures.
 
-\textbf{Phase I: Meta-Rule Extraction and Validation.}
-The first phase focuses on the supervised acquisition of Meta-Rules---abstracted templates that map natural language patterns to formal GUMBO constructs. The process iterates over a set of golden examples ($G$).
-\begin{itemize}
-    \item \textit{Extraction:} For each golden pair, the system derives a candidate Meta-Rule ($m$) via \textsc{ExtractRule}.
-    \item \textit{Generalization Check:} To reduce over-specialization, the candidate rule is tested against a sample subset of target requirements ($R$). A candidate formalization ($\hat{g}$) is generated and evaluated with a similarity check using threshold $\epsilon$.
-    \item \textit{Verification-Guided Repair:} The candidate formalization is submitted to the verifier ($V$).
-    \item \textit{Acceptance:} Only rules that verify across the validation subset---meeting acceptance threshold ($\tau$) and human approval---are committed to the persistent Meta-Rule library ($M$).
-\end{itemize}
+\textbf{Phase I: Meta-Rule extraction, sample-based training, and predictive $\epsilon$-learning.}
+For each golden pair $(r_g,g_g)\in G$, \textsc{ExtractRule} derives a candidate Meta-Rule $m$. For each sampled requirement $r\in \textsc{Sample}(R)$, \textsc{ApplyRule} uses $m$ to produce a candidate formalized contract $\hat{g}$. The quantity $\textsc{Distance}(\hat{g},g_g)$ denotes a \emph{semantic} distance between the generated formalized contract and the golden formalized contract, rather than a literal textual comparison. The threshold $\epsilon$ therefore controls the admissible degree of abstraction away from the golden exemplar. The objective is not to drive $\epsilon$ toward zero: if $\epsilon$ is too small, the rule becomes over-specialized and loses reusability; if $\epsilon$ is too large, the rule admits overly broad generations that require excessive repair or fail to verify within budget $B$. Accordingly, in developer mode $\epsilon$ is tuned across repeated calibration attempts to find a satisfactory intermediate value that best balances rule reuse and bounded repair. Verification is performed by $V(\hat{g},B)$, where $B$ is the repair budget in time and tokens for full repair cycles; the verifier returns a Boolean result $ok$ together with feedback $fb$. While \textsc{RepairBudgetRemaining}$(B)$ holds, \textsc{Repair}$(\hat{g},fb,B)$ revises the candidate using verifier feedback. The counter $okCount$ records how many sampled requirements are successfully verified for the candidate rule $m$, and $\tau$ is the minimum acceptance threshold required to retain $m$ in $M$. If performance is unsatisfactory, \textsc{DiscardOrRefineWithHuman}$(m)$ permits human refinement of the rule, of $\epsilon$, or both, and the developer-mode loop repeats.
 
-\textbf{Phase II: Rule-Guided Formalization.}
-The second phase represents production deployment. Instead of relying on unconstrained generation, the system utilizes the validated library ($M$) to synthesize formal contracts ($\hat{g}$) and iteratively repairs them until verification succeeds or a budget is exhausted.
+\textbf{Phase II: held-out validation and rule-guided formalization with bounded repair.}
+After Phase~I, the retained pair $(M,\epsilon)$ is evaluated beyond the sampled training subset. In developer mode, the Phase~II loop is instantiated on requirements not used in $\textsc{Sample}(R)$, testing whether the learned Meta-Rules and calibrated threshold $\epsilon$ generalize to unseen requirements while remaining repairable within budget $B$. In user mode, the same rule-guided synthesis procedure is applied to the full deployment set $R$. For each requirement $r$, \textsc{SynthesizeWithRules}$(r,M)$ produces a candidate contract $\hat{g}$, which is checked again by $V(\hat{g},B)$ and, if needed, revised by \textsc{Repair}$(\hat{g},fb,B)$ while budget remains. If verification succeeds, the pair $(r,\hat{g})$ is added to $C$; otherwise the tuple $(r,\hat{g},fb)$ is added to $F$. Operationally, the developer-mode loop (Phase I and Phase II) repeats until a satisfactory $\epsilon$ is found, namely one for which the retained Meta-Rule library remains reusable on unseen requirements within the available repair budget.
 
 \setlength{\textfloatsep}{8pt}\setlength{\intextsep}{8pt}
 \begin{algorithm}[!t]
 \caption{SCP Meta-Rules Learning, Application, and Verification-Guided Repair}
 \label{alg:meta-rules}
-\KwIn{Requirements set $R$; golden examples $G$ (English + normalized GUMBO); verifier $V$ (HAMR/Logika); budgets $B$ (time/tokens/repair cycles); similarity threshold $\epsilon$; acceptance threshold $\tau$.}
+\KwIn{Requirements set $R$; golden examples $G$ (English + formalized GUMBO); verifier $V$ (HAMR/Logika); budgets $B$ (time/tokens/repair cycles); similarity threshold $\epsilon$; acceptance threshold $\tau$.}
 \KwOut{Verified contracts $C$; retained Meta-Rules library $M$; flagged failures $F$.}
 
 \textbf{Initialization:}\\
@@ -277,6 +324,16 @@ Log timestamps, token usage, latency, and repair count; store $M$ for reuse.
 
 \subsection{Discussion: Human-in-the-Loop Refinement}
 While Meta-Rule extraction and validation are highly automated, human oversight remains essential to ensure transferability and prevent drift. A critical aspect is the \textbf{generalization--specialization trade-off}, managed through semantic proximity checks, verification gates, and human governance.
+%For instance, 
+The threshold $\epsilon$ is not searched for as a theoretical maximum over all admissible semantic deviations. Rather, in developer mode it is calibrated as a user-satisfactory operating point that balances rule reusability against bounded repair cost. %If $\epsilon$ is too small, the retained Meta-Rules become over-specialized to the golden exemplars and fail to transfer beyond the sampled training requirements. If $\epsilon$ is too large, the rules admit semantically broader but noisier generations whose repair effort may exceed the available budget $B$ or degrade held-out verification performance.
+Accordingly, SCP adopts a satisficing criterion: $\epsilon$ is accepted once the learned pair $(M,\epsilon)$ achieves the user-required level of verification performance on unseen requirements within the available budget, rather than when $\epsilon$ is theoretically maximal. Human review remains essential in this calibration loop, since the final choice of $\epsilon$ reflects an engineering judgment about acceptable trade-offs among generality, verification success, repair effort, and cost.
+
+%To ensure optimal rule reusability in Phase II, we introduce an iterative ϵ-learning step during Phase I. Rather than treating the distance threshold ϵ as a static input, we frame it as a tunable hyperparameter that acts as a forecasting model for system performance. Our objective is to maximize ϵ—thereby allowing meta-rules to generalize more broadly—while ensuring that the downstream formalization of the complete requirements set R remains solvable within the allocated repair budget B.
+
+%The extraction process repeats, iteratively adjusting ϵ, until a satisfactory threshold is found. A 'satisfactory' ϵ is defined as the maximum distance bound that yields a meta-rule library M capable of verifying R without exhausting the available token or cycle budgets. In this way, ϵ serves as a predictive proxy in Phase I for the overall synthesis efficiency in Phase II.
+
+\subsection{Discussion: Human-in-the-Loop Refinement}
+While Meta-Rule extraction and validation are highly automated, human oversight remains essential to ensure transferability and prevent drift. A critical aspect is the \textbf{generalization--specialization trade-off}, managed through semantic proximity checks, verification gates, and human governance.
 
 %====================================================================
 \section{Comparison to Fine-Tuning and Transient Prompting}
@@ -322,7 +379,7 @@ Verification integration & Indirect & Indirect & Direct \\
 We use the Isolette Infant Incubator benchmark as a proxy for safety-critical subsystems~\cite{hatcliff2024isolette}. The goal is to translate natural-language requirements into SysML v2 GUMBO contracts and then discharge both integration-level and code-level verification obligations using the SCP Copilot Self-healing mechanism with minimal user intervention.
 
 \subsection{Experimental Inputs and Outputs}
-\textbf{Inputs.} The experiment uses (i) natural-language requirements provided in a realistic FAA-style source document (37+ pages) containing plain text, tables, and figures (e.g., \texttt{Steve\_Miller\_FAA\_docAR-08-32.pdf}), and (ii) SysML v2 models and shared libraries representing the Isolette architecture (e.g., \texttt{Monitor.sysml}, \texttt{Regulate.sysml}, plus SysML$\leftrightarrow$AADL shared libraries). These artifacts intentionally include realistic friction: domain terminology, cross-references, and requirements that imply memory (hysteresis/latched state) that must be encoded using SysML v2 GUMBO constructs accepted by the toolchain.
+\textbf{Inputs.} The experiment uses (i) natural-language requirements provided in a realistic FAA-style source document (37+ pages) containing plain text, tables, and figures (e.g., \cite{steve Mill} \texttt{Steve\_Miller\_FAA\_docAR-08-32.pdf}), and (ii) SysML v2 models and shared libraries representing the Isolette architecture (e.g., \texttt{Monitor.sysml}, \texttt{Regulate.sysml}, plus SysML$\leftrightarrow$AADL shared libraries). These artifacts intentionally include realistic friction: domain terminology, cross-references, and requirements that imply memory (hysteresis/latched state) that must be encoded using SysML v2 GUMBO constructs accepted by the toolchain.
 
 \textbf{Outputs.} The pipeline produces (i) SysML v2 models augmented with GUMBO contracts (including state/initialize/compute\_cases blocks), (ii) HAMR-generated implementation artifacts, and (iii) verification logs demonstrating successful discharge of Logika proof obligations for both model integration and code-level execution.
 
@@ -355,8 +412,7 @@ Upon applying the curated Meta-Rules (e.g., Listing~\ref{list:metaRules}), the S
 \begin{lstlisting}[caption={Success Log: Transcript showing successful formalization and verification after applying Meta-Rules.}, label={list:successLog}, float=t]
 Codex optimized with meta-Rules. Worked for ~25 minutes with complete success
 
-- Regulate.sysml:5-9 now imports Base_Types so the new GUMBO blocks can reference typed integer literals...
-- Regulate.sysml:150-241 embeds the Manage Regulator Interface contract...
+- ...
 - Regulate.sysml:281-353 adds the Manage Regulator Mode contract with state for the last mode and INIT timer plus helper predicates that encode the Regulator Status definition from Table A-10; cases REQ_MRM_1-REQ_MRM_4 reproduce the diagrammed transitions and latch semantics.
 - Regulate.sysml:394-476 introduces the Manage Heat Source contract: Integration assumes the desired-range/temperature bounds, initialization forces the heat off, state remembers the previous actuation for hysteresis, and compute cases cover REQ_MHS_1-REQ_MHS_5 plus the explicit 6s latency references...
 
@@ -370,8 +426,8 @@ Token usage: total=369,318 input=317,485 (+ 4,302,976 cached) output=51,833 (rea
 
 \textbf{Connection to the acceptance gates.} The rules used here are not ad-hoc prompts; they are persistent assets curated under the developer-mode gates in Section~\ref{sec:approach}. In particular, Meta-Rule updates are retained only when they (i) improve semantic alignment where golden references exist (cosine-distance guidance), (ii) pass integration and code-level verification (hard gate), and (iii) receive human approval prior to being committed to the rule book. The user-mode run then applies these retained rules to reduce search and prevent token-heavy trial-and-error.
 
-\subsection{Cross-Model Robustness (GPT-5.1 \texorpdfstring{$\rightarrow$}{->} GPT-5.2)}
-In follow-on runs, the same Meta-Rule library authored and validated under Codex GPT-5.1 Max executed unchanged on Codex GPT-5.2 Max while preserving verification outcomes. We observed reduced reasoning-token consumption for comparable tasks, indicating that the approach benefits directly from improvements in newer models without requiring fine-tuning or re-authoring rules. This supports the claim that Meta-Rules provide a forward-compatible, locally governed specialization layer that can track model evolution while keeping adaptation auditable and low-risk.
+%\subsection{Cross-Model Robustness (GPT-5.1 \texorpdfstring{$\rightarrow$}{->} GPT-5.2)}
+%In follow-on runs, the same Meta-Rule library authored and validated under Codex GPT-5.1 Max executed unchanged on Codex GPT-5.2 Max while preserving verification outcomes. We observed reduced reasoning-token consumption for comparable tasks, indicating that the approach benefits directly from improvements in newer models without requiring fine-tuning or re-authoring rules. This supports the claim that Meta-Rules provide a forward-compatible, locally governed specialization layer that can track model evolution while keeping adaptation auditable and low-risk.
 
 %====================================================================
 \section{Evaluation and Metrics}
@@ -380,22 +436,23 @@ In follow-on runs, the same Meta-Rule library authored and validated under Codex
 \subsection{Experimental Settings}
 We evaluated SCP on the Isolette benchmark under two conditions: (i) a baseline prompt-only Codex agent and (ii) a Meta-Rule--guided SCP copilot. In both conditions, the agent was provided a realistic natural-language requirement source document (37+ pages, containing figures, tables, and dense prose) along with the SysML v2 architecture models and shared libraries. The Meta-Rule--guided condition additionally supplied the curated Meta-Rule library and verification plan artifacts described in Section~\ref{sec:approach}. Success was defined as completion of integration-level and code-level verification using the INSPECTA workflow, culminating in a verified set of GUMBO-augmented SysML v2 models and verified HAMR-generated code.
 
-\subsection{Metrics Definitions}
-We report performance using token accounting and wall-clock time. Each run produces a structured usage record of the form:
-\emph{total tokens, input tokens (uncached), cached input tokens, output tokens, reasoning tokens, and wall-clock runtime.}
+\subsection{Metrics}
+We report performance using token accounting and wall-clock time. Because this is a verification-centric workflow, token and runtime reductions are meaningful only insofar as they accompany successful verified completion. Accordingly, we report cost components separately and treat them as contributors to the broader objective of \emph{cost per verified task}.
+%We report performance using token accounting and wall-clock time. Each run produces a structured usage record of the form:
+%\emph{total tokens, input tokens (uncached), cached input tokens, output tokens, reasoning tokens, and wall-clock runtime.}
 We define:
 
 \begin{itemize}
     \item \textbf{Wall-clock time ($T_{\mathrm{wall}}$):} elapsed runtime from the start of the copilot run until termination (success or failure), measured in minutes.
     \item \textbf{Uncached input tokens ($N_{\mathrm{in}}$):} tokens in the prompt/context that are processed as new input for the run.
     \item \textbf{Cached input tokens ($N_{\mathrm{cache}}$):} tokens reused from prior context caching (reported separately because cached tokens contribute to throughput and cost differently than uncached input).
-    \item \textbf{Output tokens ($N_{\mathrm{out}}$):} total tokens generated by the model in the response stream.
     \item \textbf{Reasoning tokens ($N_{\mathrm{reason}}$):} internal reasoning tokens reported by the model (a subset of model computation correlated with cost and latency). We report these explicitly because reductions in $N_{\mathrm{reason}}$ often translate directly to lower runtime and lower cost in practice. They are typically priced higher than the other tokens.
+    \item \textbf{Output tokens ($N_{\mathrm{out}}$):} total tokens generated by the model in the response stream, including ($N_{\mathrm{reason}}$).
     \item \textbf{Total tokens ($N_{\mathrm{total}}$):} aggregate token volume for the run:
     \[
       N_{\mathrm{total}} = (N_{\mathrm{in}} + N_{\mathrm{cache}}) + N_{\mathrm{out}}.
     \]
-    \item \textbf{Task throughput ($\Theta$):} verified task completion rate. In this study, we report throughput as ``successful verified run per minute'' (binary success over $T_{\mathrm{wall}}$), and we also interpret qualitative throughput improvements using token efficiency (verified success achieved with lower $N_{\mathrm{total}}$).
+    \item \textbf{Verified Task Completion Rate ($\Theta$):}  In this study, we report throughput as ``successful verified run per minute'' (binary success over $T_{\mathrm{wall}}$), and we also interpret qualitative throughput improvements using token efficiency (verified success achieved with lower $N_{\mathrm{total}}$). 
 \end{itemize}
 
 \subsection{Performance Comparison}
@@ -413,8 +470,49 @@ As illustrated in Fig.~\ref{fig:resultsChart}:
     \item \textbf{Token efficiency:} The baseline consumed $\approx$19M cached input tokens and still failed. With Meta-Rules, cached input tokens dropped to $\approx$4.3M and uncached input dropped to $\approx$317k, while verification succeeded.
     \item \textbf{Reasoning efficiency:} Reasoning tokens decreased (e.g., from $\approx$54k to $\approx$36k in the representative logs), consistent with reduced search and fewer failed retries.
     \item \textbf{Wall-clock time:} Total runtime decreased from 33 minutes (failure) to $\approx$25 minutes (success).
-    \item \textbf{Correctness:} The Meta-Rule--guided approach achieved full integration-level and code-level verification where the baseline failed to produce verifiable artifacts~\cite{slides}.
+    \item \textbf{Verified Task Throughput Rate ($\Theta$):} The Meta-Rule--guided approach achieved full integration-level and code-level verification where the baseline failed to produce verifiable artifacts~\cite{slides}. In total, we have a 58x increase in ($\Theta$) metric, %which is in line with the expected reduction in the Proper Time cost predicted by the theoretical framework of Section~\ref{app:theory}.
 \end{itemize}
+\subsection{Representative Results}
+Table~\ref{tab:results} reports representative logs from the baseline and Meta-Rule-guided runs. The baseline failed to produce a verifier-accepted artifact despite substantially higher token expenditure, whereas the Meta-Rule-guided run completed both integration-level and code-level verification.
+
+\begin{table*}[!t]
+\centering
+\caption{Representative run metrics for the baseline and Meta-Rule-guided SCP conditions.}
+\label{tab:results}
+\small
+\begin{tabular}{lcc}
+\hline
+Metric & Baseline (prompt-only) & Meta-Rule-guided SCP \\
+\hline
+Verified artifact produced & No & Yes \\
+$T_{\mathrm{wall}}$ (minutes) & 33 & $\approx 25$ \\
+$N_{\mathrm{in}}$ & 981,770 & 317,485 \\
+$N_{\mathrm{cache}}$ & 18,673,920 & 4,302,976 \\
+$N_{\mathrm{out}}$ & 85,833 & 51,833 \\
+$N_{\mathrm{reason}}$ & 54,080 & 36,032 \\
+$N_{\mathrm{total}}$ & 19,741,523 & 4,672,294 \\
+\hline
+\end{tabular}
+\end{table*}
+
+The quantitative impact of Meta-Rules is also visualized in Fig.~\ref{fig:resultsChart}. The orange bars represent the failing baseline, while the blue bars represent the Meta-Rule-guided workflow.
+
+Several observations follow from Table~\ref{tab:results}. First, Meta-Rules convert a run with effectively unbounded cost per verified task into one that completes formal verification. Second, the successful run uses about $4.2\times$ fewer total tokens and about $4.3\times$ fewer cached input tokens than the failing baseline. Third, reasoning tokens fall from 54,080 to 36,032, consistent with the claim that the rule-guided workflow reduces unproductive search. Finally, wall-clock time decreases from 33 minutes to about 25 minutes while achieving complete verification with $\approx$58x better Verified Task Completion Rate ($\Theta$), showing that reduced search cost is accompanied by a meaningful runtime gain rather than only by better final correctness.
+
+\section{Discussion: Why Meta-Rules Reduce Cost}
+\label{sec:discussion}
+
+The results are best understood through the interaction of learning and search. The prompt-only baseline repeatedly expends computation to rediscover tool-specific formalization structure within a single long-context session, yet still fails to reach verifier-accepted artifacts. By contrast, the Meta-Rule-guided workflow begins from persistent formalization knowledge that has already survived semantic checks, formal verification, and human review. The observed reduction in reasoning cost and elapsed time is therefore not merely a prompting improvement; it is the expected consequence of replacing repeated rediscovery with governed reuse.
+
+In developer mode, the system acquires reusable algorithmic structure from prior successful formalization episodes. In user mode, that structure shortens the trajectory to a verified solution. The verifier is essential in both phases: it acts first as selection pressure on which Meta-Rules are worth retaining, and later as the acceptance gate that determines whether a candidate artifact is actually useful. This interpretation is consistent with the recent theoretical framework lens
+from~\cite{e28030332}, see Appendix~\ref{app:vsc}
+
+The results also clarify why the ``surrogate for fine-tuning'' description is only partially sufficient. Meta-Rules do help in settings where direct weight adaptation is unavailable or undesirable, but their value is broader. They preserve specialization as explicit engineering knowledge. That externalization makes adaptation inspectable, portable across model versions, and compatible with governance practices such as review, version control, and rollback. These are not incidental operational benefits; in certification-oriented environments they are part of the scientific and engineering contribution.
+
+At the same time, the scope of the claim should remain precise. Our results do not show that Meta-Rules universally dominate fine-tuning, nor do they prove that all baseline failures are caused by missing knowledge rather than poor search. What they do show is that, in a verification-centric MBSE workflow with evolving tool-specific semantics, sparse domain data, and governance constraints, externalized rule memory is a practical and effective specialization mechanism. It improves the copilot's reachable formalization behavior while preserving the auditability expected in high-assurance engineering.
+
+More broadly, the results suggest that future progress in high-assurance copilots may depend less on unconstrained scaling of prompt-only reasoning and more on explicit mechanisms for capturing, validating, and reusing formalization knowledge under checkers. In that sense, Meta-Rules are not an alternative to formal methods; they are a way of making generative models work \emph{inside} a formal-methods-centered development process.
+
 
 %=========================================================
 \section{Related Work}
@@ -448,13 +546,181 @@ Current LLMs often lack grounding in the physical constraints of cyber-physical 
 \section{Conclusion}
 \label{sec:conclusion}
 
-The SCP Codex Open Platform demonstrates that using Meta-Rules to extract and reuse formalization knowledge can significantly outperform direct, unconstrained model querying in a verification-centric MBSE toolchain. This neuro-symbolic approach enables the generation of formally verified system code with substantial improvements in efficiency and cost while preserving auditability and human governance.
+Our work demonstrates that combining the Meta-Rules methodology with INSPECTA toolchain verifiers to extract and reuse formalization knowledge can significantly outperform direct, unconstrained model querying in a verification-centric MBSE environment. This neuro-symbolic approach paves the way for generating formally verified system code at realistic scale, with substantial improvements in efficiency and token cost per verified task while preserving guardrails from the system model through implementation, as well as auditability and human governance. It also lays the foundation for future research extending this work to more complex systems and larger scale enterprise-grade copilots.
 
 \section*{Acknowledgment}
 This work was funded by DARPA contract FA---. The views, opinions, and findings expressed are those of the authors and do not necessarily reflect the official views or policies of the U.S. Department of War or the U.S. Government.
+
 %====================================================================
+\appendices
+%====================================================================
+%====================================================================
+\appendices
+
+\section{Geometric and Performance Interpretation of Meta-Rule }
+\label{app:vsc}
+
+This appendix extends the geometric interpretation of the Meta-Rule methodology by introducing a verification-aligned performance landscape over the embedding space. The resulting view clarifies how semantic generalization, formal verification constraints, and computational budget jointly determine admissible generations in the SCP workflow.
+
+\subsection{Embedding-Space Abstraction}
+
+Let $\mathcal{M} \subset \mathbb{R}^d$ denote the latent embedding manifold induced by a pretrained base model. Let $\mathbf{g} \in \mathbb{R}^d$ represent the embedding of a \emph{golden example}, corresponding to a formally verified transformation:
+\[
+\text{English requirement}
+\rightarrow
+\text{SysML v2 + GUMBO}
+\rightarrow
+\text{HAMR}~\text{code}\]
+\[\rightarrow
+\text{Logika proof discharge}.
+\]
+For conceptual clarity, we depict the base model’s prior generative tendency as a horizontal manifold, while the golden example $\mathbf{g}$ is shown as a perpendicular semantic direction. This orthogonality is interpretive: it emphasizes that the golden example represents a correctness-anchored direction relative to unconstrained generation.
+
+Under a Meta-Rule set $\mathcal{R}_i$, the SCP copilot produces a candidate embedding
+\begin{equation}
+\mathbf{v}_i = f_{\theta,\mathcal{R}_i}(x),
+\end{equation}
+where $f_{\theta}$ is the base model and $x$ is the input requirement. The semantic deviation from the golden example is quantified by
+\begin{equation}
+\varepsilon_i = \angle(\mathbf{v}_i,\mathbf{g}).
+\end{equation}
+The parameter $\varepsilon_i$ reflects controlled abstraction away from the exemplar.
+
+\subsection{Practically Verified Semantic Cone and Budgeted Acceptance}
+
+Meta-Rules constrain the effective sampling region of the model. Geometrically, admissible candidates form a conical neighborhood around $\mathbf{g}$. Let
+\[
+V(\mathbf{v}_i)\in\{0,1\}
+\]
+denote the outcome of integration-level and code-level Logika verification under a bounded computational budget and humain review (tokens, repair cycles, and time constraints). A candidate is accepted if and only if:
+\begin{equation}
+V(\mathbf{v}_i)=1.
+\end{equation}
+The admissible region defines a \emph{Practically Verified Semantic Cone}: the maximal angular neighborhood around $\mathbf{g}$ within which artifacts remain formally verifiable under the design budget. Outside this cone lies a \emph{rejection region}---generations that either (i) violate logical constraints or (ii) require repair effort exceeding the verification budget. Thus, rejection is not merely semantic divergence but \emph{budget-constrained unverifiability} %(Edit this: i.e., it will be practically be expensive to repair the generated models within a given budget).
+
+\subsection{Performance Landscape and Token-Accounted Outcomes}
+
+We further interpret the embedding space as supporting a scalar performance functional $\mathcal{P}(\mathbf{v})$ that captures verification-aligned utility (e.g., semantic alignment to the golden exemplar, syntactic/tool compatibility, and repair efficiency). In Fig.~\ref{fig:vsc}, $\mathcal{P}$ is depicted as a bell-shaped (local maximum) curve centered near the golden example direction. Each ray denotes a candidate generation direction $\mathbf{v}_i$; its intersection with the performance curve yields an observed outcome point (dot) whose associated token-accounting vector summarizes execution cost:
+\[
+\mathbf{t}_i =
+\begin{bmatrix}
+N_{\mathrm{in}} \\
+N_{\mathrm{cache}} \\
+N_{\mathrm{reason}} \\
+N_{\mathrm{total}}
+\end{bmatrix},
+\]
+where $N_{\mathrm{in}}$ is uncached input tokens, $N_{\mathrm{cache}}$ is cached input tokens, $N_{\mathrm{reason}}$ is reasoning tokens, and $N_{\mathrm{total}}$ is total tokens.
+
+The \emph{acceptance region} is the high-performance basin enclosed by the cone and the performance curve, where candidates remain verifiable under the design budget. The \emph{rejection region} is the region bounded by the lower cone edge, the baseline, and the performance curve; candidates falling into this region are practically formally unverifiable within the allocated verification/repair budget.
+%\appendices
+
+%\section{Geometric and Performance Interpretation of Meta-Rule Generalization}
+%\label{app:vsc}
+
+%This appendix extends the geometric interpretation of the Meta-Rule methodology by introducing a verification-aligned performance landscape over the embedding space.
+
+\begin{figure}[h]
+\centering
+\input{figures/vsc_tikz}
+\caption{
+Verified Semantic Cone with a bell-shaped verification-aligned performance landscape $\mathcal{P}(\mathbf{v})$ for supervised Meta-Rule refinement. The golden example direction $\mathbf{g}$ (blue) is perpendicular to the base model manifold $\mathcal{M}$. Under a Meta-Rule candidate $\mathcal{R}$, generated candidates (rays) intersect $\mathcal{P}$ at outcome points $\mathbf{v}_i$. Clockwise increases in $\varepsilon$ promote generalization ($\varepsilon\uparrow$), while counterclockwise decreases promote specialization ($\varepsilon\downarrow$). The range of effect ($\pm\varepsilon_{\max}$) and boundary points $\mathbf{v}_{\text{limit}}$ separate the accepted region (green, verified $V(\mathcal{R})$ within budget) from the rejected region (red, unverified within the budget limit). Increasing $\varepsilon$ expands the neighborhood in which $\mathcal{R}$ yields semantically correct, practically verifiable formalizations, enabling a small number of golden examples (e.g., one GUMBO block) to generalize to a larger class of verified contracts through semantic (not merely syntactic) refinement.
+%Verified Semantic Cone with a bell-shaped verification-aligned performance landscape $\mathcal{P}(\mathbf{v})$ for supervised Meta-Rule refinement. The golden example direction $\mathbf{g}$ (blue) is perpendicular to the base model manifold $\mathcal{M}$. Under a Meta-Rule candidate $\mathcal{R}$, generated candidates (rays) intersect $\mathcal{P}$ at outcome points $\mathbf{v}_i$. Clockwise increases in $\varepsilon$ promote generalization ($\varepsilon\uparrow$), while counterclockwise decreases promote specialization ($\varepsilon\downarrow$). The range of effect ($\pm\varepsilon_{\max}$) and boundary points $\mathbf{v}_{\text{limit}}$ separate the accepted region (green, verified $V(\mathcal{R})$ within budget) from the rejected region (red, unverified within the budget limit).
+%Verified Semantic Cone with a bell-shaped verification-aligned performance landscape $\mathcal{P}(\mathbf{v})$. The golden example direction $\mathbf{g}$ is shown perpendicular to the base model manifold. Rays represent candidate generations $\mathbf{v}_i$; their intersections (dots) with $\mathcal{P}$ represent realized performance. Clockwise angular deviations $\varepsilon_1,\varepsilon_2,\ldots,\varepsilon_{\max}$ increase as candidates move farther from $\mathbf{g}$ toward the cone boundary. The acceptance region is the high-performance basin enclosed by the cone and $\mathcal{P}$. The rejection region is bounded by the lower cone edge, the baseline, and $\mathcal{P}$; candidates falling in this region are practically formally unverifiable within the allocated repair/verification budget.}
+}
+\label{fig:vsc}
+\end{figure}
+
+\section{Meta-Rules in the Lenses of Tranductive Learning Theory}
+\label{app:vsc}
+\subsubsection{Transductive Agentic Search as a Theoretical Lens}
+
+We interpret this workflow through the transductive account of reasoning agents developed by Achille and Soatto~\cite{e28030332}. In that view, an AI agent is modeled as a stochastic dynamical system operating in a verifiable setting, where a checker or reward function can determine whether a candidate solution is acceptable. The key objective is therefore not prediction error alone, but the computational effort required to reach a verified solution.
+
+Table~\ref{tab:transductive-map} maps the main transductive constructs to our SCP pipeline.
+
+\begin{table}[t]
+\caption{Mapping transductive-search terminology to the SCP copilot.}
+\label{tab:transductive-map}
+\centering
+\footnotesize
+\begin{tabular}{p{3.0cm} p{4.6cm}}
+\hline
+\textbf{Transductive construct} & \textbf{SCP interpretation} \\
+\hline
+Stochastic dynamical system & LLM autoregressive generation with chain-of-thought and tool use \\
+Verifiable oracle & INSPECTA: SysML v2 + GUMBO + HAMR/Logika \\
+Proper time upper bound $\tau^{'}$ & Tokens per wall-clock unit of time to reach a verified artifact \\
+Reusable algorithmic structure & Persistent Meta-Rules distilled from golden examples, verifier feedback, and expert edits \\
+External memory source & Curated Meta-Rule \textbf{library} used to condition search \\
+Low-cost applicability control & Semantic proximity gate $\epsilon$ for rule injection \\
+Savant regime & Prompt-only trial-and-error that consumes budget without acquiring reusable structure \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{definition}[Proper Time, adapted from~\cite{e28030332}]
+Let $v$ be a stochastic solver generating a reasoning trajectory $h$ from input specification $x$ and terminating in a verified artifact $a$. The \emph{proper time} to reach $a$ is
+\begin{equation}
+\tau_v(x \Rightarrow a)
+=
+\min_{h \Rightarrow a}
+\frac{T(h)}{v(h \mid \mathrm{enc}(x))},
+\label{eq:proper-time}
+\end{equation}
+where $T(h)$ is the trajectory length and $v(h \mid \mathrm{enc}(x))$ is the probability that the solver generates a successful trajectory from the encoded input. In our setting, an upper bound of proper time can be operationally reflected by token usage per elapsed wall time required to obtain a verifier-accepted artifact.
+\end{definition}
+
+The following three results provide the theoretical vocabulary we use throughout the paper.
+
+\begin{theorem}[Better compression implies faster search, adapted from~\cite{e28030332}]
+If conditioning on a memory source $M$ shortens the effective description of a successful trajectory $h$ by $\Delta$ bits, then the expected discovery time improves by a factor of $2^{\Delta}$.
+\end{theorem}
+
+In our setting, $M$ corresponds to the persistent Meta-Rule library. Intuitively, Meta-Rules help because they compress recurrent requirement-to-formalization patterns into reusable symbolic structure, making productive trajectories easier to reach than under prompt-only search.
+
+\begin{theorem}[Information is speed, adapted from~\cite{e28030332}]
+Let $\tau_v(h)$ denote the proper time of a baseline stochastic solver and let $\tau_{v \mid M}(h)$ denote the proper time of the same solver conditioned on memory source $M$. Then the logarithm of the speed-up is
+\begin{equation}
+\log \frac{\tau_v(h)}{\tau_{v \mid M}(h)}
+=
+I_v(h : M),
+\label{eq:info-speed}
+\end{equation}
+where $I_v(h : M)$ is the algorithmic information shared between the successful trajectory and the conditioning memory.
+\end{theorem}
+
+\textbf{Remark 2}. We do not claim to measure algorithmic mutual information directly. Rather, in Section~\ref{sec:evaluation}, we can interpret reductions in tokens, retries, and wall-clock time---together with the reported throughput improvement---as observable efficiency signals consistent with this transductive account.
+
+\begin{theorem}[Learning requires time optimization; otherwise search degenerates, adapted from~\cite{e28030332}]
+If a solver has access to a verifier but is not penalized for the proper time it consumes, then exhaustive trial-and-error can be optimal, and reusable reasoning structure need not be learned. Conversely, any system that improves time-to-solution must acquire reusable reasoning information (Meta Rules) that reduces the search effort for future tasks.
+\end{theorem}
+
+This result explains the failure mode that motivates our architecture. In a verification-centric MBSE workflow, an unconstrained prompt-only agent can drift toward long, costly trial-and-error traces without acquiring persistent formalization skill. Our Meta-Rules are designed to prevent that behavior by externalizing reusable requirement-to-GUMBO structure in developer mode and then reusing it to bound search in user mode, see  Section~\ref{sec:approach}.
+
+An intuitive proof-engineering analogy is helpful. When a proof engineer observes the same sequence of proof moves recurring across solved examples, the natural response is to package that pattern into a reusable lemma. Future proofs then become shorter because the engineer invokes the lemma rather than rediscovering the derivation from scratch. 
+%A useful intuition is to view developer mode as extracting reusable proof hints from solved formalization episodes. In that picture, golden natural-language-requirements-to-golden formal Spec GUMBO pairs play the role of solved cases, while a candidate Meta-Rule plays the role of a reusable lemma or inductive-style hypothesis. The hypothesis is retained only if external checking confirms that it helps future instances converge within budget.
+Taken together, these results motivate the SCP design adopted in this paper, Section~\ref{sec:approach}. %Figure~\ref{fig:ruleLearning}, Copilot Developer mode extracts reusable formalization structure from golden examples, verifier diagnostics, and expert edits, and stores that structure as persistent Meta-Rules. User mode conditions the solver on those Meta-Rules, gated by a semantic proximity threshold $\epsilon$, so that search is biased toward verifier-compatible formalizations. In this sense, Meta-Rules are the explicit, auditable memory source through which shared algorithmic structure is made available to the solver.
+\subsection{Meta-Rules Through the Lens of Transductive Learning}
+\label{sec:theory-bridge}
+
+Let $M$ denote a library of retained Meta-Rules, and let $m \in M$ be a rule with semantic centroid $c_m$ in embedding space. For a new requirement $r$, with embedding $e(r)$, we define a semantic applicability test
+\begin{equation}
+ d_m(r) = 1 - \cos(e(r), c_m), \qquad \text{apply } m \text{ only if } d_m(r) \le \epsilon_m,
+\label{eq:epsilon-gate}
+\end{equation}
+where $\epsilon_m$ is tuned offline in developer mode. The role of this gate is not to prove correctness; rather, it is to cheaply filter obviously mismatched rule applications before expensive verification is attempted. After rule injection, the copilot enters a bounded generate--verify--repair loop. Under the transductive lens, the resulting speed-up is expected to grow with the amount of reusable information the rule library shares with successful trajectories. We therefore interpret our empirical token and runtime reductions as \emph{consistent with} the theory that reusable external memory can lower proper time by increasing the probability of productive search paths~\cite{e28030332}.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{figures/I-h-d-reward-diagram.png}
+    \caption{Main result of \cite{e28030332}: Algorithmic structure ($I_{v}(h:D)$) learned at inference time from the in context data D initially grows and enables faster solutions in ICL setting, but beyond a threshold the system enters a ``savant regime’’ where reward saturates and learned information decreases, as brute-force search replaces reusable reasoning.}
+    \label{fig:placeholder}
+\end{figure}
+%remark 
+
+
 
 \bibliographystyle{IEEEtran} 
-\bibliography{IEEEabrv,biblio, biblio_v5, biblio_v3}
+\bibliography{IEEEabrv,biblio, biblio_v5, biblio_v3, references_revised_v6}
 
 \end{document}
