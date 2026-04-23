@@ -273,7 +273,7 @@ $M \leftarrow \emptyset$ \tcp*{persistent rule memory}
 $C \leftarrow \emptyset$; $F \leftarrow \emptyset$\\
 
 \BlankLine
-\textbf{Phase I: Meta-Rule extraction and validation}\\
+\textbf{Phase I: Meta-Rule extraction, sample-based training, and predictive $\epsilon$-learning.}\\
 \ForEach{$(r_g, g_g) \in G$}{
   $m \leftarrow \textsc{ExtractRule}(r_g, g_g)$\;
   $okCount \leftarrow 0$\;
@@ -295,7 +295,7 @@ $C \leftarrow \emptyset$; $F \leftarrow \emptyset$\\
 }
 
 \BlankLine
-\textbf{Phase II: Rule-guided formalization with bounded repair}\\
+\textbf{Phase II: Held-out validation and rule-guided formalization with bounded repair.}\\
 \ForEach{$r \in R$}{
   $\hat{g} \leftarrow \textsc{SynthesizeWithRules}(r, M)$\;
   $(ok, fb) \leftarrow V(\hat{g}, B)$\;
@@ -362,10 +362,11 @@ Table~\ref{tab:adaptation-compare} summarizes the adaptation mechanisms discusse
  & Fine-tuning & Prompting/ICL & Meta-Rules \\
 \hline
 Persistent across runs & Yes & No & Yes (external) \\
-Requires weight updates & Yes & No & No \\
+Requires autherization to base model weights updates & Yes & No & No \\
+Cost & High & Med & Low \\
 Auditability / review & Low & Low--Med & High \\
 Governance / rollback & Low & Low & High \\
-Runtime context overhead & Low & High & Med \\
+Runtime context overhead & Low & High & Low-Med \\
 Data/IP constraints & High & Low & Low \\
 Verification integration & Indirect & Indirect & Direct \\
 \hline
@@ -436,7 +437,7 @@ Token usage: total=369,318 input=317,485 (+ 4,302,976 cached) output=51,833 (rea
 \label{sec:evaluation}
 
 \subsection{Experimental Settings}
-We evaluated SCP on the Isolette benchmark under two conditions: (i) a baseline prompt-only Codex agent and (ii) a Meta-Rule--guided SCP copilot. In both conditions, the agent was provided a realistic natural-language requirement source document~\cite{SteveMillerGuideBook} (37+ pages, containing figures, tables, and dense prose) along with the SysML v2 architecture models and shared libraries. The Meta-Rule--guided condition additionally supplied the curated Meta-Rule library and verification plan artifacts described in Section~\ref{sec:approach}. Success was defined as completion of integration-level and code-level verification using the INSPECTA workflow, culminating in a verified set of GUMBO-augmented SysML v2 models and verified HAMR-generated code. Unless otherwise noted, both conditions used the same base-model family, natural-language requirement source, SysML v2 architecture inputs, shared libraries, and INSPECTA verification workflow; the principal experimental difference was whether the curated Meta-Rule library and verification plan artifacts were supplied. Table~\ref{tab:results} reports representative traces under this common setup.
+We evaluated SCP on the Isolette benchmark under two conditions: (i) a baseline prompt-only Codex agent and (ii) a Meta-Rule--guided SCP copilot. In both conditions, the agent was provided a realistic natural-language requirement source document~\cite{SteveMillerGuideBook} (37+ pages, containing figures, tables, and dense prose) along with the SysML v2 architecture models and shared libraries. The Meta-Rule--guided condition additionally supplied the curated Meta-Rule library and verification plan artifacts described in Section~\ref{sec:approach}. Success was defined as completion of integration-level and code-level verification using the INSPECTA workflow, culminating in a verified set of GUMBO-augmented SysML v2 models and verified HAMR-generated code. Unless otherwise noted, both conditions used the same base-model family, natural-language requirement source, SysML v2 architecture inputs, shared libraries, and INSPECTA verification workflow; the principal experimental difference was whether the curated Meta-Rule library artifacts were supplied. Table~\ref{tab:results} reports representative traces under this common setup.
 
 \subsection{Metrics}
 We report performance using token accounting, wall-clock time, and verification coverage over a defined set of proof-bearing units. Let $U$ denote the set of targeted proof-bearing units within the experimental scope defined in Section~\ref{sec:example}. In this study, $U$ comprises the selected contract-bearing artifacts and corresponding HAMR-generated proof-bearing methods checked by the INSPECTA workflow.
