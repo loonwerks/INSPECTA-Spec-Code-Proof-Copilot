@@ -1,0 +1,115 @@
+%\begin{figure}[htbp]
+%\centering
+% Scale 1.25 ensures horizontal clearance within margins
+\begin{tikzpicture}[scale=1.25, >=Stealth]
+
+% ---------------- 1. BACKGROUND FILLS (Z-order: Bottom) ----------------
+% Acceptance region (Green tint)
+\path[fill=green!15]
+  (0,0) -- (-1.65, 0.942) -- 
+  plot[domain=-1.65:1.65,smooth,samples=100] (\x,{2.8 * exp(-0.4*\x*\x)}) --
+  (1.65, 0.942) -- cycle;
+
+% Rejection region (Red tint) - right tail
+\path[fill=red!10]
+  (0,0) -- (1.65, 0.942) --
+  plot[domain=1.65:2.7,smooth,samples=100] (\x,{2.8 * exp(-0.4*\x*\x)}) --
+  (2.7, 0) -- cycle;
+
+% Rejection region (Red tint) - left tail
+\path[fill=red!10]
+  (0,0) -- (-1.65, 0.942) --
+  plot[domain=-1.65:-2.7,smooth,samples=100] (\x,{2.8 * exp(-0.4*\x*\x)}) --
+  (-2.7, 0) -- cycle;
+
+% ---------------- 2. AXES AND MANIFOLD ----------------
+% Base manifold - trimmed to 3.1 to avoid paper edges
+\draw[->, thick, gray!60] (-3.1,0) -- (3.1,0) 
+  node[anchor=north east, text=gray!80!black, font=\footnotesize, yshift=-2pt] {Base Model Manifold $\mathcal{M}$};
+
+% Perpendicularity marker
+\draw[thick, gray!50] (0,0.2) -- (0.2,0.2) -- (0.2,0);
+
+% ---------------- 3. PERFORMANCE LANDSCAPE & BOUNDARIES ----------------
+\draw[ultra thick, black!70, domain=-2.8:2.8, smooth, samples=100]
+  plot (\x,{2.8 * exp(-0.4*\x*\x)});
+
+% Boundaries
+\draw[dashed, red!80, thick] (0,0) -- (3.1, 1.77);
+\draw[dashed, red!80, thick] (0,0) -- (-3.1, 1.77);
+
+% ---------------- 4. VECTORS AND DYNAMICS ----------------
+\coordinate (V1) at (0.4, 2.627);
+\coordinate (V2) at (0.85, 2.098);
+\coordinate (Vlim) at (1.65, 0.942);
+\coordinate (V1L) at (-0.4, 2.627);
+\coordinate (V2L) at (-0.85, 2.098);
+\coordinate (VlimL) at (-1.65, 0.942);
+
+% Candidate rays
+\draw[->, gray!70, thick] (0,0) -- (V1);
+\draw[->, gray!70, thick] (0,0) -- (V2);
+\draw[->, red!80!black, thick] (0,0) -- (Vlim);
+\draw[->, gray!70, thick] (0,0) -- (V1L);
+\draw[->, gray!70, thick] (0,0) -- (V2L);
+\draw[->, red!80!black, thick] (0,0) -- (VlimL);
+
+% Intersection markers & Labels
+\fill[black] (V1) circle (1.5pt) node[anchor=south west, font=\tiny] {$\mathbf{v}_1$};
+\fill[black] (V2) circle (1.5pt) node[anchor=south west, font=\tiny] {$\mathbf{v}_2$};
+\fill[red!80!black] (Vlim) circle (2pt) node[anchor=west, font=\tiny, text=red!80!black, xshift=2pt] {$\mathbf{v}_{\text{limit}}$};
+\fill[black] (V1L) circle (1.5pt) node[anchor=south east, font=\tiny] {$\mathbf{v}'_1$};
+\fill[black] (V2L) circle (1.5pt) node[anchor=south east, font=\tiny] {$\mathbf{v}'_2$};
+\fill[red!80!black] (VlimL) circle (2pt) node[anchor=east, font=\tiny, text=red!80!black, xshift=-2pt] {$\mathbf{v}'_{\text{limit}}$};
+
+% Golden Example
+\draw[ultra thick, blue!80!black, ->] (0,0) -- (0,3.5);
+\node[blue!80!black, anchor=south, font=\small\bfseries] at (0,3.55) {$\mathbf{g}$ (Golden Example)};
+
+% Y-Axis Label (Performance)
+\node[rotate=90, anchor=south, font=\scriptsize\bfseries, text=gray!80!black] at (-3.3, 2.0) {Performance $\mathcal{P}(\mathbf{v})$};
+
+% ---------------- 5. META-RULE HEADER ----------------
+\coordinate (MetaRule) at (0, 4.9);
+\node[draw, blue!80!black, thick, rounded corners=2pt, fill=blue!5, font=\footnotesize\bfseries, inner sep=3pt] (R) at (MetaRule) {Refine Meta-Rule candidate $\mathcal{R}$ to optimize $\varepsilon$};
+
+% Meta-Rules Book label
+\node[blue!80!black, font=\tiny\bfseries, anchor=south west, inner sep=1pt] at (R.north west) {Meta-Rules Book};
+
+% Range of Effect line lowered from 4.6 to 4.4
+\draw[<->, blue!80!black, thick] (-1.3, 4.4) -- (1.3, 4.4);
+\node[blue!80!black, font=\tiny\bfseries, fill=white, inner sep=1pt] at (0, 4.4) {Range of Effect ($\pm\varepsilon_{\max}$)};
+\draw[dotted, blue!80!black, thick] (R.south) -- (0, 3.55);
+
+% ---------------- 6. EPSILON ANGLES ----------------
+\draw[->, thick, gray!80!black] (0,0) ++(90:1.1) arc (90:81.3:1.1) node[midway, above, font=\tiny] {$\varepsilon_1$};
+\draw[->, thick, gray!80!black] (0,0) ++(90:1.5) arc (90:67.9:1.5) node[midway, above, font=\tiny] {$\varepsilon_2$};
+\draw[->, thick, red!80!black] (0,0) ++(90:1.9) arc (90:29.7:1.9) node[midway, above, font=\tiny, text=red!80!black] {$\varepsilon_{\max}$};
+
+% ---------------- 7. DIRECTIONAL ARCS (Right Side Stacked & Symmetric) ----------------
+% Generalize: Moving AWAY from center (clockwise direction)
+% Pointing to the letter 'z' in "Generalize"
+\draw[->, thick, orange!90!black] (75:3.1) arc (75:45:3.1);
+\node[orange!90!black, font=\scriptsize\bfseries, anchor=west, xshift=-3.4em, yshift=-1.1ex] 
+  at (45:3.1) {Generalize ($\varepsilon \uparrow$)};
+
+% Specialize: Moving TOWARD center (counter-clockwise direction)
+% Shifted more to the right and kept slightly downward
+\draw[->, thick, purple!90!black] (45:3.4) arc (45:75:3.4);
+\node[purple!90!black, font=\scriptsize\bfseries, anchor=south west, xshift=1.6em, yshift=-1.2ex] 
+  at (75:3.4) {Specialize ($\varepsilon \downarrow$)};
+
+% ---------------- 8. REGION LABELS ----------------
+% Accept label: Header at y=1.5, Comment at y=1.1
+\node[green!40!black, font=\scriptsize\bfseries, fill=white, fill opacity=0.8, rounded corners=3pt] 
+  at (-0.8, 1.5) {ACCEPT};
+\node[green!40!black, font=\fontsize{5}{6}\selectfont, align=center] 
+  at (-0.8, 1.1) {verified $V(\mathcal{R})$ \\ within budget};
+
+% Reject label: Shifted to (1.2, 0.65) and (1.2, 0.35) to clear the horizontal axis (y=0)
+\node[red!60!black, font=\scriptsize\bfseries, fill=white, fill opacity=0.8, rounded corners=3pt] 
+  at (1.2, 0.65) {REJECT};
+\node[red!60!black, font=\fontsize{5}{6}\selectfont, align=center] 
+  at (1.2, 0.35) {unverified $V(\mathcal{R})$ \\ within budget limit};
+
+\end{tikzpicture}
