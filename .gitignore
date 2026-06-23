@@ -30,3 +30,7 @@ SCP_IEEE_Documentation/main.tex
 !/*.zip
 !/figures/**
 !/revision_round22_June_2026/**
+
+# Untrack selected files in SCP_IEEE_Documentation
+SCP_IEEE_Documentation/*.zip
+SCP_IEEE_Documentation/MetaRules_SysMLv2_IEEE_Paper_Draft_v5.pdf
