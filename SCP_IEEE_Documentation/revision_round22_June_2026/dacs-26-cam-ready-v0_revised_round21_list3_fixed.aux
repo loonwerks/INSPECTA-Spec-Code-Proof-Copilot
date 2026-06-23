@@ -1,0 +1,139 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{hardin2025dasc}
+\citation{openai-gpt5-2-codex}
+\citation{bubeck2025earlyscienceaccelerationexperiments}
+\citation{gpt5-system-card,openai-gpt5-2-codex}
+\citation{e28030332}
+\citation{hardin2025dasc}
+\citation{sysmlv2_model_formalism_wg,sysmlv2_omg}
+\citation{gumbo,gumbo_galois}
+\citation{hamr,HAMRsite}
+\citation{HAMRsite}
+\citation{Z3}
+\citation{Barrett2011CVC4}
+\providecommand \oddpage@label [2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{section.1}\protected@file@percent }
+\citation{hamr,hamr-sel4,sel4_klein2009}
+\citation{vonoswald2023transformers}
+\citation{vonoswald2023transformers}
+\citation{amazon2024mathematical}
+\citation{hatcliff2024isolette}
+\citation{inspecta_repo}
+\@writefile{toc}{\contentsline {section}{\numberline {II}Background}{3}{section.2}\protected@file@percent }
+\newlabel{sec:background}{{II}{3}{Background}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-A}}INSPECTA High-Assurance System Development and Verification}{3}{subsection.2.1}\protected@file@percent }
+\newlabel{sec:gumbo}{{\mbox  {II-A}}{3}{INSPECTA High-Assurance System Development and Verification}{subsection.2.1}{}}
+\newlabel{lst:gumbo-skel}{{1}{3}{Illustrative example of a GUMBO contract on a SysML v2 component}{lstlisting.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}Illustrative example of a GUMBO contract on a SysML v2 component.}{3}{lstlisting.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {III}Neuro-Symbolic Contract Generation with Meta-Rules: An Overview}{3}{section.3}\protected@file@percent }
+\newlabel{sec:approach}{{III}{3}{Neuro-Symbolic Contract Generation with Meta-Rules: An Overview}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}Meta-Rules: Persistent, Auditable Formalization Abstractions}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Agentic SCP/INSPECTA workflow integrating the high-assurance development layers with a Meta-Rule-guided generate--verify--repair loop. Green dashed arrows denote successful proof artifacts; the red dashed arrow denotes verifier-failure diagnostics returned to the repair agent for a bounded retry.}}{4}{figure.1}\protected@file@percent }
+\newlabel{fig:agentic-inspecta}{{1}{4}{Agentic SCP/INSPECTA workflow integrating the high-assurance development layers with a Meta-Rule-guided generate--verify--repair loop. Green dashed arrows denote successful proof artifacts; the red dashed arrow denotes verifier-failure diagnostics returned to the repair agent for a bounded retry}{figure.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Operational Modes of Use: User Mode vs.\ Developer Mode}{4}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:vsc-intuition}{{\mbox  {III-B}1}{4}{Geometric Intuition: Practically Verified Semantic Cone}{subsubsection.3.2.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}1}Geometric Intuition: Practically Verified Semantic Cone}{4}{subsubsection.3.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}2}Toy Example Meta-Rule}{4}{subsubsection.3.2.2}\protected@file@percent }
+\newlabel{list:metaRules}{{2}{4}{Compact FSE rule excerpt linking linguistic, semantic, structural, and repair patterns}{lstlisting.2}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2}Compact FSE rule excerpt linking linguistic, semantic, structural, and repair patterns.}{4}{lstlisting.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Practically verified semantic cone for supervised Meta-Rule refinement. A golden example direction $\mathbf  {g}$ anchors the accepted region. A candidate direction $\mathbf  {v}_i$ is screened by a distance such as $d_{\qopname  \relax o{cos}}=1-\qopname  \relax o{cos}(\angle (\mathbf  {v}_i,\mathbf  {g}))$ and is applied only when $d_{\qopname  \relax o{cos}}\le \epsilon $; it is retained only if the resulting GUMBO contract verifies within the budget. The accepted region therefore represents budget-verifiable generalization, while the rejected region corresponds to semantic or toolchain mismatch.}}{5}{figure.2}\protected@file@percent }
+\newlabel{fig:vsc}{{2}{5}{Practically verified semantic cone for supervised Meta-Rule refinement. A golden example direction $\mathbf {g}$ anchors the accepted region. A candidate direction $\mathbf {v}_i$ is screened by a distance such as $d_{\cos }=1-\cos (\angle (\mathbf {v}_i,\mathbf {g}))$ and is applied only when $d_{\cos }\le \epsilon $; it is retained only if the resulting GUMBO contract verifies within the budget. The accepted region therefore represents budget-verifiable generalization, while the rejected region corresponds to semantic or toolchain mismatch}{figure.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Supervised Meta-Rule Self-Adaptation (Learning) and Acceptance Criteria}{5}{section.4}\protected@file@percent }
+\newlabel{sec:meta-learning}{{IV}{5}{Supervised Meta-Rule Self-Adaptation (Learning) and Acceptance Criteria}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}The Algorithm}{5}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:algorithm-loop}{{\mbox  {IV-A}}{5}{The Algorithm}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Scoped GUMBO Rule Book and Function Templates}{5}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:gumbo-fse-book}{{\mbox  {IV-B}}{5}{Scoped GUMBO Rule Book and Function Templates}{subsection.4.2}{}}
+\newlabel{list:extract-apply}{{3}{5}{Compact ExtractRule, ApplyRule, and Repair templates from the goal files}{lstlisting.3}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3}Compact ExtractRule, ApplyRule, and Repair templates from the goal files.}{5}{lstlisting.3}\protected@file@percent }
+\citation{vonoswald2023transformers}
+\citation{hatcliff2024isolette}
+\@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces SCP Meta-Rules Learning, Application, and Verification-Guided Repair}}{6}{algocf.1}\protected@file@percent }
+\newlabel{alg:meta-rules}{{1}{6}{The Algorithm}{algocf.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Qualitative comparison of adaptation mechanisms for high-assurance pipelines.}}{6}{table.1}\protected@file@percent }
+\newlabel{tab:adaptation-compare}{{I}{6}{Qualitative comparison of adaptation mechanisms for high-assurance pipelines}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Practical Considerations and Human Governance}{6}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}Comparison to Fine-Tuning and Transient Prompting}{6}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:comparison}{{\mbox  {IV-D}}{6}{Comparison to Fine-Tuning and Transient Prompting}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Experimental Evaluation: The Isolette GUMBO Benchmark}{6}{section.5}\protected@file@percent }
+\newlabel{sec:example}{{V}{6}{Experimental Evaluation: The Isolette GUMBO Benchmark}{section.5}{}}
+\citation{lempia2009faa}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-A}}Experimental Design and Scope}{7}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-B}}Observed Failure and Self-Healing Behavior}{7}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-C}}Metrics, Pricing Model, and Results}{7}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:evaluation}{{\mbox  {V-C}}{7}{Metrics, Pricing Model, and Results}{subsection.5.3}{}}
+\newlabel{list:failureLog}{{4}{7}{Condensed baseline failure excerpt: parser rejection and high token usage}{lstlisting.4}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4}Condensed baseline failure excerpt: parser rejection and high token usage.}{7}{lstlisting.4}\protected@file@percent }
+\citation{polu2020generative}
+\citation{first2023baldur,CoqDog}
+\citation{DBLP:conf/popl/SwamyHKRDFBFSKZ16,aws_bedrock_ar,mirzadeh2025gsmsymbolic}
+\citation{sysmlv2}
+\citation{imandra_sysml}
+\citation{agreedog_tahat2025,feiler-aadl}
+\citation{hatcliff2024isolette}
+\citation{Hatcliff:seL4Summit2025}
+\citation{sun2025veristruct}
+\citation{compositional-analysis-agree,agreedog_tahat2025}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Related Work}{8}{section.6}\protected@file@percent }
+\newlabel{sec:related-work}{{VI}{8}{Related Work}{section.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VII}Limitations and Future Work}{8}{section.7}\protected@file@percent }
+\newlabel{sec:limitations}{{VII}{8}{Limitations and Future Work}{section.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VIII}Conclusion}{8}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{VIII}{8}{Conclusion}{section.8}{}}
+\bibstyle{IEEEtran}
+\bibdata{IEEEabrv,references_revised_v6,local_missing}
+\bibcite{hardin2025dasc}{1}
+\bibcite{openai-gpt5-2-codex}{2}
+\bibcite{bubeck2025earlyscienceaccelerationexperiments}{3}
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Representative adjusted run metrics for the scoped GUMBO evaluation. The adjusted column is a complete logged run, so the one-time extraction/refinement effort is already included. Dollar costs use the current pricing model in the footnote; cached-token price is set to zero in that model.}}{9}{table.2}\protected@file@percent }
+\newlabel{tab:results}{{II}{9}{Representative adjusted run metrics for the scoped GUMBO evaluation. The adjusted column is a complete logged run, so the one-time extraction/refinement effort is already included. Dollar costs use the current pricing model in the footnote; cached-token price is set to zero in that model}{table.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Adjusted quantitative comparison for the scoped Isolette/GUMBO FSE evaluation. The chart uses the same baseline and adjusted $\epsilon =0.1$ trace as Table\nobreakspace  {}\ref  {tab:results}. The first panel shows only the non-cached priced token classes, input and output, with the same style of dollar tags used in the cost panel; cached tokens are still reported in Table\nobreakspace  {}\ref  {tab:results} because they affect context size but have zero cost in the illustrative pricing model. The throughput panel reports $\Theta $ for baseline, adjusted complete run, and the later user-mode run after the rule book exists; the cost panel reports $K$ and dollar cost per verified unit.}}{9}{figure.3}\protected@file@percent }
+\newlabel{fig:results}{{3}{9}{Adjusted quantitative comparison for the scoped Isolette/GUMBO FSE evaluation. The chart uses the same baseline and adjusted $\epsilon =0.1$ trace as Table~\ref {tab:results}. The first panel shows only the non-cached priced token classes, input and output, with the same style of dollar tags used in the cost panel; cached tokens are still reported in Table~\ref {tab:results} because they affect context size but have zero cost in the illustrative pricing model. The throughput panel reports $\Theta $ for baseline, adjusted complete run, and the later user-mode run after the rule book exists; the cost panel reports $K$ and dollar cost per verified unit}{figure.3}{}}
+\@writefile{toc}{\contentsline {section}{References}{9}{section*.2}\protected@file@percent }
+\bibcite{gpt5-system-card}{4}
+\bibcite{e28030332}{5}
+\bibcite{sysmlv2_model_formalism_wg}{6}
+\bibcite{sysmlv2_omg}{7}
+\bibcite{gumbo}{8}
+\bibcite{gumbo_galois}{9}
+\bibcite{hamr}{10}
+\bibcite{HAMRsite}{11}
+\bibcite{Z3}{12}
+\bibcite{Barrett2011CVC4}{13}
+\bibcite{hamr-sel4}{14}
+\bibcite{sel4_klein2009}{15}
+\bibcite{vonoswald2023transformers}{16}
+\bibcite{amazon2024mathematical}{17}
+\bibcite{hatcliff2024isolette}{18}
+\bibcite{inspecta_repo}{19}
+\bibcite{lempia2009faa}{20}
+\bibcite{polu2020generative}{21}
+\bibcite{first2023baldur}{22}
+\bibcite{CoqDog}{23}
+\bibcite{DBLP:conf/popl/SwamyHKRDFBFSKZ16}{24}
+\bibcite{aws_bedrock_ar}{25}
+\bibcite{mirzadeh2025gsmsymbolic}{26}
+\bibcite{sysmlv2}{27}
+\bibcite{imandra_sysml}{28}
+\bibcite{agreedog_tahat2025}{29}
+\bibcite{feiler-aadl}{30}
+\bibcite{Hatcliff:seL4Summit2025}{31}
+\bibcite{sun2025veristruct}{32}
+\bibcite{compositional-analysis-agree}{33}

@@ -21,3 +21,12 @@ golden_examples/
 __pycache__/
 SCP_IEEE_Video_Demo_Documentation_2/
 SCP_IEEE_Documentation/main.tex
+
+# Ignore most files in , but keep selected outputs
+!/
+/**
+!/**/
+!/*.pdf
+!/*.zip
+!/figures/**
+!/revision_round22_June_2026/**

@@ -105,6 +105,23 @@ C.~Barrett, C.~L. Conway, M.~Deters, L.~Hadarean, D.~Jovanovi\'{c}, T.~King,
   international conference on Computer aided verification}, ser. CAV'11, 2011,
   pp. 171--177.
 
+\bibitem{hamr-sel4}
+J.~Belt, J.~Hatcliff, Robby, J.~Shackleton, J.~Carciofini, T.~Carpenter,
+  E.~Mercer, I.~Amundson, J.~Babar, D.~Cofer, D.~Hardin, K.~Hoech, K.~Slind,
+  I.~Kuz, and K.~Mcleod, ``Model-driven development for the se{L}4 microkernel
+  using the {HAMR} framework,'' \emph{Journal of Systems Architecture}, vol.
+  134, no.~C, February 2023.
+
+\bibitem{sel4_klein2009}
+\BIBentryALTinterwordspacing
+G.~Klein, K.~Elphinstone, G.~Heiser, J.~Andronick, D.~Cock, P.~Derrin,
+  D.~Elkaduwe, K.~Engelhardt, R.~Kolanski, M.~Norrish, T.~Sewell, H.~Tuch, and
+  S.~Winwood, ``sel4: Formal verification of an os kernel,'' in
+  \emph{Proceedings of the 22nd ACM SIGOPS Symposium on Operating Systems
+  Principles (SOSP)}, 2009. [Online]. Available:
+  \url{https://doi.org/10.1145/1629575.1629596}
+\BIBentrySTDinterwordspacing
+
 \bibitem{vonoswald2023transformers}
 J.~von Oswald, E.~Niklasson, E.~Randazzo, J.~Sacramento, A.~Mordvintsev,
   A.~Zhmoginov, and M.~Vladymyrov, ``Transformers learn in-context by gradient
@@ -124,6 +141,18 @@ J.~Hatcliff \emph{et~al.}, ``The {I}solette system: Illustrating end-to-end
   Symposium On Leveraging Applications of Formal Methods, Verification and
   Validation (ISoLA)}, 2024, author version (uploaded as
   Hatcliff-etal-ISOLA2024-Isolette-Overview.pdf).
+
+\bibitem{inspecta_repo}
+\BIBentryALTinterwordspacing
+{Loonwerks}, ``{INSPECTA Spec-Code-Proof Copilot},'' GitHub repository, 2026,
+  accessed: 2026-05-06. [Online]. Available:
+  \url{https://github.com/loonwerks/INSPECTA-Spec-Code-Proof-Copilot/tree/main?tab=readme-ov-file}
+\BIBentrySTDinterwordspacing
+
+\bibitem{lempia2009faa}
+D.~L. Lempia and S.~P. Miller, \emph{Requirements Engineering Management
+  Handbook}.\hskip 1em plus 0.5em minus 0.4em\relax Federal Aviation
+  Administration, 2009, {DOT/FAA/AR-08/32}.
 
 \bibitem{polu2020generative}
 S.~Polu and I.~Sutskever, ``Generative language modeling for automated theorem

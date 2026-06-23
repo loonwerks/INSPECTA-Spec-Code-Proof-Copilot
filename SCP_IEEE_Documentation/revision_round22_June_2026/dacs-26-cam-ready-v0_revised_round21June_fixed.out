@@ -1,0 +1,21 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Background}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{INSPECTA High-Assurance System Development and Verification}{section.2}% 3
+\BOOKMARK [1][-]{section.3}{Neuro-Symbolic Contract Generation with Meta-Rules: An Overview}{}% 4
+\BOOKMARK [2][-]{subsection.3.1}{Meta-Rules: Persistent, Auditable Formalization Abstractions}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.2}{Operational Modes of Use: User Mode vs. Developer Mode}{section.3}% 6
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Geometric Intuition: Practically Verified Semantic Cone}{subsection.3.2}% 7
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Toy Example Meta-Rule}{subsection.3.2}% 8
+\BOOKMARK [1][-]{section.4}{Supervised Meta-Rule Self-Adaptation \(Learning\) and Acceptance Criteria}{}% 9
+\BOOKMARK [2][-]{subsection.4.1}{The Algorithm}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.2}{Scoped GUMBO Rule Book and Function Templates}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.3}{Practical Considerations and Human Governance}{section.4}% 12
+\BOOKMARK [2][-]{subsection.4.4}{Comparison to Fine-Tuning and Transient Prompting}{section.4}% 13
+\BOOKMARK [1][-]{section.5}{Experimental Evaluation: The Isolette GUMBO Benchmark}{}% 14
+\BOOKMARK [2][-]{subsection.5.1}{Experimental Design and Scope}{section.5}% 15
+\BOOKMARK [2][-]{subsection.5.2}{Observed Failure and Self-Healing Behavior}{section.5}% 16
+\BOOKMARK [2][-]{subsection.5.3}{Metrics, Pricing Model, and Results}{section.5}% 17
+\BOOKMARK [1][-]{section.6}{Related Work}{}% 18
+\BOOKMARK [1][-]{section.7}{Limitations and Future Work}{}% 19
+\BOOKMARK [1][-]{section.8}{Conclusion}{}% 20
+\BOOKMARK [1][-]{section*.2}{References}{}% 21

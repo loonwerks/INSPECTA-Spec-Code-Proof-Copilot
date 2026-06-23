@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.8.18)  3 MAY 2026 01:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.8.18)  23 JUN 2026 17:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**MetaRules_SysMLv2_agentic_alg_updated_10pg_TikZ.tex
-(./MetaRules_SysMLv2_agentic_alg_updated_10pg_TikZ.tex
+**dacs-26-cam-ready-v0_revised_round21June_fixed.tex
+(./dacs-26-cam-ready-v0_revised_round21June_fixed.tex
 LaTeX2e <2020-02-02> patch level 2
 L3 programming layer <2020-02-14>
 (/usr/share/texlive/texmf-dist/tex/latex/IEEEtran/IEEEtran.cls
@@ -912,8 +912,8 @@ File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count320
 \l__pdf_internal_box=\box78
 )
-(./MetaRules_SysMLv2_agentic_alg_updated_10pg_TikZ.aux)
-\openout1 = `MetaRules_SysMLv2_agentic_alg_updated_10pg_TikZ.aux'.
+(./dacs-26-cam-ready-v0_revised_round21June_fixed.aux)
+\openout1 = `dacs-26-cam-ready-v0_revised_round21June_fixed.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 53.
 LaTeX Font Info:    ... okay on input line 53.
@@ -973,10 +973,10 @@ LaTeX Info: Redefining \ref on input line 53.
 LaTeX Info: Redefining \pageref on input line 53.
 LaTeX Info: Redefining \nameref on input line 53.
 
-(./MetaRules_SysMLv2_agentic_alg_updated_10pg_TikZ.out)
-(./MetaRules_SysMLv2_agentic_alg_updated_10pg_TikZ.out)
+(./dacs-26-cam-ready-v0_revised_round21June_fixed.out)
+(./dacs-26-cam-ready-v0_revised_round21June_fixed.out)
 \@outlinefile=\write4
-\openout4 = `MetaRules_SysMLv2_agentic_alg_updated_10pg_TikZ.out'.
+\openout4 = `dacs-26-cam-ready-v0_revised_round21June_fixed.out'.
 
 \c@lstlisting=\count328
 
@@ -984,127 +984,135 @@ ABD: EveryShipout initializing macros
 Package pgfplots notification 'compat/show suggested version=true': document ha
 s been generated with the most recent feature set (\pgfplotsset{compat=1.16}).
 
+LaTeX Font Info:    Trying to load font information for OMS+ptm on input line 7
+6.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 76.
 
-Underfull \hbox (badness 1360) in paragraph at lines 67--68
+Underfull \hbox (badness 1360) in paragraph at lines 80--81
 \OT1/ptm/b/n/9 Spec--Code--Proof (SCP) copi-lot that in-te-grates Codex-class
  []
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 71.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 82.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 71.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 82.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+)
+Underfull \hbox (badness 3386) in paragraph at lines 82--83
+[]\OT1/ptm/b/n/9 We eval-u-ate our method-ol-ogy on the Iso-lette infant-
+ []
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
-]
+] [2]
+Underfull \hbox (badness 5175) in paragraph at lines 128--129
+\OT1/ptm/m/n/10 mark span-ning re-quire-ments, SysML v2 mod-els,
+ []
+
 (./figures/agentic_inspecta_toolchain_tikz.tex
 LaTeX Font Info:    Trying to load font information for OT1+phv on input line 7
 1.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
-)) [2]
+))
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 189.
 LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 1
-75.
+89.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+) [3]
+(./figures/vsc_tikz.tex) [4]
+
+LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
+(Font)              using `OT1/ptm/m/sc' instead on input line 305.
+
+
+LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
+(Font)              using `OT1/ptm/m/sc' instead on input line 305.
+
+
+LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
+(Font)              using `OT1/ptm/m/sc' instead on input line 305.
+
+
+LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
+(Font)              using `OT1/ptm/m/sc' instead on input line 321.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 350--350
+[][][][]\OT1/ptm/m/n/8 Artifact place-hold-ers: \OT1/pcr/m/n/8 [rule-book]\OT1/
+ptm/m/n/8 , \OT1/pcr/m/n/8 [templates]\OT1/ptm/m/n/8 , \OT1/pcr/m/n/8 [logs]\OT
+1/ptm/m/n/8 ,
+ []
+
+[5]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6]
+[7]
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 4
+80.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 177.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [3]
-(./figures/vsc_tikz.tex)
-Underfull \vbox (badness 2790) has occurred while \output is active []
-
- [4]
-
-LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
-(Font)              using `OT1/ptm/m/sc' instead on input line 298.
-
-
-LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
-(Font)              using `OT1/ptm/m/sc' instead on input line 298.
-
-
-LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
-(Font)              using `OT1/ptm/m/sc' instead on input line 298.
-
-
-LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
-(Font)              using `OT1/ptm/m/sc' instead on input line 314.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [5]
-Underfull \hbox (badness 1454) in paragraph at lines 328--332
-[]\OT1/ptm/m/n/10 While Meta-Rule ex-trac-tion and val-i-da-tion are highly
- []
-
-
-Underfull \hbox (badness 1603) in paragraph at lines 328--332
-\OT1/ptm/m/n/10 au-to-mated, hu-man over-sight re-mains es-sen-tial to en-sure
- []
-
-
-Underfull \hbox (badness 4048) in paragraph at lines 389--390
-\OT1/ptm/m/n/10 com-prised the se-lected Mon-i-tor and Reg-u-late threads,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 389--390
-\OT1/ptm/m/n/10 the as-so-ci-ated GUMBO contract-bearing blocks and
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 389--390
-\OT1/pcr/m/n/10 compute_cases \OT1/ptm/m/n/10 gen-er-ated or mod-i-fied for tho
-se
- []
-
-
-Underfull \hbox (badness 2538) in paragraph at lines 389--390
-\OT1/ptm/m/n/10 threads, and the cor-re-spond-ing HAMR-generated proof-
- []
-
-[6] [7] (./figures/results_chart_pgfplots.tex
-Package pgfplots info on input line 28: Using 'lua backend=false' for axis: x c
+(./figures/results_chart_pgfplots.tex
+Package pgfplots info on input line 35: Using 'lua backend=false' for axis: ymo
+de=log unsupported (yet).
+Package pgfplots info on input line 55: Using 'lua backend=false' for axis: x c
 oord trafo unsupported.
-Package pgfplots info on input line 41: Using 'lua backend=false' for axis: x c
-oord trafo unsupported.
-Package pgfplots info on input line 53: Using 'lua backend=false' for axis: x c
+Package pgfplots info on input line 68: Using 'lua backend=false' for axis: x c
 oord trafo unsupported.
 
 
 Package pgfplots Warning: Axis range for axis x is approximately empty; enlargi
-ng it (it is [0.0:0.0]) on input line 68.
+ng it (it is [0.0:0.0]) on input line 83.
 
  [warning /pgfplots/warning/approx empty range enlarged]
-Package pgfplots info on input line 68: Using 'lua backend=false' for axis: ymo
+Package pgfplots info on input line 83: Using 'lua backend=false' for axis: ymo
 de=log unsupported (yet).
-) [8] [9] (./MetaRules_SysMLv2_agentic_alg_updated_10pg_TikZ.bbl
+)
+Underfull \hbox (badness 3635) in paragraph at lines 522--532
+[]\OT1/ptm/m/n/10 Our eval-u-a-tion is con-ducted on the Iso-lette infant-
+ []
+
+
+Underfull \hbox (badness 1448) in paragraph at lines 533--541
+\OT1/ptm/m/n/10 aware GUMBO for-mal-iza-tion and re-pair for the Iso-let-
+ []
+
+[8] (./dacs-26-cam-ready-v0_revised_round21June_fixed.bbl
 Underfull \hbox (badness 1558) in paragraph at lines 32--35
 []\OT1/ptm/m/n/8 OpenAI, ``GPT-5.2 Codex Sys-tem Card,'' []$https : / / openai 
 . com / index /
  []
 
-
+[9]
 Underfull \hbox (badness 10000) in paragraph at lines 45--48
 []\OT1/ptm/m/n/8 OpenAI, ``GPT-5 Sys-tem Card,'' []$https : / / openai . com / 
 index /
  []
 
 
-Underfull \hbox (badness 1565) in paragraph at lines 172--175
+Underfull \hbox (badness 10000) in paragraph at lines 147--151
+[]$\OT1/ptm/m/n/8 https : / / github . com / loonwerks / INSPECTA-[]Spec-[]Code
+-[]Proof-[]Copilot /
+ []
+
+
+Underfull \hbox (badness 1565) in paragraph at lines 201--204
 []\OT1/ptm/m/n/8 Object Man-age-ment Group (OMG), ``Sys-tems mod-el-ing lan-gua
 ge
  []
@@ -1122,59 +1130,55 @@ Before submitting the final camera ready copy, remember to:
  process uses the appropriate paper size.
 
 [10]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 747.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 747.
- (./MetaRules_SysMLv2_agentic_alg_updated_10pg_TikZ.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 747.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 747.
-Package rerunfilecheck Info: File `MetaRules_SysMLv2_agentic_alg_updated_10pg_T
-ikZ.out' has not changed.
-(rerunfilecheck)             Checksum: F411CC21BD97F393F2D3B207CD5E88AC;2395.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 747.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 751.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 751.
+ (./dacs-26-cam-ready-v0_revised_round21June_fixed.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 751.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 751.
+Package rerunfilecheck Info: File `dacs-26-cam-ready-v0_revised_round21June_fix
+ed.out' has not changed.
+(rerunfilecheck)             Checksum: 3264D3C89A8C97F195BE5B4A3EE59E9E;1713.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 751.
  ) 
 Here is how much of TeX's memory you used:
- 34055 strings out of 481239
- 800465 string characters out of 5920377
- 1210429 words of memory out of 5000000
- 48592 multiletter control sequences out of 15000+600000
- 598014 words of font info for 138 fonts, out of 8000000 for 9000
+ 34081 strings out of 481239
+ 800857 string characters out of 5920377
+ 1251898 words of memory out of 5000000
+ 48614 multiletter control sequences out of 15000+600000
+ 598393 words of font info for 142 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 73i,19n,127p,1753b,2617s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 73i,19n,127p,1752b,2644s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmbx5.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-mi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-y7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
-rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8
-a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on MetaRules_SysMLv2_agentic_alg_updated_10pg_TikZ.pdf (10 pages
-, 370318 bytes).
+sfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
+tmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on dacs-26-cam-ready-v0_revised_round21June_fixed.pdf (10 pages,
+ 381570 bytes).
 PDF statistics:
- 510 PDF objects out of 1000 (max. 8388607)
- 464 compressed objects within 5 object streams
- 133 named destinations out of 1000 (max. 500000)
- 253 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 484 PDF objects out of 1000 (max. 8388607)
+ 437 compressed objects within 5 object streams
+ 130 named destinations out of 1000 (max. 500000)
+ 181 words of extra memory for PDF output out of 10000 (max. 10000000)
 

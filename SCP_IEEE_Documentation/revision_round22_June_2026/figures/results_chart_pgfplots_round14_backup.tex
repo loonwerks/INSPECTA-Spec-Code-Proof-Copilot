@@ -1,0 +1,75 @@
+\begin{tikzpicture}
+\begin{groupplot}[
+  group style={group size=2 by 2, horizontal sep=1.00cm, vertical sep=1.20cm},
+  width=0.46\textwidth,
+  height=0.245\textwidth,
+  ymajorgrids=true,
+  grid style={dashed, gray!55},
+  tick label style={font=\scriptsize},
+  label style={font=\scriptsize},
+  title style={font=\normalsize},
+  legend style={font=\scriptsize, draw=gray!25, fill=white, at={(0.02,0.98)}, anchor=north west, legend cell align=left},
+  ybar,
+  x tick label style={rotate=12, anchor=east, font=\scriptsize},
+  enlarge x limits=0.32,
+  nodes near coords,
+  every node near coord/.append style={font=\tiny, yshift=1pt},
+  point meta=explicit symbolic,
+]
+
+\nextgroupplot[
+  title={Input and Cached Context},
+  ylabel={Tokens},
+  symbolic x coords={Input,Cached},
+  xtick=data,
+  ymin=0, ymax=20,
+  ytick={0,5,10,15,20},
+  yticklabels={0,5M,10M,15M,20M},
+]
+\addplot+[draw=black!35, fill=orange!80] coordinates {(Input,0.98) [0.98M] (Cached,18.67) [18.67M]};
+\addplot+[draw=black!35, fill=cyan!60!blue] coordinates {(Input,0.38) [0.38M] (Cached,13.39) [13.39M]};
+\legend{No Meta-Rules,Adjusted FSE $\epsilon{=}0.1$}
+
+\nextgroupplot[
+  title={Output and Reasoning},
+  ylabel={Tokens},
+  symbolic x coords={Output,Reasoning},
+  xtick=data,
+  ymin=0, ymax=90,
+  ytick={0,20,40,60,80},
+  yticklabels={0,20K,40K,60K,80K},
+]
+\addplot+[draw=black!35, fill=orange!80] coordinates {(Output,85.8) [85.8K] (Reasoning,54.1) [54.1K]};
+\addplot+[draw=black!35, fill=cyan!60!blue] coordinates {(Output,57.8) [57.8K] (Reasoning,6.4) [6.4K]};
+
+\nextgroupplot[
+  title={Verification Coverage},
+  ylabel={Percent},
+  symbolic x coords={Coverage},
+  xtick=data,
+  ymin=0, ymax=110,
+  ytick={0,25,50,75,100},
+  x tick label style={rotate=0, anchor=north, font=\scriptsize},
+]
+\addplot+[draw=black!35, fill=orange!80] coordinates {(Coverage,4.76) [4.76\%]};
+\addplot+[draw=black!35, fill=cyan!60!blue] coordinates {(Coverage,100) [100\%]};
+
+\nextgroupplot[
+  title={$K$: Context Tokens per Verified Unit},
+  ylabel={Tokens/unit (log)},
+  ymode=log,
+  log basis y=10,
+  ymin=1e5, ymax=2e7,
+  xmin=0.5, xmax=2.5,
+  xtick={1,2},
+  xticklabels={No Meta-Rules,{Adj. FSE}},
+  x tick label style={rotate=0, anchor=north, font=\scriptsize, align=center},
+  nodes near coords=false,
+]
+\draw[draw=black!35, fill=orange!80] (axis cs:0.85,1e5) rectangle (axis cs:1.15,9.87e6);
+\node[font=\tiny, text=red, anchor=south] at (axis cs:1,9.87e6) {9.87M};
+\draw[draw=black!35, fill=cyan!60!blue] (axis cs:1.85,1e5) rectangle (axis cs:2.15,3.29e5);
+\node[font=\tiny, text=red, anchor=south] at (axis cs:2,3.29e5) {329K};
+
+\end{groupplot}
+\end{tikzpicture}

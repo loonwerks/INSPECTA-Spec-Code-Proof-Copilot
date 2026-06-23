@@ -23,8 +23,8 @@
 
 \bibitem{hardin2025dasc}
 D.~Hardin, I.~Amundson, J.~Babar, D.~Cofer, S.~Hasan, K.~Hoech, J.~Belt,
-  J.~Hatcliff, Robby, and S.~Hallerstede, ``Automated sysml v2 system model to
-  memory-safe language code generation for avionics applications,'' in
+  J.~Hatcliff, Robby, and S.~Hallerstede, ``Automated {SysML} v2 system model
+  to memory-safe language code generation for avionics applications,'' in
   \emph{Proceedings of the IEEE/AIAA Digital Avionics Systems Conference
   (DASC)}, 2025, author version / preprint (uploaded as hardin2025dasc.pdf).
 
@@ -37,8 +37,8 @@ D.~Hardin, I.~Amundson, J.~Babar, D.~Cofer, S.~Hasan, K.~Hoech, J.~Belt,
 \BIBentryALTinterwordspacing
 S.~Bubeck, C.~Coester, R.~Eldan, T.~Gowers, Y.~T. Lee, A.~Lupsasca, M.~Sawhney,
   R.~Scherrer, M.~Sellke, B.~K. Spears, D.~Unutmaz, K.~Weil, S.~Yin, and
-  N.~Zhivotovskiy, ``Early science acceleration experiments with gpt-5,'' 2025.
-  [Online]. Available: \url{https://arxiv.org/abs/2511.16072}
+  N.~Zhivotovskiy, ``Early science acceleration experiments with {GPT}-5,''
+  2025. [Online]. Available: \url{https://arxiv.org/abs/2511.16072}
 \BIBentrySTDinterwordspacing
 
 \bibitem{gpt5-system-card}
@@ -48,19 +48,20 @@ S.~Bubeck, C.~Coester, R.~Eldan, T.~Gowers, Y.~T. Lee, A.~Lupsasca, M.~Sawhney,
 
 \bibitem{e28030332}
 \BIBentryALTinterwordspacing
-A.~Achille and S.~Soatto, ``Ai agents as universal task solvers,''
+A.~Achille and S.~Soatto, ``{AI} agents as universal task solvers,''
   \emph{Entropy}, vol.~28, no.~3, 2026. [Online]. Available:
   \url{https://www.mdpi.com/1099-4300/28/3/332}
 \BIBentrySTDinterwordspacing
 
 \bibitem{sysmlv2_model_formalism_wg}
-{Object Management Group (OMG)}, ``Sysml v2 model formalism working group,''
+{Object Management Group ({OMG})}, ``{SysML} v2 model formalism working
+  group,''
   \url{https://www.omgwiki.org/OMGSysML/doku.php?id=sysml-roadmap:sysml_v2_model_formalism_working_group},
   accessed: 2026-02-10.
 
 \bibitem{sysmlv2_omg}
 \BIBentryALTinterwordspacing
-{Object Management Group}, ``Omg system modeling language (sysml) v2
+{Object Management Group}, ``{OMG} system modeling language ({SysML}) v2
   specification,'' 2025. [Online]. Available:
   \url{https://www.omg.org/spec/SYSML}
 \BIBentrySTDinterwordspacing
@@ -104,6 +105,23 @@ C.~Barrett, C.~L. Conway, M.~Deters, L.~Hadarean, D.~Jovanovi\'{c}, T.~King,
   international conference on Computer aided verification}, ser. CAV'11, 2011,
   pp. 171--177.
 
+\bibitem{hamr-sel4}
+J.~Belt, J.~Hatcliff, Robby, J.~Shackleton, J.~Carciofini, T.~Carpenter,
+  E.~Mercer, I.~Amundson, J.~Babar, D.~Cofer, D.~Hardin, K.~Hoech, K.~Slind,
+  I.~Kuz, and K.~Mcleod, ``Model-driven development for the se{L}4 microkernel
+  using the {HAMR} framework,'' \emph{Journal of Systems Architecture}, vol.
+  134, no.~C, February 2023.
+
+\bibitem{sel4_klein2009}
+\BIBentryALTinterwordspacing
+G.~Klein, K.~Elphinstone, G.~Heiser, J.~Andronick, D.~Cock, P.~Derrin,
+  D.~Elkaduwe, K.~Engelhardt, R.~Kolanski, M.~Norrish, T.~Sewell, H.~Tuch, and
+  S.~Winwood, ``sel4: Formal verification of an os kernel,'' in
+  \emph{Proceedings of the 22nd ACM SIGOPS Symposium on Operating Systems
+  Principles (SOSP)}, 2009. [Online]. Available:
+  \url{https://doi.org/10.1145/1629575.1629596}
+\BIBentrySTDinterwordspacing
+
 \bibitem{vonoswald2023transformers}
 J.~von Oswald, E.~Niklasson, E.~Randazzo, J.~Sacramento, A.~Mordvintsev,
   A.~Zhmoginov, and M.~Vladymyrov, ``Transformers learn in-context by gradient
@@ -118,16 +136,23 @@ J.~von Oswald, E.~Niklasson, E.~Randazzo, J.~Sacramento, A.~Mordvintsev,
   Blog Post}, 2024, accessed: 2025-05-11.
 
 \bibitem{hatcliff2024isolette}
-J.~Hatcliff \emph{et~al.}, ``The isolette system: Illustrating end-to-end
+J.~Hatcliff \emph{et~al.}, ``The {I}solette system: Illustrating end-to-end
   artifacts for rigorous model-based engineering,'' in \emph{International
   Symposium On Leveraging Applications of Formal Methods, Verification and
   Validation (ISoLA)}, 2024, author version (uploaded as
   Hatcliff-etal-ISOLA2024-Isolette-Overview.pdf).
 
-\bibitem{slides}
-A.~Tahat \emph{et~al.}, ``Neurosymbolic automated contract and code generation
-  for sysml v2 models,'' in \emph{Collins Aerospace}, 2026, author version /
-  preprint (uploaded as slides.pdf).
+\bibitem{inspecta_repo}
+\BIBentryALTinterwordspacing
+{Loonwerks}, ``{INSPECTA Spec-Code-Proof Copilot},'' GitHub repository, 2026,
+  accessed: 2026-05-06. [Online]. Available:
+  \url{https://github.com/loonwerks/INSPECTA-Spec-Code-Proof-Copilot/tree/main?tab=readme-ov-file}
+\BIBentrySTDinterwordspacing
+
+\bibitem{lempia2009faa}
+D.~L. Lempia and S.~P. Miller, \emph{Requirements Engineering Management
+  Handbook}.\hskip 1em plus 0.5em minus 0.4em\relax Federal Aviation
+  Administration, 2009, {DOT/FAA/AR-08/32}.
 
 \bibitem{polu2020generative}
 S.~Polu and I.~Sutskever, ``Generative language modeling for automated theorem
@@ -143,19 +168,6 @@ A.~Tahat, D.~Hardin, A.~Petz, and P.~Alexander, ``Proof repair utilizing large
   language models: A case study on the copland remote attestation proofbase,''
   in \emph{Proceedings of International Symposium On Leveraging Applications of
   Formal Methods Verification and Validation (AISolA)}, 2024.
-
-\bibitem{axiom_territory}
-\BIBentryALTinterwordspacing
-{Axiom}, ``Territory,'' \url{https://axiommath.ai/territory}, 2026, accessed:
-  2026-02-12. [Online]. Available: \url{https://axiommath.ai/territory}
-\BIBentrySTDinterwordspacing
-
-\bibitem{aristotle_arXiv2510}
-\BIBentryALTinterwordspacing
-T.~Achim, A.~Best, A.~Bietti \emph{et~al.}, ``Aristotle: Imo-level automated
-  theorem proving,'' arXiv:2510.01346, 2025. [Online]. Available:
-  \url{https://arxiv.org/abs/2510.01346}
-\BIBentrySTDinterwordspacing
 
 \bibitem{DBLP:conf/popl/SwamyHKRDFBFSKZ16}
 \BIBentryALTinterwordspacing
@@ -186,52 +198,30 @@ S.~I. Mirzadeh, K.~Alizadeh, H.~Shahrokhi, O.~Tuzel, S.~Bengio, and
 \BIBentrySTDinterwordspacing
 
 \bibitem{sysmlv2}
-\BIBentryALTinterwordspacing
-\emph{{OMG} Systems Modeling Language ({S}ys{ML}), Version 2.0 Beta 2}, Object
-  Management Group, February 2024. [Online]. Available:
-  \url{https://www.omg.org/spec/SysML/2.0/Beta2/Language/PDF}
-\BIBentrySTDinterwordspacing
+{Object Management Group ({OMG})}, ``Systems modeling language ({SysML}) v2
+  specification,'' \href{https://github.com/Systems-Modeling/SysML-v2-Release},
+  2024, accessed: 2025-05-19.
 
 \bibitem{imandra_sysml}
 \BIBentryALTinterwordspacing
-{Imandra}, ``Imandra sysml: Formal verification for sysml v2 models,'' 2024.
-  [Online]. Available: \url{https://www.imandra.ai/sysml}
+{Imandra}, ``Imandra {SysML}: Formal verification for {SysML} v2 models,''
+  2024. [Online]. Available: \url{https://www.imandra.ai/sysml}
 \BIBentrySTDinterwordspacing
 
-\bibitem{neema2025evaluationengineeringartificialgeneral}
+\bibitem{agreedog_tahat2025}
 \BIBentryALTinterwordspacing
-S.~Neema, S.~Jha, A.~Nagel, E.~Lew, C.~Sureshkumar, A.~Gordic, C.~Shimmin,
-  H.~Nguygen, and P.~Eremenko, ``On the evaluation of engineering artificial
-  general intelligence,'' 2025. [Online]. Available:
-  \url{https://arxiv.org/abs/2505.10653}
+A.~Tahat, I.~Amundson, D.~Hardin, and D.~Cofer, ``{AGREE-Dog} copilot: A
+  neuro-symbolic approach to enhanced model-based systems engineering,'' in
+  \emph{Bridging the Gap Between {AI} and Reality (AISoLA 2025), Selected
+  Papers}, 2025. [Online]. Available:
+  \url{https://link.springer.com/chapter/10.1007/978-3-032-07132-3_8}
 \BIBentrySTDinterwordspacing
-
-\bibitem{CoqDogHCSS24}
-A.~Tahat, D.~Hardin, A.~Petz, and P.~Alexander, ``Metrics for large language
-  model generated proofs in a high-assurance application domain,'' in
-  \emph{High Confidence Software and Systems Conference (HCSS'24)}, 2024.
 
 \bibitem{feiler-aadl}
 P.~H. Feiler and D.~P. Gluch, \emph{Model-Based Engineering with AADL: An
   Introduction to the SAE Architecture Analysis \& Design Language},
   1st~ed.\hskip 1em plus 0.5em minus 0.4em\relax Addison-Wesley Professional,
   2012.
-
-\bibitem{sel4_klein2009}
-\BIBentryALTinterwordspacing
-G.~Klein, K.~Elphinstone, G.~Heiser, J.~Andronick, D.~Cock, P.~Derrin,
-  D.~Elkaduwe, K.~Engelhardt, R.~Kolanski, M.~Norrish, T.~Sewell, H.~Tuch, and
-  S.~Winwood, ``sel4: Formal verification of an os kernel,'' in
-  \emph{Proceedings of the 22nd ACM SIGOPS Symposium on Operating Systems
-  Principles (SOSP)}, 2009. [Online]. Available:
-  \url{https://doi.org/10.1145/1629575.1629596}
-\BIBentrySTDinterwordspacing
-
-\bibitem{sel4-microkit}
-\BIBentryALTinterwordspacing
-I.~Velickovic, \emph{Microkit User Manual}, 2025. [Online]. Available:
-  \url{https://github.com/seL4/microkit/blob/main/docs/manual.md}
-\BIBentrySTDinterwordspacing
 
 \bibitem{Hatcliff:seL4Summit2025}
 \BIBentryALTinterwordspacing
@@ -241,16 +231,10 @@ J.~Hatcliff, ``Model-based development for {seL4} {Microkit/Rust} with
   \url{https://sel4summit2025.sched.com/event/26GD3}
 \BIBentrySTDinterwordspacing
 
-\bibitem{slang}
-Robby and J.~Hatcliff, ``{Slang}: The {Sireum} programming language,'' in
-  \emph{10th International Symposium on Leveraging Applications of Formal
-  Methods, Verification and Validation ({ISoLA})}, ser. LNCS, vol. 13036, 2021,
-  pp. 253--273.
-
 \bibitem{sun2025veristruct}
 \BIBentryALTinterwordspacing
 C.~Sun, Y.~Sun, D.~Amrollahi, E.~Zhang, S.~Lahiri, S.~Lu, D.~Dill, and
-  C.~Barrett, ``{VeriStruct}: Ai-assisted automated verification of
+  C.~Barrett, ``{VeriStruct}: {AI}-assisted automated verification of
   data-structure modules in verus,'' 2025. [Online]. Available:
   \url{https://arxiv.org/abs/2510.25015}
 \BIBentrySTDinterwordspacing
@@ -259,16 +243,6 @@ C.~Sun, Y.~Sun, D.~Amrollahi, E.~Zhang, S.~Lahiri, S.~Lu, D.~Dill, and
 D.~Cofer, A.~Gacek, S.~Miller, M.~W. Whalen, B.~LaValley, and L.~Sha,
   ``Compositional verification of architectural models,'' in \emph{NASA Formal
   Methods}, A.~E. Goodloe and S.~Person, Eds.\hskip 1em plus 0.5em minus
-  0.4em\relax Berlin, Heidelberg: Springer Berlin Heidelberg, 2012, pp.
-  126--140.
-
-\bibitem{agreedog_tahat2025}
-\BIBentryALTinterwordspacing
-A.~Tahat, I.~Amundson, D.~Hardin, and D.~Cofer, ``Agree-dog copilot: A
-  neuro-symbolic approach to enhanced model-based systems engineering,'' in
-  \emph{Bridging the Gap Between AI and Reality (AISoLA 2025), Selected
-  Papers}, 2025. [Online]. Available:
-  \url{https://link.springer.com/chapter/10.1007/978-3-032-07132-3_8}
-\BIBentrySTDinterwordspacing
+  0.4em\relax Springer, 2012, pp. 126--140.
 
 \end{thebibliography}

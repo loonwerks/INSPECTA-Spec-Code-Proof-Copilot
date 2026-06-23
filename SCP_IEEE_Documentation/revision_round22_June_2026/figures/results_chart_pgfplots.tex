@@ -1,0 +1,92 @@
+\begin{tikzpicture}
+\begin{groupplot}[
+  group style={group size=2 by 2, horizontal sep=1.00cm, vertical sep=1.55cm},
+  width=0.46\textwidth,
+  height=0.245\textwidth,
+  ymajorgrids=true,
+  grid style={dashed, gray!55},
+  tick label style={font=\scriptsize},
+  label style={font=\scriptsize},
+  title style={font=\normalsize},
+  legend style={font=\scriptsize, draw=gray!25, fill=white, at={(0.02,0.98)}, anchor=north west, legend cell align=left},
+  ybar,
+  x tick label style={rotate=0, anchor=north, font=\scriptsize, align=center},
+  enlarge x limits=0.28,
+  nodes near coords,
+  every node near coord/.append style={font=\tiny, yshift=1pt},
+  point meta=explicit symbolic,
+]
+
+
+
+\nextgroupplot[
+  title={Non-Cached Token Cost},
+  ylabel={Tokens (log)},
+  ymode=log,
+  log basis y=10,
+  ymin=0.04, ymax=1.7,
+  xmin=0.5, xmax=4.5,
+  xtick={1,2,3,4},
+  xticklabels={Input\\No Rules,Input\\Adj. FSE,Output\\No Rules,Output\\Adj. FSE},
+  ytick={0.05,0.1,0.5,1},
+  yticklabels={50K,100K,500K,1M},
+  x tick label style={rotate=0, anchor=north, font=\tiny, align=center},
+  nodes near coords=false,
+]
+\draw[draw=black!35, fill=orange!80] (axis cs:0.85,0.04) rectangle (axis cs:1.15,0.982);
+\node[font=\tiny, text=red, anchor=south, align=center] at (axis cs:1,0.982) {0.98M\\\$58.91};
+\draw[draw=black!35, fill=cyan!60!blue] (axis cs:1.85,0.04) rectangle (axis cs:2.15,0.382);
+\node[font=\tiny, text=red, anchor=south, align=center] at (axis cs:2,0.382) {0.38M\\\$22.90};
+\draw[draw=black!35, fill=orange!80] (axis cs:2.85,0.04) rectangle (axis cs:3.15,0.0858);
+\node[font=\tiny, text=red, anchor=south, align=center] at (axis cs:3,0.0858) {85.8K\\\$23.17};
+\draw[draw=black!35, fill=cyan!60!blue] (axis cs:3.85,0.04) rectangle (axis cs:4.15,0.0578);
+\node[font=\tiny, text=red, anchor=south, align=center] at (axis cs:4,0.0578) {57.8K\\\$15.61};
+
+
+\nextgroupplot[
+  title={Verified Throughput Rate $\Theta$},
+  ylabel={Units/min},
+  symbolic x coords={Base,Adjusted,User},
+  xtick={Base,Adjusted,User},
+  xticklabels={No Rules,Adj. FSE,User FSE},
+  ymin=0, ymax=1.9,
+  ytick={0,0.5,1.0,1.5},
+  nodes near coords,
+]
+\addplot+[draw=black!35, fill=orange!80] coordinates {(Base,0.06) [0.06]};
+\addplot+[draw=black!35, fill=cyan!60!blue] coordinates {(Adjusted,1.08) [1.08]};
+\addplot+[draw=black!35, fill=gray!55] coordinates {(User,1.68) [1.68]};
+
+\nextgroupplot[
+  title={Verification Coverage},
+  ylabel={Percent},
+  symbolic x coords={Coverage},
+  xtick=data,
+  ymin=0, ymax=110,
+  ytick={0,25,50,75,100},
+  x tick label style={rotate=0, anchor=north, font=\scriptsize},
+]
+\addplot+[draw=black!35, fill=orange!80] coordinates {(Coverage,4.76) [4.76\%]};
+\addplot+[draw=black!35, fill=cyan!60!blue] coordinates {(Coverage,100) [100\%]};
+
+\nextgroupplot[
+  title={$K$ and \$/Verified Unit},
+  ylabel={Context tokens/unit (log)},
+  ymode=log,
+  log basis y=10,
+  ymin=8e4, ymax=2e7,
+  xmin=0.5, xmax=3.5,
+  xtick={1,2,3},
+  xticklabels={No Rules,{Adj. FSE},{User FSE}},
+  x tick label style={rotate=0, anchor=north, font=\scriptsize, align=center},
+  nodes near coords=false,
+]
+\draw[draw=black!35, fill=orange!80] (axis cs:0.85,8e4) rectangle (axis cs:1.15,9.87e6);
+\node[font=\tiny, text=red, anchor=south, align=center] at (axis cs:1,9.87e6) {9.87M\\\$41.04};
+\draw[draw=black!35, fill=cyan!60!blue] (axis cs:1.85,8e4) rectangle (axis cs:2.15,3.29e5);
+\node[font=\tiny, text=red, anchor=south, align=center] at (axis cs:2,3.29e5) {329K\\\$0.92};
+\draw[draw=black!35, fill=gray!55] (axis cs:2.85,8e4) rectangle (axis cs:3.15,1.11e5);
+\node[font=\tiny, text=red, anchor=south, align=center] at (axis cs:3,1.11e5) {111K\\\$0.79};
+
+\end{groupplot}
+\end{tikzpicture}
