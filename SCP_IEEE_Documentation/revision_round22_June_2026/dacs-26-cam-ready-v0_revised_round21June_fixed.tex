@@ -242,7 +242,7 @@ Figure~\ref{fig:vsc} provides intuition for why Meta-Rules act as a verifiable s
 \begin{figure}[t]
 \centering
 \resizebox{\columnwidth}{!}{\input{figures/vsc_tikz}}
-\caption{Practically verified semantic cone for supervised Meta-Rule refinement. A golden example direction $\mathbf{g}$ anchors the accepted region. A candidate direction $\mathbf{v}_i$ is screened by a distance such as $d_{\cos}=1-\cos(\angle(\mathbf{v}_i,\mathbf{g}))$ and is applied only when $d_{\cos}\le\epsilon$; it is retained only if the resulting GUMBO contract verifies within the budget. The accepted region therefore represents budget-verifiable generalization, while the rejected region corresponds to semantic or toolchain mismatch.}
+\caption{Practically verified semantic cone for supervised Meta-Rule refinement. A golden example direction $\mathbf{g}$ anchors the accepted region. A candidate direction $\mathbf{v}_i$ is screened by a distance such as $d_{\cos}=1-\cos(\angle(\mathbf{v}_i,\mathbf{g}))$ and is applied only when $d_{\cos}\le\epsilon$; it is retained only if the resulting GUMBO contract verifies within the budget. The accepted region therefore represents budget-verifiable generalization, while the rejected region corresponds to semantic, budget, or toolchain mismatch.}
 \label{fig:vsc}
 \vspace{-0.6em}
 \end{figure}
