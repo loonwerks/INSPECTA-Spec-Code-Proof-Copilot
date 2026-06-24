@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.8.18)  24 JUN 2026 09:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.8.18)  24 JUN 2026 18:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1142,16 +1142,12 @@ Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 752.
 Package rerunfilecheck Info: File `dacs-26-cam-ready-v0_revised_round21June_fix
 ed.out' has not changed.
 (rerunfilecheck)             Checksum: 3264D3C89A8C97F195BE5B4A3EE59E9E;1713.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 752.
  ) 
 Here is how much of TeX's memory you used:
  34081 strings out of 481239
  800857 string characters out of 5920377
- 1251898 words of memory out of 5000000
+ 1251907 words of memory out of 5000000
  48614 multiletter control sequences out of 15000+600000
  598393 words of font info for 142 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1183,7 +1179,7 @@ pe1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
 tmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
 Output written on dacs-26-cam-ready-v0_revised_round21June_fixed.pdf (10 pages,
- 381566 bytes).
+ 381570 bytes).
 PDF statistics:
  484 PDF objects out of 1000 (max. 8388607)
  437 compressed objects within 5 object streams
