@@ -34,3 +34,6 @@ SCP_IEEE_Documentation/main.tex
 # Untrack selected files in SCP_IEEE_Documentation
 SCP_IEEE_Documentation/*.zip
 SCP_IEEE_Documentation/MetaRules_SysMLv2_IEEE_Paper_Draft_v5.pdf
+
+# Untrack specific PDF inside revision folder
+SCP_IEEE_Documentation/revision_round22_June_2026/dacs-26-cam-ready-v0_revised_round21_list3_fixed.pdf
