@@ -347,7 +347,7 @@ Repair(candidate, feedback, budget):
   rerun verifier while budget remains; return ok/failure
 \end{lstlisting}
 
-The complete rule book, extraction/application/repair templates, evaluation logs, and run videos are linked in the supplementary artifact package.\footnote{Artifact placeholders: \texttt{[rule-book]}, \texttt{[templates]}, \texttt{[logs]}, \texttt{[videos]}.}
+The complete rule book, extraction/application/repair templates, evaluation logs, and run videos are linked in the supplementary artifact package \cite{inspecta_repo}.%\footnote{Artifact placeholders: \texttt{[rule-book]}, \texttt{[templates]}, \texttt{[logs]}, \texttt{[videos]}.}
 
 Listing~\ref{list:extract-apply} gives compact templates adapted from the learning and user-mode goal files. They show the three roles used in Algorithm~\ref{alg:meta-rules}: extract an auditable rule, apply the frozen book to active project context, and repair only the smallest contract/model fragment when verifier feedback requires it.
 
@@ -513,57 +513,77 @@ $S$ (end-to-end success) & 0 & 1 \\
 \section{Related Work}
 \label{sec:related-work}
 
-LLMs have increasingly been used to assist formal reasoning and proof engineering. GPT-f explored generative theorem proving in Metamath~\cite{polu2020generative}, while Baldur and CoqDog-style systems study whole-proof generation, repair, and diagnosis in proof assistants such as Isabelle/HOL and Coq~\cite{first2023baldur,CoqDog}. Other neuro-symbolic and verification-oriented workflows integrate LLMs with code verification, SMT-backed checks, or symbolic reasoning benchmarks~\cite{DBLP:conf/popl/SwamyHKRDFBFSKZ16,aws_bedrock_ar,mirzadeh2025gsmsymbolic}. These efforts are adjacent because they combine LLMs with formal structure, but they typically operate at a proof-script, theorem-proving, requirements-auditing, or code-verification layer.
+%LLMs have increasingly been used to assist formal reasoning and proof engineering. GPT-f explored generative theorem proving in Metamath~\cite{polu2020generative}, while Baldur and CoqDog-style systems study whole-proof generation, repair, and diagnosis in proof assistants such as Isabelle/HOL and Coq~\cite{first2023baldur,CoqDog}. Other neuro-symbolic and verification-oriented workflows integrate LLMs with code verification, SMT-backed checks, or symbolic reasoning benchmarks~\cite{DBLP:conf/popl/SwamyHKRDFBFSKZ16,aws_bedrock_ar,mirzadeh2025gsmsymbolic}. These efforts are adjacent because they combine LLMs with formal structure, but they typically operate at a proof-script, theorem-proving, requirements-auditing, or code-verification layer.
 
-Formal methods are also being integrated into MBSE standards and tools. SysML v2 was designed with formal semantics in mind~\cite{sysmlv2}, and Imandra has demonstrated model-level SysML v2 verification~\cite{imandra_sysml}. AGREE-Dog is the closest MBSE copilot because it supports AADL/AGREE model-level explanation and repair~\cite{agreedog_tahat2025,feiler-aadl}. SCP differs in its evaluated boundary: the GUMBO FSE Rule book must help produce contracts that are placed in SysML v2, preserved through HAMR generation, reflected in generated Slang/Scala obligations, and discharged by Logika. The learned object is therefore not merely a prompt hint or proof tactic, but a HAMR-centric memory of linguistic triggers, semantic GUMBO choices, structural placement decisions, and verifier-guided repair actions.
+%Formal methods are also being integrated into MBSE standards and tools. SysML v2 was designed with formal semantics in mind~\cite{sysmlv2}, and Imandra has demonstrated model-level SysML v2 verification~\cite{imandra_sysml}. AGREE-Dog is the closest MBSE copilot because it supports AADL/AGREE model-level explanation and repair~\cite{agreedog_tahat2025,feiler-aadl}. SCP differs in its evaluated boundary: the GUMBO FSE Rule book must help produce contracts that are placed in SysML v2, preserved through HAMR generation, reflected in generated Slang/Scala obligations, and discharged by Logika. The learned object is therefore not merely a prompt hint or proof tactic, but a HAMR-centric memory of linguistic triggers, semantic GUMBO choices, structural placement decisions, and verifier-guided repair actions.
+
+LLMs have increasingly been used for formal reasoning, including theorem proving, autoformalization, proof repair, symbolic reasoning, and code verification. GPT-f explored generative theorem proving in Metamath~\cite{polu2020generative}, while Baldur and CoqDog-style systems study proof generation, repair, and diagnosis in Isabelle/HOL and Coq~\cite{first2023baldur,CoqDog}. Other neuro-symbolic and verification-oriented workflows integrate LLMs with SMT-backed checks, symbolic benchmarks, or code verification tasks~\cite{DBLP:conf/popl/SwamyHKRDFBFSKZ16,aws_bedrock_ar,mirzadeh2025gsmsymbolic}. 
+%
+These works are conceptually related, but they typically operate at the level of proof scripts, theorem libraries, agent-world models, or standalone code analysis rather than at the MBSE-to-generated-system boundary.
+
+Formal methods are also entering MBSE standards and tools: SysML v2 was designed with formal semantics in mind~\cite{sysmlv2}, Imandra has demonstrated model-level SysML v2 verification~\cite{imandra_sysml}, and AGREE-Dog supports AADL/AGREE model-level explanation and repair~\cite{agreedog_tahat2025,feiler-aadl}. SCP differs in its evaluated boundary and learned artifact: its GUMBO FSE Rule book helps produce contracts placed in SysML v2, preserved through HAMR generation, reflected in generated Slang/Scala obligations, and discharged by Logika. Although our evaluated build uses HAMR's JVM/Slang execution path rather than the seL4 Microkit path, HAMR supports JVM, Linux, and seL4 targets and has been used for model-driven construction of seL4 and avionics-style systems~\cite{hardin2025dasc}. Thus, SCP targets the upstream bottleneck for such high-assurance builds: learning HAMR-centric memories of linguistic triggers, GUMBO choices, structural placement decisions, and verifier-guided repairs.
+
+%%LLMs have increasingly been used to assist formal reasoning and proof engineering. GPT-f explored generative theorem proving in Metamath~\cite{polu2020generative}, while Baldur and CoqDog-style systems study whole-proof generation, repair, and diagnosis in proof assistants such as Isabelle/HOL and Coq~\cite{first2023baldur,CoqDog}. Other neuro-symbolic and verification-oriented workflows integrate LLMs with code verification, SMT-backed checks, or symbolic reasoning benchmarks~\cite{DBLP:conf/popl/SwamyHKRDFBFSKZ16,aws_bedrock_ar,mirzadeh2025gsmsymbolic,wu2022autoformalization,yoo2025formalizerinsidellm,riegel2020logical,zhou2024walle,wang2025symrtlo,guo2025repoaudit}. These efforts are adjacent because they combine LLMs with formal structure, but they typically operate at a proof-script, theorem-proving, requirements-auditing, agent-world-model, RTL-optimization, or code-auditing layer rather than at the MBSE-to-generated-system boundary.
+
+
+%%Formal methods are also being integrated into MBSE standards and tools. SysML v2 was designed with formal semantics in mind~\cite{sysmlv2}, and Imandra has demonstrated model-level SysML v2 verification~\cite{imandra_sysml}. AGREE-Dog is the closest MBSE copilot because it supports AADL/AGREE model-level explanation and repair~\cite{agreedog_tahat2025,feiler-aadl}.
+%% SCP differs in its evaluated boundary: the GUMBO FSE Rule book must help produce contracts that are placed in SysML v2, preserved through HAMR generation, reflected in generated Slang/Scala obligations, and discharged by Logika. Although the evaluated build uses HAMR's JVM/Slang execution path rather than the seL4 Microkit deployment path, this is still a system-construction workflow rather than an isolated proof benchmark: HAMR supports multi-platform generation for JVM, Linux, and seL4 targets, and prior HAMR work has demonstrated model-driven construction of seL4 applications and avionics-style systems~\cite{hatcliff2021hamr,belt2023modeldriven,hardin2025sysmlv2avionics}. Thus, SCP addresses the upstream bottleneck that makes these HAMR target builds difficult for non-experts: synthesizing and repairing the formal GUMBO/Logika contracts that travel with generated system artifacts. The learned object is therefore not merely a prompt hint or proof tactic, but a HAMR-centric memory of linguistic triggers, semantic GUMBO choices, structural placement decisions, and verifier-guided repair actions.
+
 \section{Limitations and Future Work}
 \label{sec:limitations}
+Our evaluation uses the Isolette infant-incubator system~\cite{hatcliff2024isolette}, a realistic HAMR/INSPECTA benchmark spanning natural-language requirements, SysML v2 modeling, GUMBO contract synthesis, HAMR-generated Slang/Scala proof obligations, and Logika discharge. Within this scope, SCP shows that reusable formalization and repair knowledge can be learned from a small set of solved file- and subsystem-level examples and reused to verify remaining target files. In particular, it converts a prompt-only failure into an end-to-end fully verified target-scope run while substantially reducing cost and time, despite the restriction that the base model was not fine-tuned.
 
-Our evaluation is conducted on the Isolette infant-incubator system~\cite{hatcliff2024isolette},
-a realistic multi-subsystem HAMR/INSPECTA benchmark that exercises natural-language
-requirements, SysML v2 modeling, GUMBO contract synthesis, HAMR-generated
-Slang/Scala proof obligations, and Logika proof discharge. Within this benchmark,
-our methodology demonstrates that reusable formalization and repair knowledge can
-be learned from a small set of solved file- and subsystem-level examples and then
-applied to support verification of remaining target files. In particular, our approach
-converted a prompt-only failure into an end-to-end fully verified target-scope run,
-while substantially reducing cost and time. This is a significant result given that
-direct fine-tuning of the base model was restricted.
-
-The current evaluation is intentionally scoped to toolchain-aware GUMBO
-formalization and repair for the Isolette/HAMR target. Broader validation remains
-future work. We plan to evaluate additional HAMR rule books for SysML synthesis,
-Rust/Verus repair, and other high-assurance systems, including seL4-based firewall
-architectures~\cite{Hatcliff:seL4Summit2025}. We will also investigate repair
-heuristics inspired by \textsc{VeriStruct}~\cite{sun2025veristruct}, cloud-scale
-verification, multimodal specification, and advances in compositional reasoning for
-GUMBO/AGREE~\cite{compositional-analysis-agree,agreedog_tahat2025}.
+The current evaluation is currently limited to toolchain-aware SysML v2/GUMBO formalization and repair for the Isolette/HAMR target; broader validation remains future work. Planned extensions include additional HAMR rule books for SysML synthesis, Rust/Verus repair, and other high-assurance systems, including seL4-based firewall architectures~\cite{Hatcliff:seL4Summit2025}, as well as repair heuristics inspired by \textsc{VeriStruct}~\cite{sun2025veristruct}, cloud-scale verification, multimodal specification, and compositional reasoning for GUMBO/AGREE~\cite{compositional-analysis-agree,agreedog_tahat2025}. Because rule-book bloat may occur as Meta-Rules scale across systems and HAMR artifact families, ongoing work studies budget-aware rule selection, where the SCP orchestrator classifies the input or verifier diagnostic and loads only the relevant rule book; early artifacts already explore this direction~\cite{inspecta_repo}.
+%%Our evaluation is conducted on the Isolette infant-incubator system~\cite{hatcliff2024isolette},
+%a realistic multi-subsystem HAMR/INSPECTA benchmark that exercises natural-language
+%requirements, SysML v2 modeling, GUMBO contract synthesis, HAMR-generated
+%Slang/Scala proof obligations, and Logika proof discharge. Within this benchmark,
+%our methodology demonstrates that reusable formalization and repair knowledge can
+%be learned from a small set of solved file- and subsystem-level examples and then
+%applied to support verification of remaining target files. In particular, our approach
+%converted a prompt-only failure into an end-to-end fully verified target-scope run,
+%while substantially reducing cost and time. This is a significant result given that
+%direct fine-tuning of the base model was restricted.
+%%
+%The current evaluation is intentionally scoped to toolchain-aware GUMBO
+%formalization and repair for the Isolette/HAMR target. Broader validation remains
+%future work. We plan to evaluate additional HAMR rule books for SysML synthesis,
+%Rust/Verus repair, and other high-assurance systems, including seL4-based firewall
+%architectures~\cite{Hatcliff:seL4Summit2025}. We will also investigate repair
+%heuristics inspired by \textsc{VeriStruct}~\cite{sun2025veristruct}, cloud-scale
+%verification, multimodal specification, and advances in compositional reasoning for
+%GUMBO/AGREE~\cite{compositional-analysis-agree,agreedog_tahat2025}. Rule-book bloat may occur as Meta-Rules scale to larger systems and additional HAMR artifact families, so our ongoing work studies budget-aware rule selection rather than loading all rules for every task. In particular, we are extending the SCP orchestrator to classify the input or verifier diagnostic and load only the relevant rule book; early open-source artifacts already explore this direction for SysML v2 specification synthesis, Rust/Verus repair, and broader HAMR toolchain support~\cite{inspecta_repo}.
 
 %====================================================================
 \section{Conclusion}
 \label{sec:conclusion}
+%Our study shows that, within the evaluated Isolette/HAMR benchmark scope, SCP converts transient LLM formalization behavior into reusable, auditable engineering knowledge for neuro-symbolic SysML v2/HAMR-generated applications.
+% Unlike prior LLM/FM work that mainly targets proof scripts, theorem libraries, audits, standalone code tasks, agent-world models, or RTL optimization, 
+In this paper we introduced our SCP copilot which operates at the MBSE-to-generated-system boundary: its GUMBO FSE Rule Book learns HAMR-centric formalization and repair knowledge that connects linguistic requirement triggers to SysML v2 contract placement, HAMR-generated Slang/Scala obligations, and Logika discharge largely autoamtically. Although our evaluation uses HAMR's JVM/Slang path rather than the seL4 Microkit path, HAMR also supports Linux and seL4 targets and has been used for model-driven seL4 and avionics-style systems~\cite{hardin2025dasc}. Thus, that learned Meta-Rules can reduce an upstream bottleneck in high-assurance HAMR workflows by lowering the cost of the formal context, and repair effort needed to synthesize verifier-checked GUMBO contracts, turning a prompt-only failure into a fully verified target-scope run. The present results remain scoped to Isolette/HAMR; broader cross-system validation, additional HAMR artifact families, and budget-aware rule selection to control rule-book growth remain future work.
+%Within the evaluated Isolette/HAMR target scope, this paper presents SCP as a practical methodology for converting transient LLM formalization behavior into reusable engineering knowledge in a HAMR/INSPECTA workflow. Rather than treating learned information as informal prompt hints or isolated proof tactics, SCP organizes it as auditable Meta-Rules that connect linguistic requirement triggers, semantic GUMBO choices, SysML v2 placement, generated Slang/Scala obligations, and Logika feedback. The Isolette benchmark shows the benefit of this scoped approach: instead of repeatedly replaying requirements, models, contracts, generated code, logs, and counterexamples until token and repair budgets are exhausted, the GUMBO FSE Rule Book compacts recurring formalization and repair knowledge, turning a prompt-only failure into a fully verified target-scope run while reducing context tokens, cost, and time, even without direct fine-tuning. Overall, SCP suggests a practical GenAI pattern for high-assurance engineering based on auditable learned rules, bounded self-healing, and formal verification as the acceptance gate; future work remains to validate the approach across additional systems and HAMR artifact families, extend rule books for SysML synthesis and Rust/Verus repair, and develop budget-aware rule selection to control rule-book bloat.
 
-This paper presents SCP as a practical methodology for converting transient LLM
-formalization behavior into reusable engineering knowledge within a HAMR/INSPECTA
-workflow. Rather than treating learned information as informal prompt hints or
-isolated proof tactics, our approach organizes it as auditable rules that connect
-linguistic requirement triggers, semantic GUMBO choices, SysML v2 placement,
-generated Slang/Scala obligations, and Logika feedback. This provides a practical
-adaptation mechanism for high-assurance model-based engineering workflows even
-when direct fine-tuning is unavailable.
 
-The Isolette benchmark illustrates the value of this approach. A naive agentic
-workflow may repeatedly replay requirements, SysML v2 models, GUMBO contracts,
-generated code, proof obligations, logs, and counterexamples until token and repair
-budgets are exhausted. By contrast, the GUMBO FSE Rule Book enabled our workflow
-to compact recurring formalization and repair knowledge, turning a failing
-prompt-only run into a fully verified target-scope run while saving millions of
-context tokens relative to the baseline. These results provide encouraging evidence
-that our appraoch can improve reliable verified throughput in high-assurance realistic HAMR model based system engineering.
+%This paper presents SCP as a practical methodology for converting transient LLM
+%formalization behavior into reusable engineering %knowledge within a HAMR/INSPECTA
+%workflow. Rather than treating learned information as informal prompt hints or
+%isolated proof tactics, our approach organizes it as auditable rules that connect
+%linguistic requirement triggers, semantic GUMBO choices, SysML v2 placement,
+%generated Slang/Scala obligations, and Logika feedback. This provides a practical
+%adaptation mechanism for high-assurance model-based engineering workflows even
+%when direct fine-tuning is unavailable.
 
-Overall, our methodology points toward a practical integration pattern for GenAI in
-high-assurance engineering: auditable learned rules, bounded self-healing, and
-formal verification as the primary acceptance gate.
+%The Isolette benchmark illustrates the value of this %approach. A naive agentic
+%workflow may repeatedly replay requirements, SysML v2 models, GUMBO contracts,
+%generated code, proof obligations, logs, and counterexamples until token and repair
+%budgets are exhausted. By contrast, the GUMBO FSE Rule Book enabled our workflow
+%to compact recurring formalization and repair knowledge, turning a failing
+%prompt-only run into a fully verified target-scope run while saving millions of
+%context tokens relative to the baseline. These results provide encouraging evidence
+%that our appraoch can improve reliable verified throughput in high-assurance realistic HAMR model based system engineering.
+
+%Overall, our methodology points toward a practical integration pattern for GenAI in
+%high-assurance engineering: auditable learned rules, bounded self-healing, and
+%formal verification as the primary acceptance gate.
 
 
 \section*{Acknowledgment}
@@ -745,7 +765,7 @@ where $\epsilon_m$ is tuned offline in developer mode. The role of this gate is 
 \fi
 
 % Use the natural IEEE bibliography font size.
-\IEEEtriggeratref{18}
+\IEEEtriggeratref{20}
 \bibliographystyle{IEEEtran} 
 \bibliography{IEEEabrv,references_revised_v6,local_missing}
 

@@ -10,49 +10,64 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: IEEEabrv.bib
 Database file #2: references_revised_v6.bib
 Database file #3: local_missing.bib
+Repeated entry---line 11 of file local_missing.bib
+ : @article{polu2020generative
+ :                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 20 of file local_missing.bib
+ : @inproceedings{first2023baldur
+ :                               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 31 of file local_missing.bib
+ : @incollection{CoqDog
+ :                     ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "hatcliff2021hamr"
+Warning--I didn't find a database entry for "hardin2025sysmlv2avionics"
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 33 entries,
+You've used 31 entries,
             4087 wiz_defined-function locations,
-            1537 strings with 26109 characters,
-and the built_in function-call counts, 20950 in all, are:
-= -- 1552
-> -- 666
-< -- 69
-+ -- 337
-- -- 153
-* -- 991
-:= -- 3257
-add.period$ -- 68
-call.type$ -- 33
-change.case$ -- 44
-chr.to.int$ -- 165
-cite$ -- 33
-duplicate$ -- 1565
-empty$ -- 1845
-format.name$ -- 170
-if$ -- 4810
+            1525 strings with 25342 characters,
+and the built_in function-call counts, 19620 in all, are:
+= -- 1462
+> -- 632
+< -- 62
++ -- 320
+- -- 147
+* -- 922
+:= -- 3041
+add.period$ -- 63
+call.type$ -- 31
+change.case$ -- 40
+chr.to.int$ -- 141
+cite$ -- 31
+duplicate$ -- 1479
+empty$ -- 1710
+format.name$ -- 162
+if$ -- 4510
 int.to.chr$ -- 0
-int.to.str$ -- 33
-missing$ -- 360
-newline$ -- 152
-num.names$ -- 36
-pop$ -- 968
+int.to.str$ -- 31
+missing$ -- 340
+newline$ -- 140
+num.names$ -- 32
+pop$ -- 909
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1593
+skip$ -- 1500
 stack$ -- 0
-substring$ -- 451
-swap$ -- 1099
-text.length$ -- 14
+substring$ -- 405
+swap$ -- 1043
+text.length$ -- 15
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 33
+type$ -- 31
 warning$ -- 0
-while$ -- 60
-width$ -- 35
-write$ -- 350
+while$ -- 54
+width$ -- 33
+write$ -- 326
+(There were 3 error messages)
