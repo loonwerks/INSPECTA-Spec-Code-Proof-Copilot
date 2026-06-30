@@ -1,0 +1,117 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "eval-results",
+  "title": "Representative adjusted run metrics for the scoped GUMBO evaluation. The adjusted column is a complete logged run, so the one-time extraction/refinement effort is already included. Dollar costs use the current pricing model in GPT5.5 pro as of 27 June 2026; cached-token price is set to zero in that model.",
+  "columns": [
+    "Metric",
+    "Baseline: no Meta-Rules",
+    "Adjusted epsilon = 0.1: the GUMBO FSE Rule book"
+  ],
+  "rows": [
+    {
+      "Metric": "Rule-book scope",
+      "Baseline: no Meta-Rules": "None",
+      "Adjusted epsilon = 0.1: the GUMBO FSE Rule book": "GUMBO-centered FSE rules with toolchain-aware repair"
+    },
+    {
+      "Metric": "Phase reported",
+      "Baseline: no Meta-Rules": "Prompt-only user run",
+      "Adjusted epsilon = 0.1: the GUMBO FSE Rule book": "Adjusted complete run"
+    },
+    {
+      "Metric": "Training / reuse source",
+      "Baseline: no Meta-Rules": "None",
+      "Adjusted epsilon = 0.1: the GUMBO FSE Rule book": "One solved/golden GUMBO file/subsystem; evaluated on remaining target files"
+    },
+    {
+      "Metric": "Toolchain layers exercised",
+      "Baseline: no Meta-Rules": "SysML/GUMBO attempted; verification fails",
+      "Adjusted epsilon = 0.1: the GUMBO FSE Rule book": "SysML v2 placement, GUMBO, generated Slang/Scala obligations, Logika repair"
+    },
+    {
+      "Metric": "Price tags (per M tokens)",
+      "Baseline: no Meta-Rules": "input $60; cached $0; output $270",
+      "Adjusted epsilon = 0.1: the GUMBO FSE Rule book": "same"
+    },
+    {
+      "Metric": "T_wall (min)",
+      "Baseline: no Meta-Rules": "33",
+      "Adjusted epsilon = 0.1: the GUMBO FSE Rule book": "39"
+    },
+    {
+      "Metric": "N_in",
+      "Baseline: no Meta-Rules": "981,770",
+      "Adjusted epsilon = 0.1: the GUMBO FSE Rule book": "381,624"
+    },
+    {
+      "Metric": "N_cache",
+      "Baseline: no Meta-Rules": "18,673,920",
+      "Adjusted epsilon = 0.1: the GUMBO FSE Rule book": "13,391,360"
+    },
+    {
+      "Metric": "N_out",
+      "Baseline: no Meta-Rules": "85,833",
+      "Adjusted epsilon = 0.1: the GUMBO FSE Rule book": "57,821"
+    },
+    {
+      "Metric": "Logged priced tokens N_in + N_out",
+      "Baseline: no Meta-Rules": "1,067,603",
+      "Adjusted epsilon = 0.1: the GUMBO FSE Rule book": "439,445"
+    },
+    {
+      "Metric": "Illustrative C / C_adj (p_cache = 0)",
+      "Baseline: no Meta-Rules": "$82.08",
+      "Adjusted epsilon = 0.1: the GUMBO FSE Rule book": "$38.51"
+    },
+    {
+      "Metric": "N_ctx",
+      "Baseline: no Meta-Rules": "19,741,523",
+      "Adjusted epsilon = 0.1: the GUMBO FSE Rule book": "13,830,805"
+    },
+    {
+      "Metric": "Γ_ctx (tokens/min)",
+      "Baseline: no Meta-Rules": "≈598K",
+      "Adjusted epsilon = 0.1: the GUMBO FSE Rule book": "≈355K"
+    },
+    {
+      "Metric": "|U| targeted units",
+      "Baseline: no Meta-Rules": "42",
+      "Adjusted epsilon = 0.1: the GUMBO FSE Rule book": "42"
+    },
+    {
+      "Metric": "|U_verified|",
+      "Baseline: no Meta-Rules": "2",
+      "Adjusted epsilon = 0.1: the GUMBO FSE Rule book": "42"
+    },
+    {
+      "Metric": "ρ",
+      "Baseline: no Meta-Rules": "4.76%",
+      "Adjusted epsilon = 0.1: the GUMBO FSE Rule book": "100%"
+    },
+    {
+      "Metric": "Θ (units/min)",
+      "Baseline: no Meta-Rules": "0.06",
+      "Adjusted epsilon = 0.1: the GUMBO FSE Rule book": "1.08"
+    },
+    {
+      "Metric": "K / K_adj (context tokens/verified unit)",
+      "Baseline: no Meta-Rules": "≈9.87M",
+      "Adjusted epsilon = 0.1: the GUMBO FSE Rule book": "≈329K"
+    },
+    {
+      "Metric": "K_$ / K_$^adj (dollars/verified unit)",
+      "Baseline: no Meta-Rules": "$41.04",
+      "Adjusted epsilon = 0.1: the GUMBO FSE Rule book": "$0.92"
+    },
+    {
+      "Metric": "S (end-to-end success)",
+      "Baseline: no Meta-Rules": "0",
+      "Adjusted epsilon = 0.1: the GUMBO FSE Rule book": "1"
+    }
+  ],
+  "notes": [
+    "",
+    "",
+    ""
+  ]
+}
