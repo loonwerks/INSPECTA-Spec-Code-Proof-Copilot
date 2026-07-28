@@ -1,0 +1,205 @@
+/goal
+
+Title: Apply frozen HAMR SysML v2 Process-Definition Meta-Rule books without retraining
+
+You are working as a Codex agent in the repository root. For this task, treat /home/amertahat/SPEC_CODE_PROOF/isolette/sysml as the only project root. Do not read or modify top-level /home/amertahat/SPEC_CODE_PROOF/tools, /home/amertahat/SPEC_CODE_PROOF/rule-books_, /home/amertahat/SPEC_CODE_PROOF/eva-results, or any sibling directories unless the user explicitly asks.
+
+Your goal is to use the already learned and verified process-definition Meta-Rule books from `goal_2.txt` as a persistent user-mode rule library. Do not rerun the full training, extraction, or rule-learning experiment unless the user explicitly asks for a new training run.
+
+Primary user-mode objective
+===========================
+
+Given a new English engineering description, architecture description, requirement excerpt, process description, subsystem description, or partial SysML v2 model, generate or repair HAMR-compatible SysML v2 AADL-style process-definition artifacts by applying the frozen rule books already stored in this workspace.
+
+The purpose is to let new users benefit from the learned rules immediately inside the IDE without repeating dataset discovery, training/calibration, rule extraction, or full evaluation from scratch.
+
+Required rule-book inputs
+=========================
+
+Use these existing artifacts as the authoritative frozen rule library:
+
+- `isolette/sysml/rule-books/final-combined-process-meta-rule-book.md`
+- `isolette/sysml/rule-books/final-process-definition-rule-book.md`
+- `isolette/sysml/rule-books/final-process-port-connection-rule-book.md`
+- `isolette/sysml/rule-books/final-process-scheduling-binding-rule-book.md`
+- `isolette/sysml/rule-books/final-sysmlv2-general-rule-book.md`
+- `isolette/sysml/rule-books/final-gumbo-attachment-rule-book.md`
+- `isolette/sysml/rule-books/final-scala-slang-process-compatibility-rule-book.md`
+- `isolette/sysml/rule-books/final-sel4-microkit-process-rule-book.md`
+- `isolette/sysml/rule-books/final-process-verification-repair-rule-book.md`
+- `isolette/sysml/rule-books/final-process-apply-rules-prompt.md`
+- `isolette/sysml/rule-books/user-mode-export-manifest.json`
+
+Also read these active support files when needed:
+
+- `isolette/sysml/syml-spec-meta-rules-explainations.txt`
+- `isolette/sysml/sireum_verification_plan.txt`
+
+Do not modify these frozen rule books unless the user explicitly asks for rule-book maintenance or a new learning iteration.
+
+Hard isolation rule: never use training/evaluation snapshots in user mode
+========================================================================
+
+When running this `goal_user.txt` workflow, do not read, copy, cite, search, or use any artifact under:
+
+- `isolette/sysml/eva-results/`
+- `isolette/sysml/eval_results/`
+- any `verification-profiles/` directory;
+- any clean-profile, golden-clean, snapshot, generated evaluation, repair-log, verifier-log, score-table, train/test manifest, or truth-value directory from the training/evaluation phase.
+
+The frozen final rule books under `isolette/sysml/rule-books/` are the only learned artifacts exported from training to user mode. Evaluation reports, truth manifests, generated held-out artifacts, clean verifier profiles, and previous repair outputs are training-only audit records and are not user-mode context.
+
+Before applying rules in user mode:
+
+1. Read `isolette/sysml/rule-books/user-mode-export-manifest.json` if present.
+2. Confirm every input used for generation or repair is either:
+   - one of the frozen final rule books or final prompts listed above;
+   - an active project file requested by the user;
+   - an active source/context file such as `sireum_verification_plan.txt` or `syml-spec-meta-rules-explainations.txt`.
+3. If the manifest is missing, continue only with the listed final rule books and active project files; do not substitute `eva-results` or any snapshot path.
+4. If a path contains `eva-results`, `eval_results`, `verification-profiles`, `snapshot`, `clean-profile`, `hamr-clean`, or `golden-clean`, reject it as user-mode input.
+
+User-mode workflow
+==================
+
+1. Read the user request and identify the intended construct:
+   - process definition;
+   - thread definition;
+   - process/thread containment;
+   - input or output ports;
+   - DataPort or EventDataPort choice;
+   - connections;
+   - scheduling, dispatch, period, domain, or binding attributes;
+   - GUMBO contract attachment location;
+   - Scala/Slang compatibility expectation;
+   - seL4/Microkit/Rust/Verus process compatibility expectation;
+   - verification or repair task.
+
+2. Load only the relevant frozen rule-book sections needed for the request.
+   - Prefer `final-combined-process-meta-rule-book.md` for broad generation.
+   - Prefer specialized final rule books for narrow edits.
+   - Use `final-process-apply-rules-prompt.md` as the prompt template for generation.
+
+3. Inspect the active repository context before editing:
+   - target SysML package and namespace;
+   - existing process/thread naming style;
+   - existing port and data type declarations;
+   - existing connection syntax;
+   - active HAMR/JVM profile expectations from active project files only;
+   - model-level `sysml-logika` compatibility from the active `isolette/sysml-logika` tree when verification is requested.
+
+4. Generate or repair the requested artifact using the frozen rules.
+   - Preserve traceability to the English source, requirement ID, source file, or user-provided description.
+   - Report the applied rule IDs in comments or in a companion note when appropriate.
+   - Do not invent unsupported SysML v2, HAMR, GUMBO, Scala/Slang, seL4, Rust, or Verus syntax.
+   - Prefer minimal edits to the active user-requested file.
+
+5. If editing active SysML files, keep profile compatibility in mind:
+   - Main HAMR/JVM codegen profile uses active project files under `isolette/sysml`.
+   - Model-level integration Logika uses `isolette/sysml-logika`.
+   - Do not blindly copy time-unit, DataPort refinement, or Microkit-only attribute syntax between profiles.
+   - Do not add `HAMR::Microkit_Language` attributes to JVM profile files unless the active library defines them.
+
+6. Verification policy:
+   - Do not use clean-profile snapshots, frozen verification profiles, or verifier outputs from `eva-results` / `eval_results`.
+   - Prefer active-project verification commands from `isolette/sysml/sireum_verification_plan.txt`, `isolette/sysml/bin/run-hamr.cmd`, and active repository scripts when they are safe for the requested task.
+   - If a broad active sourcepath is contaminated, create a fresh temporary verification workspace from active project files only; do not copy an old clean-profile snapshot.
+   - Use `isolette/hamr/slang/bin/run-logika.cmd` for maintained code-level Logika.
+   - Use `sireum hamr sysml logika --sourcepath /home/amertahat/SPEC_CODE_PROOF/isolette/sysml-logika` for model-level integration Logika.
+   - If verification fails, classify the failure and propose the smallest repair before editing generated code or application logic.
+
+7. Do not rerun training by default.
+   - Do not rebuild the process-definition dataset.
+   - Do not rewrite candidate/extracted rule books.
+   - Do not overwrite final rule books.
+
+8. Validation rule for accepting user-mode generated or repaired artifacts.
+   - Do not accept a generated or repaired process-definition artifact merely because it is textually similar to an example.
+   - All GUMBO contracts required by the system description PDF or TXT source, especially the Steve Miller / FAA REMH text when present, must be traced into a checklist aligned with the GUMBO contract categories and list structure used in `Gumbo_FSE_agent_Plan.txt` / `FSE_agent_Plan.txt`.
+   - Every required contract item from that checklist must either appear as a `language "GUMBO" /*{ ... }*/` contract on the correct project-owned behavioral thread or be explicitly marked not applicable with a source-backed reason.
+   - Testing must include GUMBO contract coverage, not only process/thread/port syntax coverage. Check initialize contracts, compute contracts, compute cases, assumptions, guarantees, integration assumptions/guarantees when used, and contract attachment location.
+   - All processes required by the English/PDF/TXT system description and repository architecture must be defined, all required process-owned threads must be defined, all required ports and connections must be present, and all process/thread/GUMBO artifacts must be included in structural checks.
+   - All available verification gates must pass before acceptance: HAMR/Sireum type checking or code generation, code-level Logika, model-level Logika with the compatible sourcepath/profile, and Verus/GUMBOX/proptest when the target and repository provide them.
+   - If any required process, thread, port, connection, GUMBO contract, or verifier gate is missing, failing, or only planned, report the artifact as provisional or human-review-required rather than accepted.
+   - If semantic/cosine scoring falls back from an embedding or cosine-distance implementation to a proxy metric, report to the user why the fallback was used, which dependency or access was unavailable, where the fallback result is recorded, and whether structural/GUMBO/verification evidence is sufficient for acceptance.
+
+Latest training run rule-book paths
+===================================
+
+This file was refreshed after the 2026-06-17 rerun that started from `isolette/sysml/goal.txt` and kept the process-definition workflow from `isolette/sysml/goal_2.txt` in scope.
+
+Use these current frozen paths for user-mode application:
+
+- `isolette/sysml/rule-books/final-combined-process-meta-rule-book.md`
+- `isolette/sysml/rule-books/final-process-definition-rule-book.md`
+- `isolette/sysml/rule-books/final-process-port-connection-rule-book.md`
+- `isolette/sysml/rule-books/final-process-scheduling-binding-rule-book.md`
+- `isolette/sysml/rule-books/final-sysmlv2-general-rule-book.md`
+- `isolette/sysml/rule-books/final-gumbo-attachment-rule-book.md`
+- `isolette/sysml/rule-books/final-scala-slang-process-compatibility-rule-book.md`
+- `isolette/sysml/rule-books/final-sel4-microkit-process-rule-book.md`
+- `isolette/sysml/rule-books/final-process-verification-repair-rule-book.md`
+- `isolette/sysml/rule-books/final-process-apply-rules-prompt.md`
+
+Latest user-mode application target:
+
+- Active HAMR/JVM SysML: `isolette/sysml/Monitor.sysml`
+- Supporting active profile repair: `isolette/sysml/Regulate.sysml`
+- Model-level verification profile: `isolette/sysml-logika`
+- Verification source: active project verification plan and active repository commands only; do not use `eva-results` verification records.
+
+Expected outputs for user-mode tasks
+====================================
+
+Depending on the request, produce one or more of:
+
+- a SysML v2 process definition;
+- a thread definition;
+- port declarations;
+- connection declarations;
+- scheduling, period, domain, or binding attributes;
+- GUMBO attachment-location recommendation or GUMBO block;
+- traceability comments;
+- a companion note listing applied rule IDs and unresolved assumptions;
+- verification results and repair notes.
+
+When generating a new artifact, include:
+
+- source English text or requirement reference;
+- package/namespace decision;
+- process/thread names;
+- port directions and data types;
+- DataPort/EventDataPort decision;
+- connection endpoints;
+- scheduling/binding assumptions;
+- GUMBO attachment point, if behavior contracts are involved;
+- expected generated Scala/Slang or seL4/Rust/Verus artifacts, if relevant;
+- verification commands to run.
+
+Quality guardrails
+==================
+
+- Apply learned rules; do not relearn them unless requested.
+- Keep final rule books immutable during normal user-mode use.
+- Do not use `eva-results`, `eval_results`, clean-profile snapshots, verification snapshots, generated evaluation artifacts, or truth manifests as user-mode context.
+- Preserve active user files unless the user asks for edits.
+- Keep edits narrowly scoped to the requested model artifact.
+- Preserve traceability from English to process/thread/port/connection decisions.
+- Use repository examples and existing syntax as source of truth.
+- Treat semantic distance as support evidence, not as the only acceptance condition.
+- Structural correctness, complete GUMBO contract coverage, and verification are more important than text similarity.
+- If falling back to a proxy cosine-distance or token-vector metric, explicitly tell the user why the fallback was necessary before using the score as evidence.
+- Do not claim broad cross-system generality from the Isolette-only training/evaluation run.
+
+Final response expected from Codex
+==================================
+
+every 15 minutes, or at the end of each user-mode task, report concisely:
+
+- which frozen rule book(s) were used;
+- which file(s) were created or edited;
+- which rule IDs were applied, when available;
+- what was generated or repaired;
+- verification commands run and their pass/fail status;
+- unresolved assumptions or limitations;
+- next recommended action.
