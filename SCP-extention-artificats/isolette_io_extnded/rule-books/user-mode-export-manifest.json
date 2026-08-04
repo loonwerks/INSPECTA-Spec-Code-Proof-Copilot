@@ -1,0 +1,37 @@
+{
+  "allowed_user_mode_inputs": [
+    "rule-books/final-combined-process-meta-rule-book.md",
+    "rule-books/final-process-definition-rule-book.md",
+    "rule-books/final-process-port-connection-rule-book.md",
+    "rule-books/final-process-scheduling-binding-rule-book.md",
+    "rule-books/final-sysmlv2-general-rule-book.md",
+    "rule-books/final-gumbo-attachment-rule-book.md",
+    "rule-books/final-scala-slang-process-compatibility-rule-book.md",
+    "rule-books/final-sel4-microkit-process-rule-book.md",
+    "rule-books/final-process-verification-repair-rule-book.md",
+    "rule-books/final-process-apply-rules-prompt.md",
+    "sireum_verification_plan.txt",
+    "syml-spec-meta-rules-explainations.txt"
+  ],
+  "created_utc": "2026-06-18T10:03:37.981696+00:00",
+  "forbidden_path_markers": [
+    "clean-profile",
+    "eva-results",
+    "eval_results",
+    "generated",
+    "golden-clean",
+    "hamr-clean",
+    "repair-logs",
+    "snapshot",
+    "truth-values",
+    "verification-logs",
+    "verification-profiles"
+  ],
+  "policy": [
+    "User-mode may use only final rule books, final prompts, active project files, and explicitly allowed active support files.",
+    "User-mode must not read eva-results/eval_results, truth manifests, verification profiles, clean-profile snapshots, generated evaluation artifacts, repair logs, verification logs, or score tables.",
+    "If an allowed path ever contains a forbidden marker, fail before writing this manifest."
+  ],
+  "purpose": "User-mode allowlist after process-definition training/evaluation cleanup.",
+  "removed_training_only_snapshot_dirs": []
+}
